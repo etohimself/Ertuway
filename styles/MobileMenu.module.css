@@ -1,0 +1,36 @@
+.MobileMenuContainer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 10px 10%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #f3f3f3;
+  display: none;
+}
+
+.MobileMenuButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.MobileMenuIcons {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 5px;
+  fill: #747474;
+}
+
+.MobileMenuButton > p {
+  margin: 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .MobileMenuContainer {
+    display: flex;
+  }
+}

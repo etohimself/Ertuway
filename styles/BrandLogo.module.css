@@ -1,0 +1,26 @@
+.brandContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height:0;
+  font-size: 24px;
+  font-weight: 800;
+  margin:20px;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.brandLogoIcon {
+  margin-right: 5px;
+  width:35px;
+  height:35px;
+}
+
+@media screen and (max-width: 400px) {
+  .brandContainer {
+    font-size: 18px;
+  }
+  .brandLogoIcon {
+    height:28px;
+    width: 28px;
+  }
+}

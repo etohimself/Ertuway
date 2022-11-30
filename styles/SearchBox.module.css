@@ -1,0 +1,32 @@
+.SearchBoxContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 29px;
+  width: 40%;
+  margin: 0 20px;
+}
+
+input.SearchInput {
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 25px;
+}
+
+.magnifierIcon {
+  position: absolute;
+  left: 5px;
+  width: 18px;
+  height: 18px;
+}
+
+@media screen and (max-width: 1200px) {
+  .SearchBoxContainer {
+    width: 100%;
+    margin: 15px 0 0 0;
+  }
+}

@@ -1,0 +1,111 @@
+.NavbarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f3f3;
+  color: #2f2f2f;
+  border-bottom: 1px solid #a0a0a0;
+  box-sizing: border-box;
+  padding: 20px 0;
+}
+
+.NavbarButtonsContainer {
+  display: flex;
+  color: #2f2f2f;
+  font-size: 16px;
+  margin: 20px;
+}
+
+.NavbarButtonsContainerMobile {
+  display: flex;
+  color: #2f2f2f;
+  font-size: 16px;
+  display: none;
+}
+
+.AccountButton,
+.CartButton {
+  display: flex;
+  align-items: center;
+  margin-right: 25px;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.navbarButtonIcons {
+  margin-right: 5px;
+  width: 24px;
+  height: auto;
+}
+
+.BrandAreaMobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.NavbarCategories {
+  display: flex;
+  border-bottom: 1px solid #b4b4b4;
+}
+
+.NavbarCategoryItems {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.NavbarCategory {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.NavbarCategoryPlaceHolder {
+  flex-grow: 1;
+}
+
+.NavbarCategory.isActive {
+  border-bottom: 3px solid #ff7440;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 1200px) {
+  .NavbarCategory {
+    display: none;
+  }
+
+  .NavbarContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .NavbarButtonsContainer {
+    display: none;
+  }
+
+  .NavbarButtonsContainerMobile {
+    display: flex;
+  }
+
+  .BrandAreaMobile {
+    width: 100%;
+  }
+
+  .NavbarContainer {
+    padding: 15px 30px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .NavbarContainer {
+    padding: 15px 10px;
+  }
+  .navbarButtonIcons {
+    fill: #939393;
+  }
+}
