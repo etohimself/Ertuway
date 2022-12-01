@@ -1,27 +1,43 @@
 .welcomerContainer {
   width: 100%;
-  height: 55vh;
-  background-position: top;
+  height: auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
   transition: all 0.6s ease;
   background-position: top;
   background-size: contain;
+  padding-top: 25px;
+}
+
+.leftContainer {
+  width: 25%;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.rightContainer {
+  width: 25%;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10px;
 }
 
 .arrowContainer {
   width: 52px;
   height: 52px;
-  background-color: #f72f00;
-  border-radius: 50px;
+  border-radius: 100%;
   color: white;
-  margin: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.6s ease;
+  box-shadow: rgba(26, 26, 43, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
 
 .arrowIcon {
@@ -34,22 +50,75 @@
   transform: rotate(180deg);
 }
 
-.eventImgContainer {
+.middleContainer {
+  height: 100%;
   width: 50%;
-  height: 80%;
-  padding: 0;
+  border-radius: 20px;
+  overflow:hidden;
   position: relative;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
 
-.eventImage {
+.topImage,
+.bottomImage {
   width: 100%;
   height: auto;
   user-select: none;
   transition: all 0.6s ease-out;
   opacity: 0;
+  top: 0;
+  left: 0;
+}
+
+.topImage {
+  z-index: 2;
   position: absolute;
 }
 
-.eventImage.isVisible {
+.bottomImage {
+  z-index: 1;
+}
+
+.topImage.isVisible,
+.bottomImage.isVisible {
   opacity: 1;
+}
+
+@media screen and (max-width: 1200px) {
+  .leftContainer {
+    width: 20%;
+  }
+  .middleContainer {
+    width: 60%;
+  }
+  .rightContainer {
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .leftContainer {
+    width: 15%;
+  }
+  .middleContainer {
+    width: 70%;
+  }
+  .rightContainer {
+    width: 15%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .leftContainer {
+    width: 5%;
+  }
+  .middleContainer {
+    width: 90%;
+  }
+  .rightContainer {
+    width: 5%;
+  }
 }

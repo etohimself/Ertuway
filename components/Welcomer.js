@@ -13,95 +13,68 @@ function Welcomer(props) {
   ];
 
   const [currentEvent, setCurrentEvent] = useState(1);
-  const [eventVisibility, setEventVisibility] = useState([1, 0]);
-  const [eventImgs, setEventImgs] = useState([
-    eventStyles[1].image,
-    eventStyles[1].image,
-  ]);
-
-  const switchToEvent = (eventNumber) => {
-    if (eventVisibility[0]) {
-      //First image is currently shown
-      let currentEventTemp = currentEvent; //To prevent issues with async process
-
-      setEventVisibility([0, 1]); //Show the second one
-      setEventImgs([
-        eventStyles[currentEventTemp].image,
-        eventStyles[eventNumber].image,
-      ]); //Show the other one
-    } else {
-      //Second image is currently shown
-      let currentEventTemp = currentEvent; //To prevent issues with async process
-      setEventVisibility([1, 0]); //Show the first one
-      setEventImgs([
-        eventStyles[eventNumber].image,
-        eventStyles[currentEventTemp].image,
-      ]);
-    }
-    setCurrentEvent(eventNumber);
+  const [topImageVisible, setTopImageVisible] = useState(1);
+  const [bottomImageVisible, setBottomImageVisible] = useState(0);
+  const [topImageSrc, setTopImageSrc] = useState(eventStyles[1].image);
+  const [bottomImageSrc, setBottomImageSrc] = useState(eventStyles[1].image);
+  
+  const switchToEvent = (targetEvent) => {
+    (topImageVisible) && setBottomImageSrc(eventStyles[targetEvent].image);
+    setTopImageVisible(!topImageVisible);
+    setBottomImageVisible(!bottomImageVisible);
+    setCurrentEvent(targetEvent);
   };
 
-  const nextEvent = () => {
-    if (currentEvent > eventStyles.length - 2) {
-      //Roll back
-      switchToEvent(1);
-    } else {
-      //Show next
-      switchToEvent(currentEvent + 1);
-    }
-  };
+  const nextEvent = () => (currentEvent + 1 > eventStyles.length - 1) ? switchToEvent(1) : switchToEvent(currentEvent + 1);
+  const previousEvent = () => (currentEvent == 1) ? switchToEvent(eventStyles.length - 1) : switchToEvent(currentEvent - 1);
 
-  const previousEvent = () => {
-    if (currentEvent == 1) {
-      //Go to end
-      switchToEvent(eventStyles.length - 1);
-    } else {
-      //Show previous
-      switchToEvent(currentEvent - 1);
-    }
-  };
 
   return (
     <div
       className={styles.welcomerContainer}
       style={{
-        backgroundImage: `url("/images/welcomerbg.png")`,
+        backgroundImage: `url("/images/welcomerbg.png"), linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);`,
         backgroundColor: eventStyles[currentEvent].bgColor,
       }}
     >
-      <div
-        className={styles.arrowContainer}
-        style={{ backgroundColor: `${eventStyles[currentEvent].buttonColor}` }}
-        onClick={previousEvent}
-      >
-        <ArrowIcon className={styles.arrowIcon} />
+      
+      
+
+
+
+      <div className={styles.leftContainer}>
+        <div
+          className={styles.arrowContainer}
+          style={{
+            backgroundColor: `${eventStyles[currentEvent].buttonColor}`,
+          }}
+          onClick={previousEvent}
+        >
+          <ArrowIcon className={styles.arrowIcon} />
+        </div>
       </div>
 
-      <div className={styles.eventImgContainer}>
-        <Image
-          className={`${styles.eventImage} ${
-            eventVisibility[0] ? styles.isVisible : ""
-          }`}
-          src={eventImgs[0]}
-          alt="Special Event"
-        />
 
-        <Image
-          className={`${styles.eventImage} ${
-            eventVisibility[1] ? styles.isVisible : ""
-          }`}
-          src={eventImgs[1]}
-          alt="Special Event"
-        />
+      <div className={styles.middleContainer}>
+
+        <Image src={topImageSrc} className={`${styles.topImage} ${topImageVisible && styles.isVisible}`}/>
+        <Image src={bottomImageSrc} className={`${styles.bottomImage} ${bottomImageVisible && styles.isVisible}`}/>
+
       </div>
 
-      <div
-        className={styles.arrowContainer}
-        style={{ backgroundColor: `${eventStyles[currentEvent].buttonColor}` }}
-        onClick={nextEvent}
-      >
-        <ArrowIcon className={`${styles.arrowIcon} ${styles.rightArrow}`} />
+      <div className={styles.rightContainer}>
+        <div
+          className={styles.arrowContainer}
+          style={{
+            backgroundColor: `${eventStyles[currentEvent].buttonColor}`,
+          }}
+          onClick={nextEvent}
+        >
+          <ArrowIcon className={`${styles.arrowIcon} ${styles.rightArrow}`} />
+        </div>
       </div>
+
+
     </div>
   );
 }
