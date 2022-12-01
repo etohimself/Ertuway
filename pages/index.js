@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar.js";
 import MobileMenu from "../components/MobileMenu.js";
 import Welcomer from "../components/Welcomer.js";
+import SaleCategory from "../components/SaleCategory.js";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <Navbar />
       <MobileMenu />
       <Welcomer />
+      <SaleCategory />
     </>
   );
 }

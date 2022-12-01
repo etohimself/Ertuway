@@ -1,0 +1,52 @@
+.SaleCategoryContainer {
+    width:450px;
+    height:250px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #969696;
+    display:flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin:100px;
+}
+
+.SaleCategoryImage {
+    width:100%;
+    height:75%;
+    object-fit: cover;
+}
+
+.SaleCategoryInfo {
+    display:flex;
+    box-sizing: border-box;
+    color:#FF7440;
+    align-items: center;
+    justify-content: space-between;
+    height:25%;
+    padding-left:20px;
+}
+
+.SaleCategoryInfo > h1 {
+    font-size:24px;
+    font-weight: 800;
+    margin: 0;
+}
+
+.salePercentage {
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right:20px;
+}
+
+.salePercentageIcon {
+    fill:#FF7440;
+    width:30px;
+    height:36px;
+}
+
+
+.salePercentageText {
+    margin-left:10px;
+    width:50%;
+}

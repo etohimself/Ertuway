@@ -44,10 +44,12 @@
   width: 50%;
   height: 50%;
   fill: white;
+  margin-right:2px;
 }
 
 .arrowIcon.rightArrow {
   transform: rotate(180deg);
+  margin-left:4px;
 }
 
 .middleContainer {
