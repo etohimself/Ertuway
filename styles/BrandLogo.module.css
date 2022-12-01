@@ -18,6 +18,7 @@
 @media screen and (max-width: 400px) {
   .brandContainer {
     font-size: 18px;
+    margin:10px 0;
   }
   .brandLogoIcon {
     height:28px;

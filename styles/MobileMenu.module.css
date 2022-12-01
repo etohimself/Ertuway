@@ -34,3 +34,24 @@
     display: flex;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .MobileMenuContainer {
+    padding: 15px;
+  }
+  .MobileMenuButton {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .MobileMenuButton {
+    font-size: calc(8px + 1vw);
+  }
+}
+
+@media screen and (max-width: 200px) {
+  .MobileMenuButton {
+    font-size: 0px;
+  }
+}

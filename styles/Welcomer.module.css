@@ -54,7 +54,7 @@
   height: 100%;
   width: 50%;
   border-radius: 20px;
-  overflow:hidden;
+  overflow: hidden;
   position: relative;
   display: flex;
   align-items: center;
@@ -97,6 +97,10 @@
   .rightContainer {
     width: 20%;
   }
+  .arrowContainer {
+    width: 45px;
+    height: 45px;
+  }
 }
 
 @media screen and (max-width: 750px) {
@@ -105,20 +109,29 @@
   }
   .middleContainer {
     width: 70%;
+    border-radius: 10px;
   }
   .rightContainer {
     width: 15%;
+  }
+  .arrowContainer {
+    width: 35px;
+    height: 35px;
   }
 }
 
 @media screen and (max-width: 400px) {
   .leftContainer {
-    width: 5%;
+    width: 12.5%;
   }
   .middleContainer {
-    width: 90%;
+    width: 75%;
   }
   .rightContainer {
-    width: 5%;
+    width: 12.5%;
+  }
+  .arrowContainer {
+    width: 30px;
+    height: 30px;
   }
 }

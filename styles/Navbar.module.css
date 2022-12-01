@@ -7,6 +7,7 @@
   border-bottom: 1px solid #a0a0a0;
   box-sizing: border-box;
   padding: 20px 0;
+  overflow: hidden;
 }
 
 .NavbarButtonsContainer {
@@ -105,7 +106,16 @@
   .NavbarContainer {
     padding: 15px 10px;
   }
-  .navbarButtonIcons {
-    fill: #939393;
+  .AccountButton,
+  .CartButton {
+    margin-right: 5px;
+  }
+
+  .NavbarButtonsContainerMobile {
+    display: none;
+  }
+
+  .BrandAreaMobile {
+    justify-content: center;
   }
 }
