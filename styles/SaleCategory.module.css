@@ -1,52 +1,103 @@
 .SaleCategoryContainer {
-    width:450px;
-    height:250px;
-    border-radius: 8px;
-    background-color: white;
-    border: 1px solid #969696;
-    display:flex;
-    flex-direction: column;
-    overflow: hidden;
-    margin:100px;
+  width: 450px;
+  height: 300px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background-color: white;
+  border: 1px solid #969696;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
 }
 
 .SaleCategoryImage {
-    width:100%;
-    height:75%;
-    object-fit: cover;
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
 }
 
 .SaleCategoryInfo {
-    display:flex;
-    box-sizing: border-box;
-    color:#FF7440;
-    align-items: center;
-    justify-content: space-between;
-    height:25%;
-    padding-left:20px;
+  display: flex;
+  box-sizing: border-box;
+  color: #ff7440;
+  align-items: center;
+  justify-content: space-between;
+  height: 30%;
+  padding-left: 20px;
 }
 
 .SaleCategoryInfo > h1 {
-    font-size:24px;
-    font-weight: 800;
-    margin: 0;
+  font-size: 24px;
+  font-weight: 800;
 }
 
 .salePercentage {
-    display:flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right:20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 20px;
 }
 
 .salePercentageIcon {
-    fill:#FF7440;
-    width:30px;
-    height:36px;
+  fill: #ff7440;
+  width: 30px;
+  height: 36px;
 }
 
-
 .salePercentageText {
-    margin-left:10px;
-    width:50%;
+  margin-left: 10px;
+  width: 50%;
+}
+
+@media screen and (max-width: 1200px) {
+  .SaleCategoryContainer {
+    width: 350px;
+    height: 233px;
+  }
+  .SaleCategoryInfo > h1 {
+    font-size: 20px;
+    font-weight: 800;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .SaleCategoryContainer {
+    width: 300px;
+    height: 200px;
+  }
+  .SaleCategoryInfo {
+    padding-left: 12px;
+  }
+  .SaleCategoryInfo > h1 {
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .salePercentageText {
+    font-size: 12px;
+  }
+  .salePercentageIcon {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .SaleCategoryContainer {
+    width: 220px;
+    height: 146px;
+  }
+  .SaleCategoryInfo {
+    padding-left: 10px;
+  }
+  .SaleCategoryInfo > h1 {
+    font-size: 11px;
+    font-weight: 800;
+  }
+  .salePercentageText {
+    font-size: 10px;
+  }
+  .salePercentageIcon {
+    width: 20px;
+    height: 20px;
+  }
 }

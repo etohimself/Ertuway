@@ -1,12 +1,13 @@
 .NavbarContainer {
+  width:100%;
   display: flex;
+  box-sizing: border-box;
+  padding: 20px 0;
   align-items: center;
   justify-content: center;
   background-color: #f3f3f3;
   color: #2f2f2f;
   border-bottom: 1px solid #a0a0a0;
-  box-sizing: border-box;
-  padding: 20px 0;
   overflow: hidden;
 }
 

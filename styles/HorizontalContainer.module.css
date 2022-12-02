@@ -1,0 +1,67 @@
+.HorizontalContainer {
+  width: 100%;
+  margin-top: 25px;
+  flex-shrink: 0;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.scrollArea {
+  width: 95%;
+  align-self: stretch;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+  flex-shrink: 0;
+  scroll-behavior: smooth;
+  border-radius: 5px;
+}
+
+.scrollArea::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollArea {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.arrowContainer {
+  position: absolute;
+  left: 1.25%;
+  top: 40%;
+  width: 52px;
+  height: 52px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.6s ease;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 8px #0000003d;
+  border: 1px solid lightgray;
+}
+
+.rightArrow {
+  left: auto;
+  right: 1.25%;
+  top: 40%;
+}
+
+.rightArrow .arrowIcon {
+  transform: rotate(180deg);
+}
+
+.arrowIcon {
+  width: 50%;
+  height: 50%;
+  fill: rgb(255, 116, 64);
+  margin-right: 2px;
+}
