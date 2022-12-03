@@ -4,6 +4,8 @@ import MobileMenu from "../components/MobileMenu.js";
 import Welcomer from "../components/Welcomer.js";
 import styles from "../styles/Home.module.css";
 import DiscountCategories from "../components/DiscountCategories.js";
+import ScrollArrow from "../components/ScrollArrow";
+
 
 export default function Home() {
   const event1list = [

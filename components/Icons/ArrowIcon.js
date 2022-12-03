@@ -9,6 +9,7 @@ export default function ArrowIcon(props) {
       height="792.082px"
       viewBox="0 0 792.082 792.082"
       className={props.className}
+      style={props.style}
     >
       <g>
         <g id="_x37__34_">

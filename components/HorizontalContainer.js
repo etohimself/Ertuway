@@ -1,5 +1,6 @@
 import styles from "../styles/HorizontalContainer.module.css";
-import ArrowIcon from "../components/Icons/ArrowIcon";
+import ScrollArrow from "./ScrollArrow";
+
 import { useRef } from "react";
 
 function HorizontalContainer(props) {
@@ -18,27 +19,24 @@ function HorizontalContainer(props) {
 
   return (
     <div className={styles.HorizontalContainer}>
-      <div
-        className={`${styles.arrowContainer} ${styles.leftArrow}`}
+      <ScrollArrow
         onClick={() =>
           (scrollAreaDOM.current.scrollLeft -= decideScrollAmount())
         }
-      >
-        <ArrowIcon className={styles.arrowIcon} />
-      </div>
+        className={styles.leftArrow}
+      />
 
       <div className={styles.scrollArea} ref={scrollAreaDOM}>
         {props.children}
       </div>
 
-      <div
-        className={`${styles.arrowContainer} ${styles.rightArrow}`}
+      <ScrollArrow
+        direction="right"
         onClick={() =>
           (scrollAreaDOM.current.scrollLeft += decideScrollAmount())
         }
-      >
-        <ArrowIcon className={styles.arrowIcon} />
-      </div>
+        className={styles.rightArrow}
+      />
     </div>
   );
 }

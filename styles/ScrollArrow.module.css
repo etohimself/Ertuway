@@ -1,0 +1,44 @@
+.arrowContainer {
+  width: 52px;
+  height: 52px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.6s ease;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 8px #0000003d;
+}
+
+.rightArrow .arrowIcon {
+  transform: rotate(180deg);
+}
+
+.arrowIcon {
+  width: 50%;
+  height: 50%;
+  fill: rgb(255, 116, 64);
+}
+
+
+@media screen and (max-width: 1200px) {
+  .arrowContainer {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .arrowContainer {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .arrowContainer {
+    width: 30px;
+    height: 30px;
+  }
+}
