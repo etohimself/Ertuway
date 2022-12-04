@@ -31,19 +31,19 @@ $car_textile#Car Seat, Car Seat, Car Seat, Car Seat, Car Seat, Car Seat, Car Sea
 $consumable_stationery#Scissors, Scissors, Ruler, Ruler Set, Pencils, Pen, Pen, Color Pens, Color Pens, Stapler
 $consumable_notebook#Notebook, Notebook, Notebook, Notebook, Notebook, Notebook, Notebook, Notebook, Notebook, Notebook
 $consumable_office#Stapler, Staple, Sticky Notes, Sticky Notes, Pen, Pen, Pens, Pens, Pen, A4 Copy Paper 
-$consumable_school#Watercolor, Bag, Bag, Bag, Bag, Bag, Pencil Case, Color Pens, Bag, Bag
-$supermarket_fruits#
-$supermarket_meat#
-$supermarket_dairy#
-$supermarket_bread#
-$supermarket_snack#
-$supermarket_petshop#
-$supermarket_baby#
-$supermarket_houseneeds#
-$hobby_art#
-$hobby_music#
-$hobby_books#
-$hobby_toys#
+$consumable_school#Watercolor, Bag, Bag, Bag, Bag, Bag, Pencil Case, Color Pens, Bag, Bag, Watercolor
+$supermarket_fruits#Spinach, Tomatoes, Kiwi, Bananas, Apple, Cucumber, Potatoes, Lemon, Avocado, Kale
+$supermarket_meat#Chicken Breast, Chicken Legs, Chicken Breasts, Burger Meat, Red Meat, Red Meat, Red Meat, Fish Meat, Fish Meat, Fish Meat
+$supermarket_dairy#Milk, Eggs, Cheese, Butter, Butter, Cheese, Cheese, Milk, Yogurt, Yogurt
+$supermarket_bread#Bread, Bread, Bread, Bread, Bread, Bread, Bread, Bread, Bread, Bread
+$supermarket_snack#Chocolate Bar, Chocolate Bar, Chocolate Bar, Chocolate Bar, Chocolate Bar, Chocolate Bar, Snacks, Snacks, Snacks, Snacks
+$supermarket_petshop#Cat Food, Dog Food, Cat Food, Dog Food, Cat Food, Dog Food, Cat Food, Dog Food, Cat Food, Dog Food
+$supermarket_baby#Diapers, Diapers, Diapers, Diapers, Diapers, Diapers, Diapers, 
+$supermarket_houseneeds#Washing Gel Capsule, Washing Gel Capsule, Washing Gel Capsule, Toilet Paper, Toilet Paper, Toilet Paper, Toilet Paper, Toilet Paper, Toilet Paper, Detergent
+$hobby_art#Paint Brush, Acrylic Paint, Watercolor Paint, Paint Brush, Paint Brush, Paint Brush, Easel, Easel, Easel, Easel, Watercolor
+$hobby_music#Classic Guitar, Ukulele, Electric Guitar, Electric Guitar, Electric Guitar, Electric Guitar, Electric Guitar, Violin, Saxophone, French Horn
+$hobby_books#The Power of Now, 150 Healthiest Foods on Earth, The Way of the Superior Man, Seven Habits of Highly Effective People, Awaken the Giant Within, No Excuses, Happiness Hypothesis, Be Obsessed or Be Average, Mastery, Relentless
+$hobby_toys#Kid Toy, Kid Toy, Teddy Bear, Fidget Spinner, Chess,  Kid Toy, Toy Car, Watergun Toy, Kid Soccerball,  Kid Toy, Plastic Ship,
 $fashion_men_casual_shoe#Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes
 $fashion_men_sports_shoe#Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes
 $fashion_men_classic_shoe#Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes
