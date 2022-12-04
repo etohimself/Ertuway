@@ -1,38 +1,37 @@
 $electronics_smartphone#Smartphone, Smartphone, Smartphone, Smartphone, Smartphone, Smartphone, Smartphone, Smartphone, Smartphone, Smartphone
 $electronics_computer#Laptop, Laptop, Laptop, Desktop PC, Desktop PC, Desktop PC, Desktop PC, Laptop, Desktop PC, Laptop
 $electronics_camera#DSLR Camera, DSLR Camera, DSLR Camera, DSLR Camera, DSLR Camera, DSLR Camera, DSLR Camera, DSLR Camera, DSLR Camera, DSLR Camera
-$electronics_appliance# Washing Machine, Oven, Oven, Oven, Washing Machine, Fridge, Mixer, Iron, Fridge, Vacuum Robot
-$fashion_women_shirt# Shirt, Shirt, Shirt, Shirt, Shirt, Shirt, Shirt, Shirt, Shirt, Shirt
-$fashion_women_tshirt# T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt
-$fashion_women_jacket# Jacket, Coat, Coat, Leather Jacket, Coat, Jacket, Coat, Coat, Coat, Jacket
-$fashion_women_pants#  Pants, Pants, Pants, Pants, Pants, Pants, Pants, Pants, Pants, Pants
-$fashion_women_accessory# Casual Bag, Luxury Bag, Casual Bag, Luxury Bag, Luxury Bag, Luxury Bag, Golden Earrings, Silver Earrings, Golden Earrings, Star Earrings 
-$fashion_men_shirt# 
-$fashion_men_tshirt#
-$fashion_men_jacket#
-$fashion_men_pants#
-$fashion_men_accessory#
-$fashion_women_casual_shoe#
-$fashion_women_sports_shoe#
-$fashion_women_classic_shoe#
-$fashion_women_boots#
-$fashion_women_accessory#
-$health_perfume#
-$health_beauty#
-$health_skincare#
-$health_hair#
-$home_kitchen#
-$home_furniture#
-$home_decoration#
-$home_construction#
-$car_tire#
-$car_oil#
-$car_part#
-$car_textile#
-$consumable_stationery#
-$consumable_notebook#
-$consumable_office#
-$consumable_school#
+$electronics_appliance#Washing Machine, Oven, Oven, Oven, Washing Machine, Fridge, Mixer, Iron, Fridge, Vacuum Robot
+$fashion_women_shirt#Shirt, Shirt, Shirt, Shirt, Shirt, Shirt, Shirt, Shirt, Shirt, Shirt
+$fashion_women_tshirt#T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt
+$fashion_women_jacket#Jacket, Coat, Coat, Leather Jacket, Coat, Jacket, Coat, Coat, Coat, Jacket
+$fashion_women_pants# Pants, Pants, Pants, Pants, Pants, Pants, Pants, Pants, Pants, Pants
+$fashion_women_accessory#Casual Bag, Luxury Bag, Casual Bag, Luxury Bag, Luxury Bag, Luxury Bag, Golden Earrings, Silver Earrings, Golden Earrings, Star Earrings 
+$fashion_men_shirt#Shirt, Shirt, Shirt, Shirt, Shirt, Shirt, Shirt, Shirt, Shirt, Shirt
+$fashion_men_tshirt#T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt, T-Shirt
+$fashion_men_jacket#Casual Jacket, Casual Jacket, Casual Jacket, Casual Jacket, Casual Jacket, Casual Jacket, Casual Jacket, Casual Jacket, Casual Jacket, Casual Jacket
+$fashion_men_pants#Pants, Pants, Pants, Pants, Pants, Pants, Pants, Pants, Pants, Pants
+$fashion_men_accessory#Watch, Sunglasses, Sunglasses, Sunglasses, Sunglasses, Watch, Watch, Watch, Watch, Sunglasses
+$fashion_women_casual_shoe#Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes
+$fashion_women_sports_shoe#Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes
+$fashion_women_classic_shoe#Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes
+$fashion_women_boots#Casual Boots, Casual Boots, Casual Boots, Casual Boots, Casual Boots, Casual Boots, Casual Boots, Casual Boots, Casual Boots, Casual Boots
+$health_perfume#Perfume, Perfume, Perfume, Perfume, Perfume, Perfume, Perfume, Perfume, Perfume, Perfume
+$health_beauty#Lipstick, Lipstick, Lipstick, Lipstick, Lipstick, Lipstick, Lip Gloss, Mascara, Eyeshadow, Eyeliner
+$health_skincare#Skincare Cream, Beauty Cream, Skincare Cream, Beauty Cream, Skincare Cream, Beauty Cream, Skincare Cream, Beauty Cream, Skincare Cream, Beauty Cream
+$health_hair# Shampoo, Shampoo, Shampoo, Shampoo, Shampoo, Shampoo, Hair Dye Set, Professional Hairdryer, Hairstyling Set, Hairbrush
+$home_kitchen#Dining Table, Dining Table, Dining table, Chair, Dining Table, Dining Table, Chair, Chair, Chair, Kitchen Cupboard
+$home_furniture#Couch, Couch, Couch, Couch, Couch, Couch, Couch, Chair, Chair, Armchair
+$home_decoration#Decoration, Decoration, Decoration, Decoration, Decoration, Decoration, Decoration, Decoration, Decoration, Desk Lamp
+$home_construction#Pliers, Drill, Pliers, Drill, Measuring Tape, Hammer, Multi Tool, Multi Tool, Sanding Machine, Wrench Kit
+$car_tire#Tire, Tire, Tire, Tire, Tire, Tire, Tire, Tire, Tire, Tire
+$car_oil#Engine Oil, Engine Oil, Engine Oil, Engine Oil, Engine Oil, Engine Oil, Engine Oil, Engine Oil, Engine Oil, Engine Oil
+$car_part#Car Battery, Car Battery, Car Battery, Car Battery, Car Battery, Car Battery, Spark Plug, Tail Light, Tail Light, Front Light
+$car_textile#Car Seat, Car Seat, Car Seat, Car Seat, Car Seat, Car Seat, Car Seat, Car Seat, Car Seat, Car Seat, 
+$consumable_stationery#Scissors, Scissors, Ruler, Ruler Set, Pencils, Pen, Pen, Color Pens, Color Pens, Stapler
+$consumable_notebook#Notebook, Notebook, Notebook, Notebook, Notebook, Notebook, Notebook, Notebook, Notebook, Notebook
+$consumable_office#Stapler, Staple, Sticky Notes, Sticky Notes, Pen, Pen, Pens, Pens, Pen, A4 Copy Paper 
+$consumable_school#Watercolor, Bag, Bag, Bag, Bag, Bag, Pencil Case, Color Pens, Bag, Bag, Watercolor
 $supermarket_fruits#
 $supermarket_meat#
 $supermarket_dairy#
@@ -45,7 +44,7 @@ $hobby_art#
 $hobby_music#
 $hobby_books#
 $hobby_toys#
-$fashion_men_casual_shoe#
-$fashion_men_sports_shoe#
-$fashion_men_classic_shoe#
-$fashion_men_boots#
+$fashion_men_casual_shoe#Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes, Casual Shoes
+$fashion_men_sports_shoe#Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes, Sports Shoes
+$fashion_men_classic_shoe#Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes, Classic Shoes
+$fashion_men_boots#Leather Boots, Casual Boots, Leather Boots, Casual Boots, Leather Boots, Casual Boots, Leather Boots, Casual Boots, Leather Boots, Casual Boots

@@ -1,0 +1,24 @@
+#!/usr/bin/python
+from PIL import Image
+import os, sys
+
+path = 'C:/Users/core.15/ertuway/public/images/resize/'
+dirs = os.listdir( path )
+
+def resize():
+    for item in dirs:
+        if os.path.isfile(path+item):
+            im = Image.open(path+item)
+            im.load()
+            f, e = os.path.splitext(item)
+            
+            if len(im.split()) > 3:
+                imResize = Image.new("RGB", im.size, (255,255,255))
+                imResize.paste(im, mask=im.split()[3])
+            else:
+                imResize = im.convert('RGB')
+            
+            imResize.thumbnail((600,600), Image.ANTIALIAS)   
+            print(path + "/Output/" + f + ".jpg")
+            imResize.save(path + "/Output/" + f + ".jpg", 'JPEG', quality=90)
+resize()
