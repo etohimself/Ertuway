@@ -1,0 +1,111 @@
+iPhone 14 Max Pro
+color:red,blue,black,gold,white
+storage:64GB,128GB,256GB
+price:1600
+subcategory:1
+
+LG Television
+color:2
+storage:0
+price:2000
+subcategory:2
+
+Smart Watch
+color:3
+storage:16GB,32GB,64GB
+price:500
+
+Canon D2000
+color:black,gray
+lens:Kit Lens, 16-55 Lens, 20-70 Lens,
+price:999
+subcategory:3
+
+Arzum Fridge
+color:black, gray, blue, red
+price:1200
+subcategory:4
+
+Canon Printer
+color:black, gray
+price:400
+subcategory:5
+
+Lila Women Shirt
+color:white,pink,red,black
+size:XS, S, M, L, XL
+price:29
+
+Chanel Perfume
+price:475
+
+Watch:
+color:gray,gold,silver
+price:975
+
+Womens Shoes
+color:red,white,black,brown,silver
+size:32,33,34,35,36,37,38
+price:380
+
+Mens Shoes
+color:black,brown
+size: 36,37,38,39,40,41,42,43,44,45,48,50
+price:220
+
+Lotion Cream
+size:50ml,100ml,220ml
+price:149
+
+Hair Dryer
+power:1500W, 2000W
+price: 100
+
+Karaca Plate
+size:small, medium, large
+price:75
+
+Glasses
+size:175ml, 220ml
+price:25
+
+Leather Coach
+color:black,brown,red
+price:750
+
+English Home Blankets
+color:white,brown,olive,black,gray
+size:1m,1.5m,2m
+price:125
+
+Light Bulb
+power:200W, 400W, 1000W
+price:100
+
+Colorful Pens
+size2:x16, x32, x40
+price:65
+
+Spinach
+weight:500gr, 1kg
+price:5
+
+Red Meat
+weight:250gr, 500gr, 1kg
+price:25
+
+Milk
+weight:500gr, 1kg
+price:10
+
+Cat Food
+weight:1kg,5kg,10kg
+price:50
+
+Toilet Paper
+size2:10,20,40
+price:15
+
+Acrylic Titanium White
+size2:100ml, 250ml, 500ml
+price:20

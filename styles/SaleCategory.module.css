@@ -64,6 +64,7 @@
   .SaleCategoryContainer {
     width: 300px;
     height: 200px;
+    margin-right: 14px;
   }
   .SaleCategoryInfo {
     padding-left: 12px;
@@ -85,6 +86,7 @@
   .SaleCategoryContainer {
     width: 220px;
     height: 146px;
+    margin-right: 8px;
   }
   .SaleCategoryInfo {
     padding-left: 10px;

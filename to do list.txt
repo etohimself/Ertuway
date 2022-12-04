@@ -1,0 +1,11 @@
+1. SubKategorileri sadeleştir. 50 tanede karar kıl. Kesinleşsin.✅
+2. SubKategorilere id ve shortName ver.✅
+3. SubKategorilere 10ar tane satıcı listesi oluştur. ✅
+4. SubKategorilere 10ar tane marka ismi oluştur.✅
+9. Her SubKategori için 3 adet standart ürün ismi belirle.
+8. Her SubKategori için seçenekler listesini belirle. Fiyatı etkileyecekleri sıralı olarak ayarla.
+7. Her SubKategori için ortalama fiyat belirle. Artı eksi %20 olacağını unutma.
+5. Her SubKategori için 20 tane ürün resmi indir. shortname_1 şeklinde kaydet.
+6. Tüm fotoğrafları programla otomatik küçült, küçük resimlerini shortname_1_small olarak kaydet.
+10. Her Subkategori için 4 tane açıklama fotoğrafı bul, yazılar lorem ipsum olacak.
+11. Her Subkategori için kategori ikonunu indir, shortname_icon olarak kaydet.
