@@ -1,22 +1,15 @@
 import styles from "../styles/SaleCategory.module.css";
 import Image from "next/image";
-import subcategory_library from "./SubcategoryImages";
 import SaleIcon from "./Icons/SaleIcon";
 
 function SaleCategory(props) {
-  const findCategory = subcategory_library.filter(
-    (x) => x.name == props.subcategory
-  )[0];
-
   return (
     <div className={styles.SaleCategoryContainer}>
       <Image
-        src={
-          findCategory ? findCategory.src : "/images/subcategories/default.jpg"
-        }
+        src={props.image}
         width={600}
         height={400}
-        alt=""
+        alt={props.image}
         className={styles.SaleCategoryImage}
       />
       <div className={styles.SaleCategoryInfo}>

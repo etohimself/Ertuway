@@ -1,4 +1,4 @@
-[
+const productDB = [
     {
         "shortname": "electronics_smartphone",
         "maincategory": "electronics",
