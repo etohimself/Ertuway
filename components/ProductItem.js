@@ -1,23 +1,53 @@
 import styles from "../styles/ProductItem.module.css";
 import priceFormat from "../Helpers/priceFormat";
 import Image from "next/image";
+import Percentage from "./icons/Percentage";
+import { useContext } from "react";
+import { ProductContext } from "../contexts/productContext";
 
 function ProductItem(props) {
+  const { productDB } = useContext(ProductContext);
+  let myData = {};
+
+  for (let i = 0; i < productDB.length; i++) {
+    for (let j = 0; j < productDB[i].products.length; j++) {
+      if (productDB[i].products[j].id == props.id) {
+        myData = { ...productDB[i].products[j] };
+      }
+    }
+  }
+
   return (
     <div className={styles.itemContainer}>
       <div className={styles.imageContainer}>
-        <Image className={styles.productImg} src={props.image} />
-        <div className={styles.percentageContainer}>
-          {props.showPercentage && `%30 OFF`}
-        </div>
+        <Image
+          className={styles.productImg}
+          src={myData.imgSmall}
+          width={160}
+          height={160}
+        />
+        {myData.salePercentage > 0 && (
+          <div className={styles.percentageContainer}>
+            <Percentage className={styles.percentageSvg} />
+            <div
+              className={styles.percentageOffText}
+            >{`%${myData.salePercentage} OFF`}</div>
+          </div>
+        )}
       </div>
       <div className={styles.priceLabel}>
-        {props.price && `$${priceFormat(props.price)}`}
+        {myData.salePercentage
+          ? `$${priceFormat(
+              myData.price * ((100 - myData.salePercentage) / 100)
+            )}`
+          : `$${priceFormat(myData.price)}`}
       </div>
-      <div className={styles.oldPrice}>
-        {props.oldPrice && `$${priceFormat(props.oldPrice)}`}
+      {myData.salePercentage > 0 && (
+        <div className={styles.oldPrice}>{`$${priceFormat(myData.price)}`}</div>
+      )}
+      <div className={styles.productName}>
+        {myData.brand} {myData.name}
       </div>
-      <div className={styles.productName}>{props.productName}</div>
     </div>
   );
 }

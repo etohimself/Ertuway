@@ -6,6 +6,8 @@ import styles from "../styles/Home.module.css";
 import DiscountCategories from "../components/DiscountCategories.js";
 import ScrollArrow from "../components/ScrollArrow";
 import { ProductProvider } from "../contexts/productContext";
+import ProductItem from "../components/ProductItem";
+import TestList from "../components/TestList";
 
 export default function Home() {
   return (
@@ -23,6 +25,7 @@ export default function Home() {
             title="Saturday Electronics Sale, Up to %25 on Limited Items"
             event="saturdaysale"
           />
+          <TestList />
         </PageContent>
       </ProductProvider>
     </>
