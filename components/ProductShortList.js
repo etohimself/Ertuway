@@ -32,7 +32,7 @@ function ProductShortList(props) {
       itemList.push(dumpList[i]);
     }
   }
-  
+
   //Slice to fit screen, this may change.
   itemList = itemList.slice(0, 8);
 
@@ -44,7 +44,14 @@ function ProductShortList(props) {
       </div>
       <div className={styles.itemArea}>
         {itemList.map((x, i) => {
-          return <ProductItem id={x.id} key={x.id} />;
+          return (
+            <ProductItem
+              id={x.id}
+              key={x.id}
+              noLeftMargin={i == 0}
+              noRightMargin={i == itemList.length - 1}
+            />
+          );
         })}
       </div>
     </div>

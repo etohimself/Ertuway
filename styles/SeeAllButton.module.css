@@ -18,3 +18,35 @@
   flex-shrink: 0;
   overflow: hidden;
 }
+
+
+@media screen and (max-width: 1200px) {
+  .seeAllBtn {
+    font-size: 20px;
+  }
+  .seeAllArrow {
+    width:20px;
+    height:20px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .seeAllBtn {
+    font-size: 18px;
+  }
+  .seeAllArrow {
+    width:18px;
+    height:18px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .seeAllBtn {
+    font-size: 16px;
+  }
+  .seeAllArrow {
+    width:16px;
+    height:16px;
+  }
+}
+

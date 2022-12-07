@@ -15,7 +15,6 @@
 .titleBar {
   display: flex;
   width: 100%;
-  padding: 0 1.125%;
   justify-content: space-between;
   align-items: flex-end;
 }
@@ -37,19 +36,31 @@
   font-size: 28px;
 }
 
-.seeAllBtn {
-  display: flex;
-  align-items: center;
-  font-size: 22px;
-  font-weight: 700;
-  color:#ff7440;
-  cursor:pointer;
+@media screen and (max-width: 1200px) {
+  .titleBar > h1 {
+    font-size: 25px;
+  }
+  .productShortListContainer {
+    margin-top: 60px;
+  }
 }
 
-.seeAllArrow {
-    margin-left:8px;
-    fill:#ff7440;
-    width:22px;
-    height:22px;
-    transform:rotate(180deg);
+@media screen and (max-width: 750px) {
+  .titleBar > h1 {
+    font-size: 20px;
+  }
+  .productShortListContainer {
+    margin-top: 40px;
+  }
 }
+
+@media screen and (max-width: 400px) {
+  .titleBar > h1 {
+    font-size: 16px;
+  }
+  .productShortListContainer {
+    margin-top: 20px;
+  }
+}
+
+

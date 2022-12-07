@@ -35,7 +35,9 @@ function DiscountCategories(props) {
     <div className={styles.discountCategoryContainer}>
       <div className={styles.titleBar}>
         <h1 className={styles.discountCategoryTitle}>{props.title}</h1>
-        <SeeAllButton />
+        
+
+        
       </div>
       <HorizontalContainer>
         {categoriesWithSale.map((x, i) => {

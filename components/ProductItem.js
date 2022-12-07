@@ -7,6 +7,7 @@ import { ProductContext } from "../contexts/productContext";
 
 function ProductItem(props) {
   const { productDB } = useContext(ProductContext);
+  let marginStyle = {};
   let myData = {};
 
   for (let i = 0; i < productDB.length; i++) {
@@ -17,8 +18,11 @@ function ProductItem(props) {
     }
   }
 
+  if (props.noLeftMargin) marginStyle.marginLeft = 0;
+  if (props.noRightMargin) marginStyle.marginRight = 0;
+
   return (
-    <div className={styles.itemContainer}>
+    <div className={styles.itemContainer} style={marginStyle}>
       <div className={styles.imageContainer}>
         <Image
           className={styles.productImg}
