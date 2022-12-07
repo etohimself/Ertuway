@@ -1805,7 +1805,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/electronics_smartphone.jpg",
-        "categoryName": "Smartphones"
+        "categoryName": "Smartphones",
+        "categoryIcon": "/images/categories/electronics_smartphone_icon.png"
     },
     {
         "shortname": "electronics_computer",
@@ -3913,7 +3914,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/electronics_computer.jpg",
-        "categoryName": "Laptops & Computers"
+        "categoryName": "Laptops & Computers",
+        "categoryIcon": "/images/categories/electronics_computer_icon.png"
     },
     {
         "shortname": "electronics_camera",
@@ -5121,7 +5123,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/electronics_camera.jpg",
-        "categoryName": "Cameras"
+        "categoryName": "Cameras",
+        "categoryIcon": "/images/categories/electronics_camera_icon.png"
     },
     {
         "shortname": "electronics_appliance",
@@ -6379,7 +6382,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/electronics_appliance.jpg",
-        "categoryName": "Home Appliances"
+        "categoryName": "Home Appliances",
+        "categoryIcon": "/images/categories/electronics_appliance_icon.png"
     },
     {
         "shortname": "fashion_women_shirt",
@@ -8187,7 +8191,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_women_shirt.jpg",
-        "categoryName": "Women's Shirts"
+        "categoryName": "Women's Shirts",
+        "categoryIcon": "/images/categories/fashion_women_shirt_icon.png"
     },
     {
         "shortname": "fashion_women_tshirt",
@@ -9995,7 +10000,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_women_tshirt.jpg",
-        "categoryName": "Women's T-Shirts"
+        "categoryName": "Women's T-Shirts",
+        "categoryIcon": "/images/categories/fashion_women_tshirt_icon.png"
     },
     {
         "shortname": "fashion_women_jacket",
@@ -11753,7 +11759,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_women_jacket.jpg",
-        "categoryName": "Women's Jackets"
+        "categoryName": "Women's Jackets",
+        "categoryIcon": "/images/categories/fashion_women_jacket_icon.png"
     },
     {
         "shortname": "fashion_women_pants",
@@ -13561,7 +13568,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_women_pants.jpg",
-        "categoryName": "Women's Pants"
+        "categoryName": "Women's Pants",
+        "categoryIcon": "/images/categories/fashion_women_pants_icon.png"
     },
     {
         "shortname": "fashion_women_accessory",
@@ -14869,7 +14877,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_women_accessory.jpg",
-        "categoryName": "Women's Accessories"
+        "categoryName": "Women's Accessories",
+        "categoryIcon": "/images/categories/fashion_women_accessory_icon.png"
     },
     {
         "shortname": "fashion_men_shirt",
@@ -16627,7 +16636,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_men_shirt.jpg",
-        "categoryName": "Men's Shirts"
+        "categoryName": "Men's Shirts",
+        "categoryIcon": "/images/categories/fashion_men_shirt_icon.png"
     },
     {
         "shortname": "fashion_men_tshirt",
@@ -18385,7 +18395,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_men_tshirt.jpg",
-        "categoryName": "Men's T-Shirts"
+        "categoryName": "Men's T-Shirts",
+        "categoryIcon": "/images/categories/fashion_men_tshirt_icon.png"
     },
     {
         "shortname": "fashion_men_jacket",
@@ -20143,7 +20154,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_men_jacket.jpg",
-        "categoryName": "Men's Jackets"
+        "categoryName": "Men's Jackets",
+        "categoryIcon": "/images/categories/fashion_men_jacket_icon.png"
     },
     {
         "shortname": "fashion_men_pants",
@@ -21901,7 +21913,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_men_pants.jpg",
-        "categoryName": "Men's Pants"
+        "categoryName": "Men's Pants",
+        "categoryIcon": "/images/categories/fashion_men_pants_icon.png"
     },
     {
         "shortname": "fashion_men_accessory",
@@ -23159,7 +23172,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_men_accessory.jpg",
-        "categoryName": "Men's Accessories"
+        "categoryName": "Men's Accessories",
+        "categoryIcon": "/images/categories/fashion_men_accessory_icon.png"
     },
     {
         "shortname": "fashion_women_casual_shoe",
@@ -25017,7 +25031,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_women_casual_shoe.jpg",
-        "categoryName": "Women's Casual Shoes"
+        "categoryName": "Women's Casual Shoes",
+        "categoryIcon": "/images/categories/fashion_women_casual_shoe_icon.png"
     },
     {
         "shortname": "fashion_women_sports_shoe",
@@ -26875,7 +26890,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_women_sports_shoe.jpg",
-        "categoryName": "Women's Sports Shoes"
+        "categoryName": "Women's Sports Shoes",
+        "categoryIcon": "/images/categories/fashion_women_sports_shoe_icon.png"
     },
     {
         "shortname": "fashion_women_classic_shoe",
@@ -28733,7 +28749,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_women_classic_shoe.jpg",
-        "categoryName": "Women's Classic Shoes"
+        "categoryName": "Women's Classic Shoes",
+        "categoryIcon": "/images/categories/fashion_women_classic_shoe_icon.png"
     },
     {
         "shortname": "fashion_women_boots",
@@ -30591,7 +30608,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_women_boots.jpg",
-        "categoryName": "Women's Boots"
+        "categoryName": "Women's Boots",
+        "categoryIcon": "/images/categories/fashion_women_boots_icon.png"
     },
     {
         "shortname": "health_perfume",
@@ -31799,7 +31817,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/health_perfume.jpg",
-        "categoryName": "Perfumes"
+        "categoryName": "Perfumes",
+        "categoryIcon": "/images/categories/health_perfume_icon.png"
     },
     {
         "shortname": "health_beauty",
@@ -33007,7 +33026,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/health_beauty.jpg",
-        "categoryName": "Beauty Products"
+        "categoryName": "Beauty Products",
+        "categoryIcon": "/images/categories/health_beauty_icon.png"
     },
     {
         "shortname": "health_skincare",
@@ -34215,7 +34235,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/health_skincare.jpg",
-        "categoryName": "Body & Skincare"
+        "categoryName": "Body & Skincare",
+        "categoryIcon": "/images/categories/health_skincare_icon.png"
     },
     {
         "shortname": "health_hair",
@@ -34923,7 +34944,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/health_hair.jpg",
-        "categoryName": "Hair Products"
+        "categoryName": "Hair Products",
+        "categoryIcon": "/images/categories/health_hair_icon.png"
     },
     {
         "shortname": "home_kitchen",
@@ -36131,7 +36153,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/home_kitchen.jpg",
-        "categoryName": "Kitchen"
+        "categoryName": "Kitchen",
+        "categoryIcon": "/images/categories/home_kitchen_icon.png"
     },
     {
         "shortname": "home_furniture",
@@ -37339,7 +37362,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/home_furniture.jpg",
-        "categoryName": "Furniture"
+        "categoryName": "Furniture",
+        "categoryIcon": "/images/categories/home_furniture_icon.png"
     },
     {
         "shortname": "home_decoration",
@@ -38547,7 +38571,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/home_decoration.jpg",
-        "categoryName": "Home Decoration"
+        "categoryName": "Home Decoration",
+        "categoryIcon": "/images/categories/home_decoration_icon.png"
     },
     {
         "shortname": "home_construction",
@@ -39255,7 +39280,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/home_construction.jpg",
-        "categoryName": "Construction Hardware"
+        "categoryName": "Construction Hardware",
+        "categoryIcon": "/images/categories/home_construction_icon.png"
     },
     {
         "shortname": "car_tire",
@@ -39963,7 +39989,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/car_tire.jpg",
-        "categoryName": "Car Tires"
+        "categoryName": "Car Tires",
+        "categoryIcon": "/images/categories/car_tire_icon.png"
     },
     {
         "shortname": "car_oil",
@@ -40671,7 +40698,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/car_oil.jpg",
-        "categoryName": "Car Oils"
+        "categoryName": "Car Oils",
+        "categoryIcon": "/images/categories/car_oil_icon.png"
     },
     {
         "shortname": "car_part",
@@ -41379,7 +41407,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/car_part.jpg",
-        "categoryName": "Car Parts"
+        "categoryName": "Car Parts",
+        "categoryIcon": "/images/categories/car_part_icon.png"
     },
     {
         "shortname": "car_textile",
@@ -42587,7 +42616,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/car_textile.jpg",
-        "categoryName": "Car Textile"
+        "categoryName": "Car Textile",
+        "categoryIcon": "/images/categories/car_textile_icon.png"
     },
     {
         "shortname": "consumable_stationery",
@@ -43295,7 +43325,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/consumable_stationery.jpg",
-        "categoryName": "Stationery"
+        "categoryName": "Stationery",
+        "categoryIcon": "/images/categories/consumable_stationery_icon.png"
     },
     {
         "shortname": "consumable_notebook",
@@ -44003,7 +44034,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/consumable_notebook.jpg",
-        "categoryName": "Notebooks"
+        "categoryName": "Notebooks",
+        "categoryIcon": "/images/categories/consumable_notebook_icon.png"
     },
     {
         "shortname": "consumable_office",
@@ -44711,7 +44743,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/consumable_office.jpg",
-        "categoryName": "Office"
+        "categoryName": "Office",
+        "categoryIcon": "/images/categories/consumable_office_icon.png"
     },
     {
         "shortname": "consumable_school",
@@ -45419,7 +45452,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/consumable_school.jpg",
-        "categoryName": "School"
+        "categoryName": "School",
+        "categoryIcon": "/images/categories/consumable_school_icon.png"
     },
     {
         "shortname": "supermarket_fruit",
@@ -46627,7 +46661,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/supermarket_fruit.jpg",
-        "categoryName": "fruit & Vegetables"
+        "categoryName": "fruit & Vegetables",
+        "categoryIcon": "/images/categories/supermarket_fruit_icon.png"
     },
     {
         "shortname": "supermarket_meat",
@@ -47835,7 +47870,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/supermarket_meat.jpg",
-        "categoryName": "Meat & Fish"
+        "categoryName": "Meat & Fish",
+        "categoryIcon": "/images/categories/supermarket_meat_icon.png"
     },
     {
         "shortname": "supermarket_dairy",
@@ -49043,7 +49079,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/supermarket_dairy.jpg",
-        "categoryName": "Dairy"
+        "categoryName": "Dairy",
+        "categoryIcon": "/images/categories/supermarket_dairy_icon.png"
     },
     {
         "shortname": "supermarket_bread",
@@ -49751,7 +49788,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/supermarket_bread.jpg",
-        "categoryName": "Bread & Bread Spreads"
+        "categoryName": "Bread & Bread Spreads",
+        "categoryIcon": "/images/categories/supermarket_bread_icon.png"
     },
     {
         "shortname": "supermarket_snack",
@@ -50459,7 +50497,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/supermarket_snack.jpg",
-        "categoryName": "Snacks"
+        "categoryName": "Snacks",
+        "categoryIcon": "/images/categories/supermarket_snack_icon.png"
     },
     {
         "shortname": "supermarket_petshop",
@@ -51667,7 +51706,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/supermarket_petshop.jpg",
-        "categoryName": "Pet Shop"
+        "categoryName": "Pet Shop",
+        "categoryIcon": "/images/categories/supermarket_petshop_icon.png"
     },
     {
         "shortname": "supermarket_baby",
@@ -52375,7 +52415,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/supermarket_baby.jpg",
-        "categoryName": "For Baby"
+        "categoryName": "For Baby",
+        "categoryIcon": "/images/categories/supermarket_baby_icon.png"
     },
     {
         "shortname": "supermarket_houseneeds",
@@ -53083,7 +53124,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/supermarket_houseneeds.jpg",
-        "categoryName": "House Needs"
+        "categoryName": "House Needs",
+        "categoryIcon": "/images/categories/supermarket_houseneeds_icon.png"
     },
     {
         "shortname": "hobby_art",
@@ -53791,7 +53833,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/hobby_art.jpg",
-        "categoryName": "Art & Crafting"
+        "categoryName": "Art & Crafting",
+        "categoryIcon": "/images/categories/hobby_art_icon.png"
     },
     {
         "shortname": "hobby_music",
@@ -54499,7 +54542,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/hobby_music.jpg",
-        "categoryName": "Music Instruments"
+        "categoryName": "Music Instruments",
+        "categoryIcon": "/images/categories/hobby_music_icon.png"
     },
     {
         "shortname": "hobby_book",
@@ -55207,7 +55251,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/hobby_book.jpg",
-        "categoryName": "Books"
+        "categoryName": "Books",
+        "categoryIcon": "/images/categories/hobby_book_icon.png"
     },
     {
         "shortname": "hobby_toy",
@@ -55915,7 +55960,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/hobby_toy.jpg",
-        "categoryName": "Toys & Games"
+        "categoryName": "Toys & Games",
+        "categoryIcon": "/images/categories/hobby_toy_icon.png"
     },
     {
         "shortname": "fashion_men_casual_shoe",
@@ -57823,7 +57869,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_men_casual_shoe.jpg",
-        "categoryName": "Men's Casual Shoes"
+        "categoryName": "Men's Casual Shoes",
+        "categoryIcon": "/images/categories/fashion_men_casual_shoe_icon.png"
     },
     {
         "shortname": "fashion_men_sports_shoe",
@@ -59731,7 +59778,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_men_sports_shoe.jpg",
-        "categoryName": "Men's Sports Shoes"
+        "categoryName": "Men's Sports Shoes",
+        "categoryIcon": "/images/categories/fashion_men_sports_shoe_icon.png"
     },
     {
         "shortname": "fashion_men_classic_shoe",
@@ -61639,7 +61687,8 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_men_classic_shoe.jpg",
-        "categoryName": "Men's Classic Shoes"
+        "categoryName": "Men's Classic Shoes",
+        "categoryIcon": "/images/categories/fashion_men_classic_shoe_icon.png"
     },
     {
         "shortname": "fashion_men_boots",
@@ -63547,9 +63596,11 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/fashion_men_boots.jpg",
-        "categoryName": "Men's Boots"
+        "categoryName": "Men's Boots",
+        "categoryIcon": "/images/categories/fashion_men_boots_icon.png"
     }
 ]
+
 
 
 export default productData;

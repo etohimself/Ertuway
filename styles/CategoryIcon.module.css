@@ -1,0 +1,21 @@
+.CategoryIconContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin:20px;
+  width:90px;
+  height:auto;
+  overflow: hidden;
+}
+
+.CategoryIconContainer > p {
+  margin: 10px;
+  max-width: 100px;
+  text-align: center;
+}
+
+.iconImg {
+  object-fit: contain;
+  flex-shrink: 0;
+}

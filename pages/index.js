@@ -5,6 +5,7 @@ import Welcomer from "../components/Welcomer.js";
 import DiscountCategories from "../components/DiscountCategories.js";
 import { ProductProvider } from "../contexts/productContext";
 import ProductShortList from "../components/ProductShortList.js";
+import ExploreCategories from "../components/ExploreCategories.js";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
           <ProductShortList title="Most Viewed Products" sortBy="viewCount" />
           <ProductShortList title="Most Sold Products" sortBy="soldCount" />
           
+          <ExploreCategories />
         </PageContent>
       </ProductProvider>
     </>
