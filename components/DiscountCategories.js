@@ -3,6 +3,7 @@ import HorizontalContainer from "../components/HorizontalContainer.js";
 import SaleCategory from "../components/SaleCategory.js";
 import { useContext } from "react";
 import { ProductContext } from "../contexts/productContext";
+import SeeAllButton from "./SeeAllButton";
 
 function DiscountCategories(props) {
   const { productDB } = useContext(ProductContext);
@@ -30,10 +31,12 @@ function DiscountCategories(props) {
     }
   }
 
-
   return (
     <div className={styles.discountCategoryContainer}>
-      <h1 className={styles.discountCategoryTitle}>{props.title}</h1>
+      <div className={styles.titleBar}>
+        <h1 className={styles.discountCategoryTitle}>{props.title}</h1>
+        <SeeAllButton />
+      </div>
       <HorizontalContainer>
         {categoriesWithSale.map((x, i) => {
           return (

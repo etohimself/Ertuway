@@ -2,12 +2,9 @@ import PageContent from "../components/PageContent.js";
 import Navbar from "../components/Navbar.js";
 import MobileMenu from "../components/MobileMenu.js";
 import Welcomer from "../components/Welcomer.js";
-import styles from "../styles/Home.module.css";
 import DiscountCategories from "../components/DiscountCategories.js";
-import ScrollArrow from "../components/ScrollArrow";
 import { ProductProvider } from "../contexts/productContext";
-import ProductItem from "../components/ProductItem";
-import TestList from "../components/TestList";
+import ProductShortList from "../components/ProductShortList.js";
 
 export default function Home() {
   return (
@@ -25,7 +22,11 @@ export default function Home() {
             title="Saturday Electronics Sale, Up to %25 on Limited Items"
             event="saturdaysale"
           />
-          <TestList />
+
+          <ProductShortList title="Best Deals Products" sortBy="salePercentage" />
+          <ProductShortList title="Most Viewed Products" sortBy="viewCount" />
+          <ProductShortList title="Most Sold Products" sortBy="soldCount" />
+          
         </PageContent>
       </ProductProvider>
     </>
