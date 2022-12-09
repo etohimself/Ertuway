@@ -3,10 +3,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  margin:20px;
-  width:90px;
-  height:auto;
+  margin: 20px;
+  width: 90px;
+  height: auto;
   overflow: hidden;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .CategoryIconContainer > p {
@@ -18,4 +20,41 @@
 .iconImg {
   object-fit: contain;
   flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+}
+
+@media screen and (max-width: 1200px) {
+  .iconImg {
+    width: 60px;
+    height: 60px;
+  }
+  .CategoryIconContainer {
+    margin: 10px;
+    width: 65px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .iconImg {
+    width: 55px;
+    height: 55px;
+  }
+  .CategoryIconContainer {
+    margin: 8px;
+    width: 60px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .iconImg {
+    width: 35px;
+    height: 35px;
+  }
+  .CategoryIconContainer {
+    margin: 5px;
+    width: 40px;
+    font-size: 8px;
+  }
 }

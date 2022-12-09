@@ -20,3 +20,27 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+@media screen and (max-width: 2100px) {
+  .iconList {
+    max-width: 65%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .iconList {
+    max-width: 75%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .iconList {
+    max-width: 85%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .iconList {
+    max-width: 90%;
+  }
+}

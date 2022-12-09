@@ -8,13 +8,16 @@ function CategoryIcon(props) {
   const myCategory = productDB.filter((cat) => cat.shortname == props.name)[0];
 
   return (
-    <div className={styles.CategoryIconContainer}>
+    <div
+      className={styles.CategoryIconContainer}
+      style={props.index > props.hideAfter ? { visibility: "hidden" } : {}}
+    >
       <Image
         src={myCategory.categoryIcon}
         alt={myCategory.categoryName}
         width={80}
         height={80}
-        className={styles.iconImg} 
+        className={styles.iconImg}
       />
       <p>{myCategory.categoryName}</p>
     </div>
