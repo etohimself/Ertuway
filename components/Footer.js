@@ -1,6 +1,12 @@
 import { useContext } from "react";
 import styles from "../styles/Footer.module.css";
 import { ProductContext } from "../contexts/productContext";
+import InstagramIcon from "./Icons/LinkedInIcon";
+import TwitterIcon from "./Icons/TwitterIcon";
+import LinkedInIcon from "./Icons/LinkedInIcon";
+import YoutubeIcon from "./Icons/YoutubeIcon";
+import FacebookIcon from "./Icons/FacebookIcon";
+import ContactUsButtons from "./ContactButtons";
 
 function Footer(props) {
   const { productDB } = useContext(ProductContext);
@@ -20,7 +26,7 @@ function Footer(props) {
           <div className={styles.footerLink}>Terms and Conditions</div>
           <div className={styles.footerLink}>Career</div>
           <div className={styles.footerLink}>Sell Your Products</div>
-          
+
           <b>Categories</b>
           {productDB.map((x) => (
             <div className={styles.footerLink}>{x.categoryName}</div>
@@ -28,15 +34,15 @@ function Footer(props) {
         </div>
         <div className={styles.MediaAndContactContainer}>
           <div className={styles.MediaContainer}>
-            <p>Instagram</p>
-            <p>Twitter</p>
-            <p>Facebook</p>
-            <p>Youtube</p>
-            <p>LinkedIn</p>
+            <InstagramIcon />
+            <TwitterIcon />
+            <FacebookIcon />
+            <YoutubeIcon />
+            <LinkedInIcon />
           </div>
           <div className={styles.ContactContainer}>
-            <p>Have a question?</p>
-            <p>+90 538 570 97 86</p>
+            <h3>Have A Question?</h3>
+            <ContactUsButtons footer={1} className={styles.contactUsButtons} />
           </div>
         </div>
       </div>

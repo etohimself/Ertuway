@@ -1,0 +1,85 @@
+.ContactButtonsContainer {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-size:18px;
+}
+
+.orContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1em;
+  }
+  
+  .lineDiv {
+    height: 2px;
+    width: 120px;
+    background-color: #747474;
+    margin: 0 8px;
+  }
+  
+  .WhatsappContainer {
+    display: flex;
+    font-size: 1em;
+    color: #747474;
+    margin-top: 0.8em;
+  }
+  
+  .wpIcon {
+    margin-right: 10px;
+  }
+  
+  .contactButton {
+    font-size: 1em;
+    color: #ff7440;
+    font-weight: 400;
+    padding: 10px 20px;
+    border: 2px solid #ff7440;
+    border-radius: 8px;
+    margin-top: 2em;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    cursor:pointer;
+  }
+  
+  .ContactButtonsContainer > h2 {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: #747474;
+  }
+  
+
+  .ContactButtonsContainer.footer .lineDiv {
+    width:80px;
+  }
+
+  
+  .ContactButtonsContainer.footer .contactButton {
+    color:#747474;
+    border-color: #747474;
+  }
+
+
+  
+@media screen and (max-width: 1500px) {
+ 
+}
+
+
+@media screen and (max-width: 1200px) {
+ 
+}
+
+@media screen and (max-width: 900px) {
+  .ContactButtonsContainer {
+    font-size:16px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+ 
+}
+
+

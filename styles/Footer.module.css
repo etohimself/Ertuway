@@ -57,13 +57,20 @@
 .ContactContainer {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   flex-grow: 1;
 }
 
-.MediaContainer > p,
-.ContactContainer > p {
+.MediaContainer > *,
+.ContactContainer > * {
   margin: 0 0 10px 0;
+}
+
+.ContactContainer > h3 {
+  font-size: 1.5em;
+  color: #434343;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 1500px) {
@@ -76,23 +83,23 @@
   .FooterContainer {
     padding-bottom: 100px;
   }
-}
-
-@media screen and (max-width: 900px) {
   .MediaAndContactContainer {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   .MediaContainer,
   .ContactContainer {
     flex-grow: 0;
+    padding: 20px;
   }
+}
+
+@media screen and (max-width: 900px) {
   .WrappingContent {
     max-height: 1050px;
   }
   .FooterContainer {
     font-size: 12px;
   }
-
   .footerLink {
     margin-right: 10px;
   }

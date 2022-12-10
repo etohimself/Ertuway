@@ -1,0 +1,51 @@
+.ContactUsContainer {
+  max-width: 60%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 50px;
+  font-size: 24px;
+}
+
+
+.ContactUsContainer > h1 {
+  margin: 0 0 5px 0;
+  color: #ff7440;
+  font-size: 1.25em;
+}
+
+.ContactUsContainer > p {
+  margin: 0;
+  color: #747474;
+  font-size: 0.9em;
+}
+
+.contactUsArea {
+  align-self: center;
+}
+
+@media screen and (max-width: 2100px) {
+  .ContactUsContainer {
+    max-width: 65%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .ContactUsContainer {
+    max-width: 75%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .ContactUsContainer {
+    max-width: 85%;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .ContactUsContainer {
+    max-width: 90%;
+  }
+}
