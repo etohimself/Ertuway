@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 160px;
+  width: 225px;
   box-sizing: border-box;
   cursor: pointer;
   margin: 20px;
+  font-size: 24px;
 }
 
 .imageContainer {
@@ -14,8 +15,8 @@
   border-radius: 3px;
   background: white;
   background-color: gray;
-  height: 160px;
-  width: 160px;
+  height: 225px;
+  width: 225px;
   overflow: hidden;
   position: relative;
 }
@@ -30,7 +31,7 @@
 .priceLabel {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 900;
-  font-size: 24px;
+  font-size: 1.5em;
   line-height: 25px;
   letter-spacing: 0.04em;
   color: #ff7440;
@@ -40,15 +41,15 @@
 .oldPrice {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1em;
   text-decoration-line: line-through;
-  margin-top: 5px;
+  margin-top: 20px;
   color: #7d7d7d;
 }
 
 .productName {
   margin-top: 5px;
-  font-size: 18px;
+  font-size: 1.125em;
   color: #434343;
 }
 
@@ -74,6 +75,85 @@ svg.percentageSvg {
   text-align: center;
   z-index: 3;
   color: white;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: 800;
+}
+
+@media screen and (max-width: 2100px) {
+  .itemContainer {
+    width: 160px;
+  }
+
+  .imageContainer {
+    height: 160px;
+    width: 160px;
+  }
+
+  .itemContainer {
+    font-size: 16px;
+  }
+
+  svg.percentageSvg {
+    width: 60px;
+    height: 60px;
+  }
+  .percentageOffText {
+    font-size: 1em;
+  }
+
+  .oldPrice {
+    margin-top:8px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .itemContainer {
+    width: 120px;
+  }
+
+  .imageContainer {
+    height: 120px;
+    width: 120px;
+  }
+
+  svg.percentageSvg {
+    width: 50px;
+    height: 50px;
+  }
+  .percentageOffText {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .itemContainer {
+    width: 100px;
+    font-size: 14px;
+  }
+
+  .imageContainer {
+    height: 90px;
+    width: 100px;
+  }
+
+  svg.percentageSvg {
+    width: 40px;
+    height: 40px;
+  }
+  .percentageOffText {
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .itemContainer {
+    width: 80px;
+    margin: 10px;
+    font-size: 12px;
+  }
+
+  .imageContainer {
+    height: 80px;
+    width: 80px;
+  }
 }

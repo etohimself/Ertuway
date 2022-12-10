@@ -6,6 +6,7 @@ import DiscountCategories from "../components/DiscountCategories.js";
 import { ProductProvider } from "../contexts/productContext";
 import ProductShortList from "../components/ProductShortList.js";
 import ExploreCategories from "../components/ExploreCategories.js";
+import Footer from "../components/Footer.js";
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
           <ProductShortList title="Most Sold Products" sortBy="soldCount" />
           
           <ExploreCategories />
+          <Footer />
         </PageContent>
       </ProductProvider>
     </>

@@ -46,15 +46,3 @@
     font-size: 12px;
   }
 }
-
-@media screen and (max-width: 500px) {
-  .iconImg {
-    width: 35px;
-    height: 35px;
-  }
-  .CategoryIconContainer {
-    margin: 5px;
-    width: 40px;
-    font-size: 8px;
-  }
-}

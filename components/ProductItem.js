@@ -33,9 +33,11 @@ function ProductItem(props) {
         {myData.salePercentage > 0 && (
           <div className={styles.percentageContainer}>
             <Percentage className={styles.percentageSvg} />
-            <div
-              className={styles.percentageOffText}
-            >{`%${myData.salePercentage} OFF`}</div>
+            <div className={styles.percentageOffText}>
+              {`%${myData.salePercentage}`}
+              <br />
+              OFF
+            </div>
           </div>
         )}
       </div>
