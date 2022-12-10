@@ -1,5 +1,5 @@
 .NavbarContainer {
-  width:100%;
+  width: 100%;
   display: flex;
   box-sizing: border-box;
   padding: 20px 0;
@@ -50,6 +50,10 @@
 .NavbarCategories {
   display: flex;
   border-bottom: 1px solid #b4b4b4;
+  width: 100%;
+  background-color: white;
+  height: auto;
+  justify-content: center;
 }
 
 .NavbarCategoryItems {
@@ -62,18 +66,48 @@
   align-items: center;
   justify-content: center;
   padding: 10px 10px;
-  cursor: pointer;
   font-size: 16px;
   white-space: nowrap;
+  position: relative;
 }
 
-.NavbarCategoryPlaceHolder {
-  flex-grow: 1;
+.NavbarCategory > span {
+  cursor: pointer;
+}
+
+.NavbarDropdownContainer {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #8b8b8b;
+  top: 40px;
+  left: 0;
+  z-index: 20;
+  overflow: hidden;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  padding: 10px 15px;
+}
+
+.NavbarDropdownContainer > p {
+  margin: 0 0 10px 0;
+  cursor: pointer;
+  font-weight: 400;
 }
 
 .NavbarCategory.isActive {
   border-bottom: 3px solid #ff7440;
   font-weight: 700;
+}
+
+.screenOverlay {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 1200px) {

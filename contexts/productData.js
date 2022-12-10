@@ -46661,7 +46661,7 @@ const productData = [
             }
         ],
         "categoryImg": "/images/categories/supermarket_fruit.jpg",
-        "categoryName": "fruit & Vegetables",
+        "categoryName": "Fruit & Vegetables",
         "categoryIcon": "/images/categories/supermarket_fruit_icon.png"
     },
     {

@@ -1,0 +1,29 @@
+.CategoryPageContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+.SlicerArea {
+  height: 100%;
+  width: 15%;
+  padding:10px 20px;
+}
+
+.ProductArea {
+  height: 100%;
+  width: 85%;
+  background-color: rgb(226, 248, 248);
+  font-size: 24px;
+  padding: 20px 30px;
+}
+
+.ProductArea > h1 {
+  font-size: 1.5em;
+  font-weight: 800;
+  margin: 0;
+}
+
+.slicerItem {
+  margin-bottom:5px;
+}

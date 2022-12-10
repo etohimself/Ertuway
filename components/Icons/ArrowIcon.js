@@ -5,11 +5,12 @@ export default function ArrowIcon(props) {
       id="Capa_1"
       x="0px"
       y="0px"
-      width="792.082px"
-      height="792.082px"
+      width="20px"
+      height="20px"
       viewBox="0 0 792.082 792.082"
       className={props.className}
       style={props.style}
+      onClick={props.onClick}
     >
       <g>
         <g id="_x37__34_">
