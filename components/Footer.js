@@ -28,8 +28,10 @@ function Footer(props) {
           <div className={styles.footerLink}>Sell Your Products</div>
 
           <b>Categories</b>
-          {productDB.map((x) => (
-            <div className={styles.footerLink}>{x.categoryName}</div>
+          {productDB.map((x, i) => (
+            <div key={i} className={styles.footerLink}>
+              {x.categoryName}
+            </div>
           ))}
         </div>
         <div className={styles.MediaAndContactContainer}>

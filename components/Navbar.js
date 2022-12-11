@@ -66,9 +66,10 @@ function Navbar(props) {
 
       <div className={styles.NavbarCategories}>
         <div className={styles.NavbarCategoryItems}>
-          {pageList.map((x) => {
+          {pageList.map((x, i) => {
             return (
               <div
+                key={i}
                 className={`${styles.NavbarCategory} ${
                   props.page == x.shortname && styles.isActive
                 }`}
@@ -99,7 +100,7 @@ function Navbar(props) {
                       .sort((a, b) =>
                         b.categoryName < a.categoryName ? -1 : 1
                       )
-                      .map((subcat) => <p>{subcat.categoryName}</p>)}
+                      .map((subcat, i) => <p key={i}>{subcat.categoryName}</p>)}
                 </div>
               </div>
             );

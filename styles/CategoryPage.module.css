@@ -1,7 +1,8 @@
 .CategoryPageContainer {
   width: 100%;
-  height: 100vh;
+  height: auto;
   display: flex;
+  margin-bottom:100px;
 }
 
 .SlicerArea {
@@ -12,9 +13,8 @@
 }
 
 .ProductArea {
-  height: 100%;
+  min-height: 100%;
   width: 85%;
-  background-color: rgb(226, 248, 248);
   font-size: 24px;
   padding: 20px 30px;
 }

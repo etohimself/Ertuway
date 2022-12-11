@@ -4,6 +4,7 @@ import styles from "../styles/Slicers.module.css";
 import ColorSlicer from "./ColorSlicer";
 import ListSlicer from "./ListSlicer";
 import PriceSlicer from "./PriceSlicer";
+import RatingSlicer from "./RatingSlicer";
 
 function Slicers(props) {
   const { productDB } = useContext(ProductContext);
@@ -75,6 +76,19 @@ function Slicers(props) {
           { color: "pink" },
           { color: "rainbow" },
         ]}
+      />
+      <RatingSlicer
+        title="Rating"
+        list={[
+          { name: "5 Stars Reviews", stars: 5 },
+          { name: "4 Stars Reviews", stars: 4 },
+          { name: "3 Stars Reviews", stars: 3 },
+          { name: "2 Stars Reviews", stars: 2 },
+          { name: "1 Star Reviews", stars: 1 },
+        ]}
+        slicername="rating_slicer"
+        onSelect={handleSelection}
+        className={styles.slicerItem}
       />
       <ListSlicer
         title="Warranty"

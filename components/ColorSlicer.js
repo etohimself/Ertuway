@@ -52,9 +52,10 @@ function ColorSlicer(props) {
         style={{ maxHeight: collapsed ? 0 : calculatedHeight }}
         ref={contentRef}
       >
-        {props.list.map((x) => {
+        {props.list.map((x, i) => {
           return (
             <div
+              key={i}
               className={styles.slicerItem}
               onClick={() => sendSelection(x)}
               style={calculateColor(x.color)}
