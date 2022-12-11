@@ -6,8 +6,9 @@
 
 .SlicerArea {
   height: 100%;
-  width: 15%;
+  min-width: 15%;
   padding:10px 20px;
+  flex-shrink: 0;
 }
 
 .ProductArea {

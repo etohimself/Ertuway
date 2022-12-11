@@ -9,6 +9,10 @@ function ListSlicer(props) {
   };
   const [calculatedHeight, setCalculatedHeight] = useState(1000); //Something big enough to prevent shrink transition
 
+  const sendSelection = (selectedItem) => {
+    props.onSelect({ invoker: props.slicername, type:1, data: selectedItem });
+  };
+
   useEffect(() => {
     setCalculatedHeight(contentRef.current.clientHeight);
   }, []);
@@ -30,7 +34,11 @@ function ListSlicer(props) {
         ref={contentRef}
       >
         {props.list.map((x) => {
-          return <p className={styles.slicerItem} onClick={() => props.onSelect(x)}>{x.name}</p>;
+          return (
+            <p className={styles.slicerItem} onClick={() => sendSelection(x)}>
+              {x.name}
+            </p>
+          );
         })}
       </div>
     </div>
