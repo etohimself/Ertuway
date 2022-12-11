@@ -1,0 +1,20 @@
+.ProductListContainer {
+  width: calc(100% - 240px);
+  padding: 30px 20px 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1200px) {
+  .ProductListContainer {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .ProductListContainer {
+    justify-content: space-around;
+  }
+}
+

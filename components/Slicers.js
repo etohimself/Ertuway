@@ -43,9 +43,13 @@ function Slicers(props) {
       <PriceSlicer
         title="Price"
         list={[
-          { min: 0, max: 10 },
-          { min: 10, max: 100 },
-          { min: 100, max: 1000 },
+          { min: 0, max: 5 },
+          { min: 5, max: 20 },
+          { min: 20, max: 50 },
+          { min: 50, max: 100 },
+          { min: 100, max: 250 },
+          { min: 250, max: 500 },
+          { min: 500, max: 1000 },
           { min: 1000, max: 0 },
         ]}
         allowEmpty={1}
@@ -94,10 +98,9 @@ function Slicers(props) {
       <RadioSlicer
         title="Warranty"
         list={[
-          { name: "All Warranties", warranty: null },
+          { name: "All Warranty", warranty: "all" },
           { name: "2 Years Warranty", warranty: 2 },
           { name: "1 Year of Warranty", warranty: 1 },
-          { name: "No Warranty", warranty: 0 },
         ]}
         allowEmpty={0}
         slicername="warranty_slicer"

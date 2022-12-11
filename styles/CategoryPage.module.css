@@ -19,7 +19,7 @@
 }
 
 .productInner {
-  padding: 20px 30px;
+  padding-top: 15px;
 }
 
 .SlicerArea {
@@ -43,7 +43,7 @@
 .productInner > h1 {
   font-size: 1.5em;
   font-weight: 800;
-  margin: 0;
+  margin: 0 0 0 10px;
 }
 
 .slicerItem {
@@ -86,11 +86,10 @@
   margin-right: 5px;
 }
 
-
 .screenOverlay {
   display: none;
   position: absolute;
-  width:200%;
+  width: 300%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 0;
@@ -130,5 +129,28 @@
   .MobileTopBar.showOrder {
     width: calc(100% - 240px);
     transform: translateX(240px);
+  }
+  .productInner {
+    padding: 10px;
+  }
+
+  .productInner > h1 {
+    font-size: 1.25em;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .productInner > h1 {
+    font-size: 1em;
+    font-weight: 800;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .productInner > h1 {
+    font-size: 0.8em;
+  }
+  .topbarButtonText {
+    display:none;
   }
 }

@@ -6,23 +6,39 @@ import SortIcon from "./Icons/SortIcon";
 import CancelIcon from "./Icons/CancelIcon";
 import OrderBy from "./OrderBy";
 import useElementWidth from "./hooks/useElementWidth";
+import ProductList from "./ProductList.js";
 
 function CategoryPage(props) {
   const [showFilters, setShowFilters] = useState(0);
   const [showOrders, setShowOrders] = useState(0);
   const containerRef = useRef();
   const myWidth = useElementWidth(containerRef);
-  const [filterData, setFilterData] = useState({});
+
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(9999);
+  const [minRating, setMinRating] = useState(0);
+  const [maxRating, setMaxRating] = useState(5);
+  const [color, setColor] = useState("all");
+  const [warranty, setWarranty] = useState("all");
+  const [orderBy, setOrderBy] = useState(0);
 
   const handleSlicerChange = (payload) => {
     if (payload.invoker == "category_slicer") {
       //Redirect to that category here..
-    } else {
-      setFilterData((prevData) => {
-        let currentData = { ...prevData };
-        currentData[payload.invoker] = payload.data;
-        return currentData;
-      });
+    } else if (payload.invoker == "price_slicer") {
+      setMinPrice(payload.data.min);
+      setMaxPrice(
+        payload.data.max >= payload.data.min ? payload.data.max : 99999
+      );
+    } else if (payload.invoker == "rating_slicer") {
+      setMinRating(payload.data.stars > 0 ? payload.data.stars - 1 : 0);
+      setMaxRating(payload.data.stars > 0 ? payload.data.stars : 5);
+    } else if (payload.invoker == "color_slicer") {
+      setColor(payload.data.color);
+    } else if (payload.invoker == "warranty_slicer") {
+      setWarranty(payload.data.warranty);
+    } else if (payload.invoker == "order_slicer") {
+      setOrderBy(payload.data.order);
     }
   };
 
@@ -47,11 +63,6 @@ function CategoryPage(props) {
     }
   }, [myWidth]);
 
-  useEffect(() => {
-    console.log(filterData);
-    //Here, I must filter & sort the products with reasonable logic
-  }, [filterData]);
-
   return (
     <div className={styles.CategoryPageContainer} ref={containerRef}>
       <div
@@ -59,13 +70,6 @@ function CategoryPage(props) {
           showFilters && styles.showFilters
         } ${showOrders && styles.showOrders}`}
       >
-        <div
-          className={`${styles.screenOverlay} ${
-            (showFilters || showOrders) && styles.show
-          }`}
-          onClick={handleRightButton}
-        />
-
         <div className={styles.SlicerArea}>
           <Slicers page={props.page} onChange={handleSlicerChange} />
         </div>
@@ -82,7 +86,7 @@ function CategoryPage(props) {
                 onClick={handleLeftButton}
               >
                 <FilterIcon className={styles.topBarIcon} />
-                Show Filters
+                <span class={styles.topbarButtonText}>Show Filters</span>
               </div>
             )}
 
@@ -93,23 +97,40 @@ function CategoryPage(props) {
               {showFilters || showOrders ? (
                 <>
                   <CancelIcon className={styles.topBarIcon} />
-                  Close
+                  <span class={styles.topbarButtonText}>Close</span>
                 </>
               ) : (
                 <>
                   <SortIcon className={styles.topBarIcon} />
-                  Sort Products
+                  <span class={styles.topbarButtonText}>Sort Products</span>
                 </>
               )}
             </div>
           </div>
           <div className={styles.productInner}>
             <h1>{props.title}</h1>
+            <ProductList
+              maincategory={props.page}
+              minPrice={minPrice}
+              maxPrice={maxPrice}
+              minRating={minRating}
+              maxRating={maxRating}
+              color={color}
+              warranty={warranty}
+              orderBy={orderBy}
+            />
           </div>
         </div>
         <div className={styles.OrderArea}>
           <OrderBy onChange={handleSlicerChange} />
         </div>
+
+        <div
+          className={`${styles.screenOverlay} ${
+            (showFilters || showOrders) && styles.show
+          }`}
+          onClick={handleRightButton}
+        />
       </div>
     </div>
   );

@@ -29,6 +29,7 @@ function ProductItem(props) {
           src={myData.imgSmall}
           width={160}
           height={160}
+          alt={myData.name}
         />
         {myData.salePercentage > 0 && (
           <div className={styles.percentageContainer}>

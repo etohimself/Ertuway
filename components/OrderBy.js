@@ -11,11 +11,11 @@ function OrderBy(props) {
       <RadioSlicer
         title="Order Products"
         list={[
-          { name: "Recommended Order", order: "recommended" },
-          { name: "Highest to Lowest Price", order: "highest_price" },
-          { name: "Lowest to Highest Price", order: "lowest_price" },
-          { name: "Most Sold Products", order: "most_sold" },
-          { name: "Most Viewed Products", order: "most_viewed" },
+          { name: "Recommended Order", order: 0},
+          { name: "Highest to Lowest Price", order: 1 },
+          { name: "Lowest to Highest Price", order: 2 },
+          { name: "Most Sold Products", order: 3 },
+          { name: "Most Viewed Products", order: 4 },
         ]}
         allowEmpty={0}
         noCollapse={1}

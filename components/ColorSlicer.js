@@ -18,7 +18,7 @@ function ColorSlicer(props) {
       props.onSelect({
         invoker: props.slicername,
         type: 1,
-        data: null,
+        data: { color: "all" },
       });
     } else {
       setCurrentSelection(selectedIndex);
