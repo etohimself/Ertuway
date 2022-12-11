@@ -47,3 +47,7 @@
   border-radius: 100%;
   cursor: pointer;
 }
+
+.slicerItem.isSelected {
+  border:3px solid #ff7440;
+}

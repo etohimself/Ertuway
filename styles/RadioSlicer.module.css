@@ -1,0 +1,100 @@
+.RadioSlicerContainer {
+    width: 240px;
+    background-color: white;
+    border: 1px solid #d0cfcf;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  
+  .titleBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .titleBar > h1 {
+    font-size: 1.25em;
+    margin: 0;
+  }
+  
+  .contentArea {
+    height: 100%;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+  
+  .collapseButton {
+    transition: transform 0.5s ease;
+    transform: rotate(90deg);
+    cursor: pointer;
+    fill: #ff7440;
+  }
+  
+  .collapseButton.collapsed {
+    transform: rotate(270deg);
+  }
+  
+  .slicerItem {
+    cursor: pointer;
+    margin: 16px 0;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .selectionCircle {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border: 1px solid #a3a3a3;
+    border-radius: 50px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .circleMark {
+    width: 70%;
+    height: 70%;
+    background-color: #ff7440;
+    border-radius: 100%;
+    opacity: 0;
+    transform: opacity 0.5s ease;
+  }
+  .selectionCircle.isSelected .circleMark {
+    opacity: 1;
+  }
+  
+  .rangeArea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .rangeInput {
+    border-radius: 3px;
+    border: 1px solid #949494;
+    width: 40%;
+    height: 24px;
+  }
+  
+  .rangeButton {
+    background-color: #ff7440;
+    padding: 3px;
+    box-sizing: content-box;
+    border-radius: 3px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+  }
+  
+  .rangeButton > * {
+    stroke: white;
+    width: 18px;
+    height: 18px;
+  }
+  

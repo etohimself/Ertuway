@@ -39,3 +39,9 @@
 .slicerItem {
   cursor:pointer;
 }
+
+@media screen and (max-width:1200px) {
+  .ListSlicerContainer {
+    border-radius: 0;
+  }
+}

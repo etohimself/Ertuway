@@ -15,7 +15,7 @@ function PriceSlicer(props) {
   };
 
   const sendSelection = (selectedItem) => {
-    if (currentSelection == selectedItem) {
+    if (currentSelection == selectedItem && props.allowEmpty == 1) {
       setCurrentSelection(-1);
       props.onSelect({
         invoker: props.slicername,

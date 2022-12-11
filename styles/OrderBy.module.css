@@ -1,0 +1,10 @@
+.slicerItem {
+    margin-bottom: 5px;
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .slicerItem {
+      margin-bottom: 0;
+    }
+  }
+  

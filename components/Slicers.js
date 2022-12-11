@@ -5,6 +5,7 @@ import ColorSlicer from "./ColorSlicer";
 import ListSlicer from "./ListSlicer";
 import PriceSlicer from "./PriceSlicer";
 import RatingSlicer from "./RatingSlicer";
+import RadioSlicer from "./RadioSlicer";
 
 function Slicers(props) {
   const { productDB } = useContext(ProductContext);
@@ -50,6 +51,7 @@ function Slicers(props) {
           { min: 100, max: 1000 },
           { min: 1000, max: 0 },
         ]}
+        allowEmpty={1}
         onSelect={handleSelection}
         slicername="price_slicer"
         className={styles.slicerItem}
@@ -59,6 +61,7 @@ function Slicers(props) {
         slicername="color_slicer"
         className={styles.slicerItem}
         onSelect={handleSelection}
+        allowEmpty={1}
         list={[
           { color: "white" },
           { color: "black" },
@@ -86,17 +89,20 @@ function Slicers(props) {
           { name: "2 Stars Reviews", stars: 2 },
           { name: "1 Star Reviews", stars: 1 },
         ]}
+        allowEmpty={1}
         slicername="rating_slicer"
         onSelect={handleSelection}
         className={styles.slicerItem}
       />
-      <ListSlicer
+      <RadioSlicer
         title="Warranty"
         list={[
-          { name: "2 Years Warranty" },
-          { name: "1 Year of Warranty" },
-          { name: "No Warranty" },
+          { name: "All Warranties", warranty:null},
+          { name: "2 Years Warranty", warranty:2},
+          { name: "1 Year of Warranty", warranty:1},
+          { name: "No Warranty", warranty:0},
         ]}
+        allowEmpty={0}
         slicername="warranty_slicer"
         onSelect={handleSelection}
         className={styles.slicerItem}

@@ -63,4 +63,16 @@
   .ContactButtonsContainer {
     font-size: 16px;
   }
+  .ContactButtonsContainer.footer {
+    font-size: 12px;
+  }
+  .contactButton {
+    padding: 8px 12px;
+  }
+  .ContactButtonsContainer.footer .lineDiv {
+    width: 40px;
+  }
+  .ContactButtonsContainer > h2 {
+    font-size:1em;
+  }
 }
