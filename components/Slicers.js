@@ -41,17 +41,6 @@ function Slicers(props) {
         onSelect={handleSelection}
         className={styles.slicerItem}
       />
-      <ListSlicer
-        title="Warranty"
-        list={[
-          { name: "2 Years Warranty" },
-          { name: "1 Year of Warranty" },
-          { name: "No Warranty" },
-        ]}
-        slicername="warranty_slicer"
-        onSelect={handleSelection}
-        className={styles.slicerItem}
-      />
       <PriceSlicer
         title="Price"
         list={[
@@ -86,23 +75,17 @@ function Slicers(props) {
           { color: "pink" },
           { color: "rainbow" },
         ]}
+      />
+      <ListSlicer
+        title="Warranty"
         list={[
-          { color: "white" },
-          { color: "black" },
-          { color: "gray" },
-          { color: "silver" },
-          { color: "gold" },
-          { color: "red" },
-          { color: "orange" },
-          { color: "yellow" },
-          { color: "green" },
-          { color: "cyan" },
-          { color: "blue" },
-          { color: "purple" },
-          { color: "violet" },
-          { color: "pink" },
-          { color: "rainbow" },
+          { name: "2 Years Warranty" },
+          { name: "1 Year of Warranty" },
+          { name: "No Warranty" },
         ]}
+        slicername="warranty_slicer"
+        onSelect={handleSelection}
+        className={styles.slicerItem}
       />
     </>
   );
