@@ -8,10 +8,12 @@ function ColorSlicer(props) {
     setCollapsed((prev) => !prev);
   };
   const [calculatedHeight, setCalculatedHeight] = useState(1000); //Something big enough to prevent shrink transition
-  const [currentSelection, setCurrentSelection] = useState(-1);
-  
-  const sendSelection = (selectedItem) => {
-    if (currentSelection == selectedItem && props.allowEmpty == 1) {
+  const [currentSelection, setCurrentSelection] = useState(
+    props.allowEmpty == 0 ? 0 : -1
+  );
+
+  const sendSelection = (selectedIndex) => {
+    if (currentSelection == selectedIndex && props.allowEmpty == 1) {
       setCurrentSelection(-1);
       props.onSelect({
         invoker: props.slicername,
@@ -19,11 +21,11 @@ function ColorSlicer(props) {
         data: null,
       });
     } else {
-      setCurrentSelection(selectedItem);
+      setCurrentSelection(selectedIndex);
       props.onSelect({
         invoker: props.slicername,
         type: 1,
-        data: selectedItem,
+        data: props.list[selectedIndex],
       });
     }
   };
@@ -72,9 +74,9 @@ function ColorSlicer(props) {
             <div
               key={i}
               className={`${styles.slicerItem} ${
-                currentSelection == x && styles.isSelected
+                currentSelection == i && styles.isSelected
               }`}
-              onClick={() => sendSelection(x)}
+              onClick={() => sendSelection(i)}
               style={calculateColor(x.color)}
             ></div>
           );

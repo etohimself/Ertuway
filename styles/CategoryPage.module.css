@@ -86,15 +86,6 @@
   margin-right: 5px;
 }
 
-.MobileTopBar.showFilter > .ShowFiltersButton,
-.MobileTopBar.showOrder > .ShowFiltersButton {
-  color: #8ab889;
-}
-
-.MobileTopBar.showFilter > .ShowOrdersButton,
-.MobileTopBar.showOrder > .ShowOrdersButton {
-  color: #fe8787;
-}
 
 .screenOverlay {
   display: none;

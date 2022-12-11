@@ -7,15 +7,17 @@ function PriceSlicer(props) {
   const [collapsed, setCollapsed] = useState(0);
   const [minRange, setMinRange] = useState(0);
   const [maxRange, setMaxRange] = useState(0);
-  const [currentSelection, setCurrentSelection] = useState(-1);
+  const [currentSelection, setCurrentSelection] = useState(
+    props.allowEmpty == 0 ? 0 : -1
+  );
   const [calculatedHeight, setCalculatedHeight] = useState(1000); //Something big enough to prevent shrink transition
   const contentRef = useRef();
   const handleCollapse = () => {
     setCollapsed((prev) => !prev);
   };
 
-  const sendSelection = (selectedItem) => {
-    if (currentSelection == selectedItem && props.allowEmpty == 1) {
+  const sendSelection = (selectedIndex) => {
+    if (currentSelection == selectedIndex && props.allowEmpty == 1) {
       setCurrentSelection(-1);
       props.onSelect({
         invoker: props.slicername,
@@ -23,11 +25,11 @@ function PriceSlicer(props) {
         data: { min: 0, max: 0 },
       });
     } else {
-      setCurrentSelection(selectedItem);
+      setCurrentSelection(selectedIndex);
       props.onSelect({
         invoker: props.slicername,
         type: 1,
-        data: selectedItem,
+        data: props.list[selectedIndex],
       });
     }
   };
@@ -106,12 +108,12 @@ function PriceSlicer(props) {
           return (
             <div
               className={styles.slicerItem}
-              onClick={() => sendSelection(item)}
+              onClick={() => sendSelection(index)}
               key={index}
             >
               <div
                 className={`${styles.selectionCircle} ${
-                  currentSelection == item && styles.isSelected
+                  currentSelection == index && styles.isSelected
                 }`}
               >
                 <div className={styles.circleMark} />

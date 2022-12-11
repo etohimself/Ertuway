@@ -3,7 +3,6 @@ import styles from "../styles/CategoryPage.module.css";
 import Slicers from "./Slicers";
 import FilterIcon from "./Icons/FilterIcon";
 import SortIcon from "./Icons/SortIcon";
-import ConfirmIcon from "./Icons/ConfirmIcon";
 import CancelIcon from "./Icons/CancelIcon";
 import OrderBy from "./OrderBy";
 import useElementWidth from "./hooks/useElementWidth";
@@ -13,15 +12,22 @@ function CategoryPage(props) {
   const [showOrders, setShowOrders] = useState(0);
   const containerRef = useRef();
   const myWidth = useElementWidth(containerRef);
-  const handleLeftButton = () => {
-    if (showFilters || showOrders) {
-      //Something already shown, therefore this serves as Apply button
-      //Filter the products here
-      setShowFilters(0);
-      setShowOrders(0);
+  const [filterData, setFilterData] = useState({});
+
+  const handleSlicerChange = (payload) => {
+    if (payload.invoker == "category_slicer") {
+      //Redirect to that category here..
     } else {
-      setShowFilters(1);
+      setFilterData((prevData) => {
+        let currentData = { ...prevData };
+        currentData[payload.invoker] = payload.data;
+        return currentData;
+      });
     }
+  };
+
+  const handleLeftButton = () => {
+    setShowFilters(1);
   };
 
   const handleRightButton = () => {
@@ -41,6 +47,11 @@ function CategoryPage(props) {
     }
   }, [myWidth]);
 
+  useEffect(() => {
+    console.log(filterData);
+    //Here, I must filter & sort the products with reasonable logic
+  }, [filterData]);
+
   return (
     <div className={styles.CategoryPageContainer} ref={containerRef}>
       <div
@@ -56,7 +67,7 @@ function CategoryPage(props) {
         />
 
         <div className={styles.SlicerArea}>
-          <Slicers page={props.page} />
+          <Slicers page={props.page} onChange={handleSlicerChange} />
         </div>
         <div className={styles.ProductArea}>
           <div
@@ -65,22 +76,16 @@ function CategoryPage(props) {
             ${showOrders && styles.showOrder}
             }`}
           >
-            <div
-              className={styles.ShowFiltersButton}
-              onClick={handleLeftButton}
-            >
-              {showFilters || showOrders ? (
-                <>
-                  <ConfirmIcon className={styles.topBarIcon} />
-                  Apply
-                </>
-              ) : (
-                <>
-                  <FilterIcon className={styles.topBarIcon} />
-                  Show Filters
-                </>
-              )}
-            </div>
+            {!showFilters && !showOrders && (
+              <div
+                className={styles.ShowFiltersButton}
+                onClick={handleLeftButton}
+              >
+                <FilterIcon className={styles.topBarIcon} />
+                Show Filters
+              </div>
+            )}
+
             <div
               className={styles.ShowOrdersButton}
               onClick={handleRightButton}
@@ -88,7 +93,7 @@ function CategoryPage(props) {
               {showFilters || showOrders ? (
                 <>
                   <CancelIcon className={styles.topBarIcon} />
-                  Cancel
+                  Close
                 </>
               ) : (
                 <>
@@ -103,7 +108,7 @@ function CategoryPage(props) {
           </div>
         </div>
         <div className={styles.OrderArea}>
-          <OrderBy page={props.page} />
+          <OrderBy onChange={handleSlicerChange} />
         </div>
       </div>
     </div>

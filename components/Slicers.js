@@ -18,10 +18,7 @@ function Slicers(props) {
   */
 
   const handleSelection = (payload) => {
-    console.log(
-      `Slicer data arrived from ${payload.invoker}, type: ${payload.type} data : `
-    );
-    console.log(payload.data);
+    props.onChange(payload);
   };
 
   const listOfCategories = productDB
@@ -97,10 +94,10 @@ function Slicers(props) {
       <RadioSlicer
         title="Warranty"
         list={[
-          { name: "All Warranties", warranty:null},
-          { name: "2 Years Warranty", warranty:2},
-          { name: "1 Year of Warranty", warranty:1},
-          { name: "No Warranty", warranty:0},
+          { name: "All Warranties", warranty: null },
+          { name: "2 Years Warranty", warranty: 2 },
+          { name: "1 Year of Warranty", warranty: 1 },
+          { name: "No Warranty", warranty: 0 },
         ]}
         allowEmpty={0}
         slicername="warranty_slicer"

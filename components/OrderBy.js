@@ -1,14 +1,9 @@
-import { useContext } from "react";
-import { ProductContext } from "../contexts/productContext";
 import styles from "../styles/Slicers.module.css";
 import RadioSlicer from "./RadioSlicer";
 
 function OrderBy(props) {
   const handleSelection = (payload) => {
-    console.log(
-      `Slicer data arrived from ${payload.invoker}, type: ${payload.type} data : `
-    );
-    console.log(payload.data);
+    props.onChange(payload);
   };
 
   return (
@@ -16,10 +11,11 @@ function OrderBy(props) {
       <RadioSlicer
         title="Order Products"
         list={[
-          { name: "Recommended Order", warranty: 1 },
-          { name: "Most Sold", warranty: 2 },
-          { name: "1 Year of Warranty", warranty: 1 },
-          { name: "No Warranty", warranty: 0 },
+          { name: "Recommended Order", order: "recommended" },
+          { name: "Highest to Lowest Price", order: "highest_price" },
+          { name: "Lowest to Highest Price", order: "lowest_price" },
+          { name: "Most Sold Products", order: "most_sold" },
+          { name: "Most Viewed Products", order: "most_viewed" },
         ]}
         allowEmpty={0}
         noCollapse={1}
