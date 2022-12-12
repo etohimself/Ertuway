@@ -99,6 +99,7 @@
   display: block;
 }
 
+
 @media screen and (max-width: 1200px) {
   .SlicerArea,
   .OrderArea {
@@ -151,6 +152,6 @@
     font-size: 0.8em;
   }
   .topbarButtonText {
-    display:none;
+    display: none;
   }
 }

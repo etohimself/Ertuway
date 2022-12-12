@@ -72,7 +72,11 @@
   .ContactButtonsContainer.footer .lineDiv {
     width: 40px;
   }
+  .ContactButtonsContainer .lineDiv {
+    width: 80px;
+  }
+
   .ContactButtonsContainer > h2 {
-    font-size:1em;
+    font-size: 1em;
   }
 }

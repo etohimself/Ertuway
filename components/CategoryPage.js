@@ -108,8 +108,8 @@ function CategoryPage(props) {
             </div>
           </div>
           <div className={styles.productInner}>
-            <h1>{props.title}</h1>
-            <ProductList
+              <h1>{props.title}</h1>
+             <ProductList
               maincategory={props.page}
               minPrice={minPrice}
               maxPrice={maxPrice}
@@ -118,6 +118,7 @@ function CategoryPage(props) {
               color={color}
               warranty={warranty}
               orderBy={orderBy}
+              onSort={handleSlicerChange}
             />
           </div>
         </div>

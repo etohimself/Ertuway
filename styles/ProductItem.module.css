@@ -64,8 +64,8 @@
 }
 
 svg.percentageSvg {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
 }
 
 .percentageOffText {
@@ -155,5 +155,18 @@ svg.percentageSvg {
   .imageContainer {
     height: 80px;
     width: 80px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .itemContainer {
+    width: 60px;
+    margin: 5px;
+    font-size: 11px;
+  }
+
+  .imageContainer {
+    height: 60px;
+    width: 60px;
   }
 }
