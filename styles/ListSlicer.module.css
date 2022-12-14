@@ -1,3 +1,20 @@
+.lazyPlaceHolder {
+  width: 240px;
+  height: 150px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 5px;
+  animation: loading-animation 1s linear infinite alternate;
+}
+
+@keyframes loading-animation {
+  0% {
+    background-color: hsl(195, 5%, 85%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
 .ListSlicerContainer {
   width: 240px;
   background-color: white;
@@ -27,20 +44,25 @@
 
 .collapseButton {
   transition: transform 0.5s ease;
-  transform:rotate(90deg);
+  transform: rotate(90deg);
   cursor: pointer;
-  fill:#FF7440;
+  fill: #ff7440;
 }
 
 .collapseButton.collapsed {
-  transform:rotate(270deg);
+  transform: rotate(270deg);
 }
 
 .slicerItem {
-  cursor:pointer;
+  cursor: pointer;
 }
 
-@media screen and (max-width:1200px) {
+.slicerItem.selected {
+  font-weight: 800;
+  color: #ff7440;
+}
+
+@media screen and (max-width: 1200px) {
   .ListSlicerContainer {
     border-radius: 0;
   }

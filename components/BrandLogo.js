@@ -5,7 +5,7 @@ function BrandLogo(props) {
   return (
     <div className={styles.brandContainer}>
       <BrandIcon className={styles.brandLogoIcon} />
-      Ertuway
+      {props.text}
     </div>
   );
 }

@@ -9,8 +9,14 @@ function CategoryIcon(props) {
 
   return (
     <div
-      className={styles.CategoryIconContainer}
-      style={props.index > props.hideAfter ? { visibility: "hidden", height:"0"} : {}}
+      className={`${styles.CategoryIconContainer} ${
+        props.small == 1 && styles.small
+      } `}
+      style={
+        props.index > props.hideAfter
+          ? { visibility: "hidden", height: "0" }
+          : {}
+      }
     >
       <Image
         src={myCategory.categoryIcon}

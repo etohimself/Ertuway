@@ -12,6 +12,10 @@
   transition: transform 0.6s ease;
 }
 
+.pageTitle::first-letter {
+  text-transform: capitalize;
+}
+
 .ProductArea {
   min-height: 100%;
   min-width: 100%;
@@ -99,14 +103,13 @@
   display: block;
 }
 
-
 @media screen and (max-width: 1200px) {
   .SlicerArea,
   .OrderArea {
     padding: 0;
     width: 240px;
   }
-
+  
   .innerContainer {
     transform: translateX(-240px);
   }

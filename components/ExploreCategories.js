@@ -21,6 +21,7 @@ function ExploreCategories(props) {
             name={category.shortname}
             index={index + 1}
             hideAfter={hideAfter}
+            key={category.shortname}
           />
         ))}
       </div>

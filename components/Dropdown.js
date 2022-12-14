@@ -13,14 +13,14 @@ function Dropdown(props) {
     });
   };
 
-  const handleSelection = (selectedIndex) => {
-    props.onSelect(selectedIndex);
-    handleClick();
-  };
-
   useEffect(() => {
     setCalculatedHeight(listRef.current.scrollHeight);
   }, []);
+
+  const handleSelection = (item) => {
+    props.onSelect({ invoker: props.slicername, data: item });
+    setCollapsed(1);
+  };
 
   return (
     <div
@@ -28,7 +28,7 @@ function Dropdown(props) {
       style={props.style}
     >
       <div className={styles.selectedContainer} onClick={handleClick}>
-        {props.list[props.selected]}
+        {props.list.filter((x) => x.value == props.value.value)[0].name}
         <ArrowIcon
           className={`${styles.collapseButton} ${collapsed || styles.showList}`}
         />
@@ -44,14 +44,14 @@ function Dropdown(props) {
         <div
           className={`${styles.listContainer} ${collapsed || styles.showList}`}
         >
-          {props.list.map((x, i) => {
+          {props.list.map((item, index) => {
             return (
               <div
                 className={styles.listItem}
-                key={i}
-                onClick={() => handleSelection(i)}
+                key={index}
+                onClick={() => handleSelection(item)}
               >
-                {x}
+                {item.name}
               </div>
             );
           })}

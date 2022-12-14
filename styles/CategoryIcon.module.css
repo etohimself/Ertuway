@@ -11,10 +11,21 @@
   cursor: pointer;
 }
 
+.CategoryIconContainer.small {
+  width: 60px;
+  margin: 10px;
+}
+
 .CategoryIconContainer > p {
   margin: 10px;
   max-width: 100px;
   text-align: center;
+}
+
+.CategoryIconContainer.small > p {
+  margin:5px;
+  max-width: 70px;
+  font-size:14px;
 }
 
 .iconImg {
@@ -22,6 +33,11 @@
   flex-shrink: 0;
   width: 80px;
   height: 80px;
+}
+
+.CategoryIconContainer.small .iconImg {
+  width: 50px;
+  height: 50px;
 }
 
 @media screen and (max-width: 1200px) {

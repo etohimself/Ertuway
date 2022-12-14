@@ -38,7 +38,7 @@ function Welcomer(props) {
     <div
       className={styles.welcomerContainer}
       style={{
-        backgroundImage: `url("/images/welcomerbg.png"), linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);`,
+        backgroundImage: `url("/images/welcomerbg.png"), linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)`,
         backgroundColor: eventStyles[currentEvent].bgColor,
       }}
     >
@@ -53,12 +53,14 @@ function Welcomer(props) {
       <div className={styles.middleContainer}>
         <Image
           src={topImageSrc}
+          alt={"Welcomer Image"}
           className={`${styles.topImage} ${
             topImageVisible && styles.isVisible
           }`}
         />
         <Image
           src={bottomImageSrc}
+          alt={"Welcomer Image"}
           className={`${styles.bottomImage} ${
             bottomImageVisible && styles.isVisible
           }`}

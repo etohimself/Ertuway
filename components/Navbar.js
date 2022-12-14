@@ -3,11 +3,22 @@ import BrandLogo from "./BrandLogo";
 import UserIcon from "./Icons/UserIcon";
 import CartIcon from "./Icons/CartIcon";
 import SearchBox from "./SearchBox";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ProductContext } from "../contexts/productContext";
+import { FilterContext } from "../contexts/filterContext";
+import { Router, useRouter } from "next/router";
 
 function Navbar(props) {
   const { productDB } = useContext(ProductContext);
+  const {
+    filter_maincategory,
+    set_filter_subcategory,
+    set_filter_maincategory,
+  } = useContext(FilterContext);
+
+  const router = useRouter();
+  const { routes } = router.query;
+  const [currentPage, setCurrentPage] = useState("");
   const [showDropdown, setShowdropdown] = useState("");
 
   const pageList = [
@@ -28,17 +39,61 @@ function Navbar(props) {
   productDB.forEach((cat) => mainCategories.push(cat.maincategory));
   mainCategories = mainCategories.filter(
     (x, i) => mainCategories.indexOf(x) == i
-  ); //Get distintcs
+  ); //Get distincts
 
   function validCategory(catName) {
     return mainCategories.indexOf(catName) > -1;
   }
 
+  function handleCategoryClick(shortname) {
+    if (shortname == "index") {
+      window.location.href = "/";
+    } else {
+      window.location.href = "/" + shortname;
+      //window.location = "/" + shortname;
+    }
+  }
+
+  function handleSubcategoryClick(maincategory, subcategory) {
+    window.location.href = "/" + maincategory + "/" + subcategory.split("_")[1];
+  }
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    //Detect Main page
+    if (!routes) {
+      setCurrentPage("index");
+      return;
+    }
+
+    //Detect remaining pages
+    if (routes.length > 0) {
+      let found = 0;
+      pageList.forEach((x) => {
+        if (x.shortname == routes[0]) {
+          set_filter_maincategory(routes[0]);
+          setCurrentPage(routes[0]);
+          found = 1;
+        }
+      });
+
+      if (!found) {
+        router.push("/");
+      }
+    }
+
+    //Detect subcategory
+    if (routes.length > 1) {
+      set_filter_subcategory(routes[0] + "_" + routes[1]);
+    }
+  }, [router.isReady, routes]);
+
   return (
     <>
       <div className={styles.NavbarContainer}>
         <div className={styles.BrandAreaMobile}>
-          <BrandLogo />
+          <BrandLogo text="Ertuway" />
           <div className={styles.NavbarButtonsContainerMobile}>
             <div className={styles.AccountButton}>
               <UserIcon className={styles.navbarButtonIcons} />
@@ -70,8 +125,9 @@ function Navbar(props) {
             return (
               <div
                 key={i}
+                onClick={() => handleCategoryClick(x.shortname)}
                 className={`${styles.NavbarCategory} ${
-                  props.page == x.shortname && styles.isActive
+                  currentPage == x.shortname && styles.isActive
                 }`}
                 onMouseOver={() =>
                   validCategory(x.shortname) && setShowdropdown(x.shortname)
@@ -100,7 +156,20 @@ function Navbar(props) {
                       .sort((a, b) =>
                         b.categoryName < a.categoryName ? -1 : 1
                       )
-                      .map((subcat, i) => <p key={i}>{subcat.categoryName}</p>)}
+                      .map((subcat, i) => (
+                        <p
+                          key={i}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleSubcategoryClick(
+                              x.shortname,
+                              subcat.shortname
+                            );
+                          }}
+                        >
+                          {subcat.categoryName}
+                        </p>
+                      ))}
                 </div>
               </div>
             );

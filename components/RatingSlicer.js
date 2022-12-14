@@ -5,31 +5,11 @@ import StarIcon from "./Icons/StarIcon";
 
 function RatingSlicer(props) {
   const [collapsed, setCollapsed] = useState(0);
-  const [currentSelection, setCurrentSelection] = useState(
-    props.allowEmpty == 0 ? 0 : -1
-  );
+  const [currentSelection, setCurrentSelection] = useState(props.value);
   const [calculatedHeight, setCalculatedHeight] = useState(1000); //Something big enough to prevent shrink transition
   const contentRef = useRef();
   const handleCollapse = () => {
     setCollapsed((prev) => !prev);
-  };
-
-  const sendSelection = (selectedIndex) => {
-    if (currentSelection == selectedIndex) {
-      setCurrentSelection(-1);
-      props.onSelect({
-        invoker: props.slicername,
-        type: 1,
-        data: 0,
-      });
-    } else {
-      setCurrentSelection(selectedIndex);
-      props.onSelect({
-        invoker: props.slicername,
-        type: 1,
-        data: props.list[selectedIndex],
-      });
-    }
   };
 
   useEffect(() => {
@@ -56,12 +36,14 @@ function RatingSlicer(props) {
           return (
             <div
               className={styles.slicerItem}
-              onClick={() => sendSelection(index)}
               key={index}
+              onClick={() =>
+                props.onSelect({ invoker: props.slicername, data: item })
+              }
             >
               <div
                 className={`${styles.selectionCircle} ${
-                  currentSelection == index && styles.isSelected
+                  props.value.stars == item.stars && styles.isSelected
                 }`}
               >
                 <div className={styles.circleMark} />

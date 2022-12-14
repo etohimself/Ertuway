@@ -7,33 +7,12 @@ function PriceSlicer(props) {
   const [collapsed, setCollapsed] = useState(0);
   const [minRange, setMinRange] = useState(0);
   const [maxRange, setMaxRange] = useState(0);
-  const [currentSelection, setCurrentSelection] = useState(
-    props.allowEmpty == 0 ? 0 : -1
-  );
   const [calculatedHeight, setCalculatedHeight] = useState(1000); //Something big enough to prevent shrink transition
   const contentRef = useRef();
-  const handleCollapse = () => {
-    setCollapsed((prev) => !prev);
-  };
+  const handleCollapse = () => setCollapsed((prev) => !prev);
+  useEffect(() => setCalculatedHeight(contentRef.current.clientHeight), []);
 
-  const sendSelection = (selectedIndex) => {
-    if (currentSelection == selectedIndex && props.allowEmpty == 1) {
-      setCurrentSelection(-1);
-      props.onSelect({
-        invoker: props.slicername,
-        type: 1,
-        data: { min: 0, max: 0 },
-      });
-    } else {
-      setCurrentSelection(selectedIndex);
-      props.onSelect({
-        invoker: props.slicername,
-        type: 1,
-        data: props.list[selectedIndex],
-      });
-    }
-  };
-
+  //Generate Price Names from List Given in Props
   const generatePriceName = (x) => {
     if (x.max > 0) {
       return `$${x.min} - ${x.max}`;
@@ -53,22 +32,14 @@ function PriceSlicer(props) {
   };
 
   const handleRangeInput = () => {
-    let payload = {
-      max: parseInt(maxRange) || 0,
-      min: parseInt(minRange) || 0,
-    };
-
-    setCurrentSelection(-1);
     props.onSelect({
       invoker: props.slicername,
-      type: 2,
-      data: payload,
+      data: {
+        max: parseInt(maxRange) || 0,
+        min: parseInt(minRange) || 0,
+      },
     });
   };
-
-  useEffect(() => {
-    setCalculatedHeight(contentRef.current.clientHeight);
-  }, []);
 
   return (
     <div className={`${styles.PriceSlicerContainer} ${props.className}`}>
@@ -108,12 +79,16 @@ function PriceSlicer(props) {
           return (
             <div
               className={styles.slicerItem}
-              onClick={() => sendSelection(index)}
               key={index}
+              onClick={() =>
+                props.onSelect({ invoker: props.slicername, data: item })
+              }
             >
               <div
                 className={`${styles.selectionCircle} ${
-                  currentSelection == index && styles.isSelected
+                  props.value.min == item.min &&
+                  props.value.max == item.max &&
+                  styles.isSelected
                 }`}
               >
                 <div className={styles.circleMark} />
