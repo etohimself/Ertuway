@@ -12,6 +12,7 @@ function CategoryIcon(props) {
       className={`${styles.CategoryIconContainer} ${
         props.small == 1 && styles.small
       } `}
+      onClick={props.onClick}
       style={
         props.index > props.hideAfter
           ? { visibility: "hidden", height: "0" }

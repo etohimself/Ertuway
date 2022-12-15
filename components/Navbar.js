@@ -6,12 +6,11 @@ import SearchBox from "./SearchBox";
 import { useContext, useState, useEffect } from "react";
 import { ProductContext } from "../contexts/productContext";
 import { FilterContext } from "../contexts/filterContext";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 function Navbar(props) {
   const { productDB } = useContext(ProductContext);
   const {
-    filter_maincategory,
     set_filter_subcategory,
     set_filter_maincategory,
   } = useContext(FilterContext);
@@ -54,8 +53,9 @@ function Navbar(props) {
   }
 
   function handleSubcategoryClick(maincategory, subcategory) {
-    window.location.href =
-      "/" + maincategory + "/" + subcategory.split(maincategory + "_")[1];
+    router.push(
+      "/" + maincategory + "/" + subcategory.split(maincategory + "_")[1]
+    );
   }
 
   useEffect(() => {
