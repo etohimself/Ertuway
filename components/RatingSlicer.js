@@ -13,8 +13,11 @@ function RatingSlicer(props) {
   };
 
   useEffect(() => {
-    setCalculatedHeight(contentRef.current.clientHeight);
-  }, []);
+    setCalculatedHeight(1000);
+    setTimeout(() => {
+      setCalculatedHeight(contentRef.current.clientHeight);
+    }, 600);
+  }, [props.list]);
 
   return (
     <div className={`${styles.RatingSlicerContainer} ${props.className}`}>

@@ -47,15 +47,15 @@ function Navbar(props) {
 
   function handleCategoryClick(shortname) {
     if (shortname == "index") {
-      window.location.href = "/";
+      router.push("/");
     } else {
-      window.location.href = "/" + shortname;
-      //window.location = "/" + shortname;
+      router.push("/" + shortname);
     }
   }
 
   function handleSubcategoryClick(maincategory, subcategory) {
-    window.location.href = "/" + maincategory + "/" + subcategory.split("_")[1];
+    window.location.href =
+      "/" + maincategory + "/" + subcategory.split(maincategory + "_")[1];
   }
 
   useEffect(() => {
@@ -63,6 +63,8 @@ function Navbar(props) {
 
     //Detect Main page
     if (!routes) {
+      set_filter_maincategory("all");
+      set_filter_subcategory("all");
       setCurrentPage("index");
       return;
     }
@@ -71,9 +73,15 @@ function Navbar(props) {
     if (routes.length > 0) {
       let found = 0;
       pageList.forEach((x) => {
-        if (x.shortname == routes[0]) {
+        if (x.shortname == routes[0] && !found) {
           set_filter_maincategory(routes[0]);
           setCurrentPage(routes[0]);
+          //Detect subcategory
+          if (routes.length > 1) {
+            set_filter_subcategory(routes[0] + "_" + routes[1]);
+          } else {
+            set_filter_subcategory("all");
+          }
           found = 1;
         }
       });
@@ -81,11 +89,6 @@ function Navbar(props) {
       if (!found) {
         router.push("/");
       }
-    }
-
-    //Detect subcategory
-    if (routes.length > 1) {
-      set_filter_subcategory(routes[0] + "_" + routes[1]);
     }
   }, [router.isReady, routes]);
 

@@ -18,15 +18,16 @@ function ProductList(props) {
     filter_warranty,
     filter_sortby,
     list_sortby,
+    filteredProducts,
   } = useContext(FilterContext);
   const containerRef = useRef();
   const [containerWidth, firstChildWidth] = useElementWidth(containerRef);
   const calculatedMargin =
     firstChildWidth > 0 && containerWidth % firstChildWidth;
 
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  //const [filteredProducts, setFilteredProducts] = useState([]);
 
-  function filterProductData(product) {
+  /*function filterProductData(product) {
     return (
       product.maincategory == filter_maincategory &&
       (product.subcategory == filter_subcategory ||
@@ -81,6 +82,9 @@ function ProductList(props) {
     filter_warranty,
     filter_sortby,
   ]);
+
+  */
+
 
   //Test Logging
   useEffect(() => {

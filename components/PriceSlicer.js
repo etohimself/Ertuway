@@ -4,13 +4,20 @@ import ArrowIcon from "./Icons/ArrowIcon";
 import MagnifierIcon from "./Icons/MagnifierIcon";
 
 function PriceSlicer(props) {
+  const [renderRequired, setRenderRequired] = useState(0);
   const [collapsed, setCollapsed] = useState(0);
   const [minRange, setMinRange] = useState(0);
   const [maxRange, setMaxRange] = useState(0);
   const [calculatedHeight, setCalculatedHeight] = useState(1000); //Something big enough to prevent shrink transition
   const contentRef = useRef();
   const handleCollapse = () => setCollapsed((prev) => !prev);
-  useEffect(() => setCalculatedHeight(contentRef.current.clientHeight), []);
+
+  useEffect(() => {
+    setCalculatedHeight(1000);
+    setTimeout(() => {
+      setCalculatedHeight(contentRef.current.clientHeight);
+    }, 600);
+  }, [props.list]);
 
   //Generate Price Names from List Given in Props
   const generatePriceName = (x) => {
