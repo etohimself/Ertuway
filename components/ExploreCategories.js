@@ -3,7 +3,7 @@ import { useContext, useRef } from "react";
 import { ProductContext } from "../contexts/productContext";
 import CategoryIcon from "./CategoryIcon";
 import useElementWidth from "./hooks/useElementWidth";
-import { Router, useRouter } from "next/router";
+import {  useRouter } from "next/router";
 
 function ExploreCategories(props) {
   const { productDB } = useContext(ProductContext);

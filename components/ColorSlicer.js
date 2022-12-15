@@ -31,7 +31,7 @@ function ColorSlicer(props) {
   useEffect(() => {
     setCalculatedHeight(1000);
     setTimeout(() => {
-      setCalculatedHeight(contentRef.current.clientHeight);
+      contentRef.current && setCalculatedHeight(contentRef.current.clientHeight);
     }, 600);
   }, [props.list]);
 

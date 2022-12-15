@@ -4,22 +4,17 @@ import MobileMenu from "../components/MobileMenu.js";
 import { ProductProvider } from "../contexts/productContext";
 import ContactUs from "../components/ContactUs.js";
 import Footer from "../components/Footer.js";
-import CategoryPage from "../components/CategoryPage.js";
-import { useRouter } from "next/router";
 import { FilterProvider } from "../contexts/filterContext.js";
 
-export default function Home() {
-  //const router = useRouter();
-  //const { routes } = router.query;
-
+export default function BestSellers() {
   return (
     <>
       <ProductProvider>
         <FilterProvider>
           <PageContent>
-            <Navbar root="" />
+            <Navbar root="bestsellers" />
             <MobileMenu />
-            <CategoryPage />
+            <h1>Best Sellers Page</h1>
             <ContactUs />
             <Footer />
           </PageContent>

@@ -10,10 +10,8 @@ import { useRouter } from "next/router";
 
 function Navbar(props) {
   const { productDB } = useContext(ProductContext);
-  const {
-    set_filter_subcategory,
-    set_filter_maincategory,
-  } = useContext(FilterContext);
+  const { set_filter_subcategory, set_filter_maincategory } =
+    useContext(FilterContext);
 
   const router = useRouter();
   const { routes } = router.query;
@@ -21,17 +19,17 @@ function Navbar(props) {
   const [showDropdown, setShowdropdown] = useState("");
 
   const pageList = [
-    { title: "Home", shortname: "index" },
-    { title: "Best Deals", shortname: "bestdeals" },
-    { title: "Best Sellers", shortname: "bestsellers" },
-    { title: "Electronics", shortname: "electronics" },
-    { title: "Fashion", shortname: "fashion" },
-    { title: "Health & Beauty", shortname: "health" },
-    { title: "Home & Garden", shortname: "home" },
-    { title: "Automotive", shortname: "car" },
-    { title: "Consumables", shortname: "consumable" },
-    { title: "Supermarket", shortname: "supermarket" },
-    { title: "Hobby & Art", shortname: "hobby" },
+    { title: "Home", shortname: "index", isMainCategory: 0 },
+    { title: "Best Deals", shortname: "bestdeals", isMainCategory: 0 },
+    { title: "Best Sellers", shortname: "bestsellers", isMainCategory: 0 },
+    { title: "Electronics", shortname: "electronics", isMainCategory: 1 },
+    { title: "Fashion", shortname: "fashion", isMainCategory: 1 },
+    { title: "Health & Beauty", shortname: "health", isMainCategory: 1 },
+    { title: "Home & Garden", shortname: "home", isMainCategory: 1 },
+    { title: "Automotive", shortname: "car", isMainCategory: 1 },
+    { title: "Consumables", shortname: "consumable", isMainCategory: 1 },
+    { title: "Supermarket", shortname: "supermarket", isMainCategory: 1 },
+    { title: "Hobby & Art", shortname: "hobby", isMainCategory: 1 },
   ];
 
   var mainCategories = [];
@@ -61,22 +59,37 @@ function Navbar(props) {
   useEffect(() => {
     if (!router.isReady) return;
 
-    //Detect Main page
-    if (!routes) {
+    if (props.root == "" && !routes) {
+      //Home Page
       set_filter_maincategory("all");
       set_filter_subcategory("all");
       setCurrentPage("index");
       return;
     }
 
-    //Detect remaining pages
-    if (routes.length > 0) {
+    if ((props.root != "bestsellers" || props.root == "bestdeals") && !routes) {
+      //Best Sellers, Best Deals
+      set_filter_maincategory("all");
+      set_filter_subcategory("all");
+      setCurrentPage(props.root);
+      return;
+    }
+
+    if (props.root == "special" && routes && routes.length > 0) {
+      //Special Event Page Detected
+      set_filter_maincategory("all");
+      set_filter_subcategory("all");
+      setCurrentPage(props.root);
+      return;
+    }
+
+    if (routes && routes.length > 0) {
       let found = 0;
       pageList.forEach((x) => {
-        if (x.shortname == routes[0] && !found) {
+        if (x.shortname == routes[0] && !found && x.isMainCategory == 1) {
           set_filter_maincategory(routes[0]);
           setCurrentPage(routes[0]);
-          //Detect subcategory
+          //Check for a valid subcategory
           if (routes.length > 1) {
             set_filter_subcategory(routes[0] + "_" + routes[1]);
           } else {
@@ -87,6 +100,7 @@ function Navbar(props) {
       });
 
       if (!found) {
+        //Unrecognized path
         router.push("/");
       }
     }
@@ -168,6 +182,7 @@ function Navbar(props) {
                               x.shortname,
                               subcat.shortname
                             );
+                            setShowdropdown("");
                           }}
                         >
                           {subcat.categoryName}

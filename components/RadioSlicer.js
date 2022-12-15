@@ -4,7 +4,6 @@ import ArrowIcon from "./Icons/ArrowIcon";
 
 function RadioSlicer(props) {
   const [collapsed, setCollapsed] = useState(0);
-  const [currentSelection, setCurrentSelection] = useState(props.value);
   const [calculatedHeight, setCalculatedHeight] = useState(1000); //Something big enough to prevent shrink transition
   const contentRef = useRef();
   const handleCollapse = () => {
@@ -12,8 +11,12 @@ function RadioSlicer(props) {
   };
 
   useEffect(() => {
-    setCalculatedHeight(contentRef.current.clientHeight);
-  }, []);
+    setCalculatedHeight(1000);
+    setTimeout(() => {
+      contentRef.current && setCalculatedHeight(contentRef.current.clientHeight);
+    }, 600);
+  }, [props.list]);
+
 
   return (
     <div

@@ -4,12 +4,24 @@ import event1img from "../public/images/event1.png";
 import event2img from "../public/images/event2.png";
 import { useState } from "react";
 import ScrollArrow from "./ScrollArrow";
+import { useRouter } from "next/router";
 
 function Welcomer(props) {
+  const router = useRouter();
   const eventStyles = [
-    { image: "", buttonColor: "", bgColor: "" },
-    { image: event1img, buttonColor: "#F72F00", bgColor: "#FB9B77" },
-    { image: event2img, buttonColor: "#244292", bgColor: "#A3BFEA" },
+    { image: "", buttonColor: "", bgColor: "", eventName: "" },
+    {
+      image: event1img,
+      buttonColor: "#F72F00",
+      bgColor: "#FB9B77",
+      eventName: "momsday",
+    },
+    {
+      image: event2img,
+      buttonColor: "#244292",
+      bgColor: "#A3BFEA",
+      eventName: "saturdaysale",
+    },
   ];
 
   const [currentEvent, setCurrentEvent] = useState(1);
@@ -34,11 +46,15 @@ function Welcomer(props) {
       ? switchToEvent(eventStyles.length - 1)
       : switchToEvent(currentEvent - 1);
 
+  function handleEventClick() {
+    router.push("/special/" + eventStyles[currentEvent].eventName);
+  }
+
   return (
     <div
       className={styles.welcomerContainer}
       style={{
-        backgroundImage: `url("/images/welcomerbg.png"), linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)`,
+        backgroundImage: `url("/images/welcomerbg.png"), linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%) `,
         backgroundColor: eventStyles[currentEvent].bgColor,
       }}
     >
@@ -50,7 +66,7 @@ function Welcomer(props) {
         />
       </div>
 
-      <div className={styles.middleContainer}>
+      <div className={styles.middleContainer} onClick={handleEventClick}>
         <Image
           src={topImageSrc}
           alt={"Welcomer Image"}

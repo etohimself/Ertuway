@@ -3,8 +3,10 @@ import HorizontalContainer from "../components/HorizontalContainer.js";
 import SaleCategory from "../components/SaleCategory.js";
 import { useContext } from "react";
 import { ProductContext } from "../contexts/productContext";
+import {  useRouter } from "next/router";
 
 function DiscountCategories(props) {
+  const router = useRouter();
   const { productDB } = useContext(ProductContext);
 
   //Filter the categories that have at least one product on sale for the current event
@@ -30,6 +32,12 @@ function DiscountCategories(props) {
     }
   }
 
+  function handleSubcategoryClick(maincategory, subcategory) {
+    router.push(
+      "/" + maincategory + "/" + subcategory.split(maincategory + "_")[1]
+    );
+  }
+
   return (
     <div className={styles.discountCategoryContainer}>
       <div className={styles.titleBar}>
@@ -43,6 +51,7 @@ function DiscountCategories(props) {
               image={x.categoryImg}
               discount={x.maxSale}
               key={i + "_" + x.shortname}
+              onClick={() => handleSubcategoryClick(x.maincategory, x.shortname)}
             />
           );
         })}

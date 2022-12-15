@@ -11,6 +11,7 @@ function SaleCategory(props) {
         height={400}
         alt={props.image}
         className={styles.SaleCategoryImage}
+        onClick={props.onClick}
       />
       <div className={styles.SaleCategoryInfo}>
         <h1>{props.title}</h1>
