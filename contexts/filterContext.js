@@ -16,6 +16,8 @@ export function FilterProvider(props) {
   const [list_subcategory, set_list_subcategory] = useState([
     { name: "", shortname: "" },
   ]);
+  const [filter_event, set_filter_event] = useState("all");
+  const [routes_rendered, set_routes_rendered] = useState(0);
 
   const [list_price, set_list_price] = useState([
     { min: 0, max: 10 },
@@ -65,7 +67,7 @@ export function FilterProvider(props) {
     { name: "Lowest to Highest Price", value: 2 },
     { name: "Most Sold Products", value: 3 },
     { name: "Most Viewed Products", value: 4 },
-    { name: "Most Discounted Products", value: 5 }
+    { name: "Most Discounted Products", value: 5 },
   ]);
 
   const updateFilters = (payload) => {
@@ -128,7 +130,13 @@ export function FilterProvider(props) {
   useEffect(() => {
     let subcategoryList = [];
     for (let i = 0; i < productDB.length; i++) {
-      if (productDB[i].maincategory == filter_maincategory) {
+      if (
+        (productDB[i].maincategory == filter_maincategory ||
+          filter_maincategory == "all") &&
+        (productDB[i].products.filter((item) => item.saleReason == filter_event)
+          .length ||
+          filter_event == "all")
+      ) {
         subcategoryList.push({
           name: productDB[i].categoryName,
           shortname: productDB[i].shortname,
@@ -136,13 +144,16 @@ export function FilterProvider(props) {
       }
     }
     set_list_subcategory(subcategoryList);
-  }, [filter_maincategory]);
+  }, [filter_maincategory, filter_event]);
 
   function filterProductData(product) {
     return (
-      product.maincategory == filter_maincategory &&
+      routes_rendered &&
+      (product.maincategory == filter_maincategory ||
+        filter_maincategory == "all") &&
       (product.subcategory == filter_subcategory ||
         filter_subcategory == "all") &&
+      (product.saleReason == filter_event || filter_event == "all") &&
       product.price >= filter_price.min &&
       (product.price <= filter_price.max ||
         filter_price.max <= filter_price.min) &&
@@ -175,7 +186,7 @@ export function FilterProvider(props) {
       //Sort By Most Viewed First
       return a.salePercentage > b.salePercentage ? -1 : 1;
     }
-    
+
     return 1;
   }
 
@@ -197,6 +208,7 @@ export function FilterProvider(props) {
     filter_rating,
     filter_warranty,
     filter_sortby,
+    filter_event,
     productDB,
   ]);
 
@@ -205,9 +217,11 @@ export function FilterProvider(props) {
     productDB.forEach((cat) => {
       cat.products.forEach((item) => {
         //Filter for maincategory and subcategory regardless
-        item.maincategory == filter_maincategory &&
+        (item.maincategory == filter_maincategory ||
+          filter_maincategory == "all") &&
           (item.subcategory == filter_subcategory ||
             filter_subcategory == "all") &&
+          (item.saleReason == filter_event || filter_event == "all") &&
           unfilteredProducts.push(item);
       });
     });
@@ -263,7 +277,7 @@ export function FilterProvider(props) {
         )
         .sort((a, b) => (a.stars > b.stars ? -1 : 1))
     );
-  }, [filter_maincategory, filter_subcategory]);
+  }, [filter_maincategory, filter_subcategory, filter_event]);
 
   return (
     <FilterContext.Provider
@@ -282,11 +296,15 @@ export function FilterProvider(props) {
         filter_rating,
         filter_warranty,
         filter_sortby,
+        filter_event,
 
         updateFilters,
         set_filter_maincategory,
         set_filter_subcategory,
+        set_filter_event,
         set_filter_sortby,
+        routes_rendered,
+        set_routes_rendered,
         filteredProducts,
       }}
     >

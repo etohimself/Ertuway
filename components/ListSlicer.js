@@ -12,7 +12,8 @@ function ListSlicer(props) {
   //Calculate Full Height
   useEffect(() => {
     if (props.list && props.list.length && props.list.length > 0) {
-      contentRef.current && setCalculatedHeight(contentRef.current.clientHeight);
+      contentRef.current &&
+        setCalculatedHeight(contentRef.current.clientHeight);
     }
   }, [props.list]);
 

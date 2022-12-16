@@ -10,13 +10,20 @@ import { useRouter } from "next/router";
 
 function Navbar(props) {
   const { productDB } = useContext(ProductContext);
-  const { set_filter_subcategory, set_filter_maincategory, set_filter_sortby } =
-    useContext(FilterContext);
+  const {
+    set_filter_subcategory,
+    set_filter_maincategory,
+    set_filter_sortby,
+    set_filter_event,
+    set_routes_rendered,
+  } = useContext(FilterContext);
 
   const router = useRouter();
   const { routes } = router.query;
   const [currentPage, setCurrentPage] = useState("");
   const [showDropdown, setShowdropdown] = useState("");
+
+  const eventList = ["momsday", "saturdaysale"];
 
   const pageList = [
     { title: "Home", shortname: "index", isMainCategory: 0 },
@@ -66,7 +73,9 @@ function Navbar(props) {
         //Home Page
         set_filter_maincategory("all");
         set_filter_subcategory("all");
+        set_filter_event("all");
         setCurrentPage("index");
+        set_routes_rendered(1);
         matched = 1;
       } else if (
         props.root == "bestsellers" ||
@@ -76,18 +85,28 @@ function Navbar(props) {
         //Best pages
         set_filter_maincategory("all");
         set_filter_subcategory("all");
+        set_filter_event("all");
         setCurrentPage(props.root);
+        set_routes_rendered(1);
         matched = 1;
+      } else if (props.root == "special") {
+        if (
+          router.query.event &&
+          router.query.event.length > 0 &&
+          eventList.includes(router.query.event)
+        ) {
+          //Special event page
+          set_filter_maincategory("all");
+          set_filter_subcategory("all");
+          set_filter_event(router.query.event);
+          setCurrentPage(props.root);
+          set_routes_rendered(1);
+          matched = 1;
+        }
       }
     } else if (routes.length && routes.length == 1) {
       //Single route param
-      if (props.root == "special") {
-        //Special event page
-        set_filter_maincategory("all");
-        set_filter_subcategory("all");
-        setCurrentPage(props.root);
-        matched = 1;
-      } else if (
+      if (
         pageList.filter(
           (x) => x.shortname == routes[0] && x.isMainCategory == 1
         ).length
@@ -95,7 +114,9 @@ function Navbar(props) {
         //Main category page
         set_filter_maincategory(routes[0]);
         set_filter_subcategory("all");
+        set_filter_event("all");
         setCurrentPage(routes[0]);
+        set_routes_rendered(1);
         matched = 1;
       }
     } else if (routes.length && routes.length == 2) {
@@ -114,26 +135,34 @@ function Navbar(props) {
         ) {
           //maincategory/subcategory
           set_filter_maincategory(routes[0]);
+          set_filter_event("all");
           set_filter_subcategory(routes[0] + "_" + routes[1]);
           setCurrentPage(routes[0]);
+          set_routes_rendered(1);
           matched = 1;
         } else if (routes[1] == "bestdeals") {
           set_filter_maincategory(routes[0]);
+          set_filter_event("all");
           set_filter_subcategory("all");
           setCurrentPage(routes[0]);
           set_filter_sortby({ value: 5 });
+          set_routes_rendered(1);
           matched = 1;
         } else if (routes[1] == "bestsellers") {
           set_filter_maincategory(routes[0]);
           set_filter_subcategory("all");
+          set_filter_event("all");
           setCurrentPage(routes[0]);
           set_filter_sortby({ value: 3 });
+          set_routes_rendered(1);
           matched = 1;
         } else if (routes[1] == "mostviewed") {
           set_filter_maincategory(routes[0]);
           set_filter_subcategory("all");
+          set_filter_event("all");
           setCurrentPage(routes[0]);
           set_filter_sortby({ value: 4 });
+          set_routes_rendered(1);
           matched = 1;
         }
       }
@@ -152,21 +181,27 @@ function Navbar(props) {
         ) {
           if (routes[2] == "bestdeals") {
             set_filter_maincategory(routes[0]);
+            set_filter_event("all");
             set_filter_subcategory(routes[0] + "_" + routes[1]);
             setCurrentPage(routes[0]);
             set_filter_sortby({ value: 5 });
+            set_routes_rendered(1);
             matched = 1;
           } else if (routes[2] == "bestsellers") {
             set_filter_maincategory(routes[0]);
+            set_filter_event("all");
             set_filter_subcategory(routes[0] + "_" + routes[1]);
             setCurrentPage(routes[0]);
             set_filter_sortby({ value: 3 });
+            set_routes_rendered(1);
             matched = 1;
           } else if (routes[2] == "mostviewed") {
             set_filter_maincategory(routes[0]);
+            set_filter_event("all");
             set_filter_subcategory(routes[0] + "_" + routes[1]);
             setCurrentPage(routes[0]);
             set_filter_sortby({ value: 4 });
+            set_routes_rendered(1);
             matched = 1;
           }
         }
@@ -175,6 +210,7 @@ function Navbar(props) {
 
     if (!matched) {
       //Unrecognized page
+      set_routes_rendered(0);
       router.push("/");
     }
   }, [router.isReady, routes]);

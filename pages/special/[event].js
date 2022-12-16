@@ -6,6 +6,7 @@ import ContactUs from "../../components/ContactUs.js";
 import Footer from "../../components/Footer.js";
 import { FilterProvider } from "../../contexts/filterContext.js";
 import EventPage from "../../components/EventPage.js";
+import CategoryPage from "../../components/CategoryPage";
 
 export default function SpecialEventPage() {
   return (
@@ -13,9 +14,9 @@ export default function SpecialEventPage() {
       <ProductProvider>
         <FilterProvider>
           <PageContent>
-            <Navbar root="special"/>
+            <Navbar root="special" />
             <MobileMenu />
-            <EventPage />
+            <CategoryPage />
             <ContactUs />
             <Footer />
           </PageContent>

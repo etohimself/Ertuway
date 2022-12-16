@@ -21,9 +21,11 @@ function Slicers(props) {
     list_price,
     list_rating,
     list_warranty,
+    filteredProducts,
+    routes_rendered,
   } = useContext(FilterContext);
 
-  if (filter_maincategory && filter_maincategory != "all") {
+  if (routes_rendered) {
     return (
       <>
         <ListSlicer

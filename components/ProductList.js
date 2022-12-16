@@ -7,7 +7,6 @@ import useElementWidth from "./hooks/useElementWidth";
 import { FilterContext } from "../contexts/filterContext";
 
 function ProductList(props) {
-  const { productDB } = useContext(ProductContext);
   const {
     updateFilters,
     filter_maincategory,
@@ -19,6 +18,7 @@ function ProductList(props) {
     filter_sortby,
     list_sortby,
     filteredProducts,
+    routes_rendered
   } = useContext(FilterContext);
   const containerRef = useRef();
   const [containerWidth, firstChildWidth] = useElementWidth(containerRef);
@@ -85,7 +85,6 @@ function ProductList(props) {
 
   */
 
-
   //Test Logging
   useEffect(() => {
     console.log({
@@ -100,7 +99,7 @@ function ProductList(props) {
     });
   }, []);
 
-  if (filter_maincategory && filter_maincategory != "all") {
+  if (routes_rendered) {
     return (
       <div className={styles.ProductListWrapper}>
         <Dropdown
