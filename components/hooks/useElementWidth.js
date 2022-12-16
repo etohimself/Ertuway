@@ -1,9 +1,9 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function useElementWidth(elementRef) {
   const [width, setWidth] = useState([0, 0]); //This elements width, first childs width
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     function updateWidth() {
       if (
         elementRef.current.children &&

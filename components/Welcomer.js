@@ -27,7 +27,7 @@ function Welcomer(props) {
   const [currentEvent, setCurrentEvent] = useState(1);
   const [topImageVisible, setTopImageVisible] = useState(1);
   const [bottomImageVisible, setBottomImageVisible] = useState(0);
-  const [topImageSrc, setTopImageSrc] = useState(eventStyles[1].image);
+  const [topImageSrc] = useState(eventStyles[1].image);
   const [bottomImageSrc, setBottomImageSrc] = useState(eventStyles[1].image);
 
   const switchToEvent = (targetEvent) => {

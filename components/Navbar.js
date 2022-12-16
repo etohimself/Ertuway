@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 
 function Navbar(props) {
   const { productDB } = useContext(ProductContext);
-  const { set_filter_subcategory, set_filter_maincategory } =
+  const { set_filter_subcategory, set_filter_maincategory, set_filter_sortby } =
     useContext(FilterContext);
 
   const router = useRouter();
@@ -58,51 +58,124 @@ function Navbar(props) {
 
   useEffect(() => {
     if (!router.isReady) return;
+    let matched = 0;
 
-    if (props.root == "" && !routes) {
-      //Home Page
-      set_filter_maincategory("all");
-      set_filter_subcategory("all");
-      setCurrentPage("index");
-      return;
-    }
-
-    if ((props.root != "bestsellers" || props.root == "bestdeals") && !routes) {
-      //Best Sellers, Best Deals
-      set_filter_maincategory("all");
-      set_filter_subcategory("all");
-      setCurrentPage(props.root);
-      return;
-    }
-
-    if (props.root == "special" && routes && routes.length > 0) {
-      //Special Event Page Detected
-      set_filter_maincategory("all");
-      set_filter_subcategory("all");
-      setCurrentPage(props.root);
-      return;
-    }
-
-    if (routes && routes.length > 0) {
-      let found = 0;
-      pageList.forEach((x) => {
-        if (x.shortname == routes[0] && !found && x.isMainCategory == 1) {
-          set_filter_maincategory(routes[0]);
-          setCurrentPage(routes[0]);
-          //Check for a valid subcategory
-          if (routes.length > 1) {
-            set_filter_subcategory(routes[0] + "_" + routes[1]);
-          } else {
-            set_filter_subcategory("all");
-          }
-          found = 1;
-        }
-      });
-
-      if (!found) {
-        //Unrecognized path
-        router.push("/");
+    if (!routes) {
+      //No route params
+      if (props.root == "") {
+        //Home Page
+        set_filter_maincategory("all");
+        set_filter_subcategory("all");
+        setCurrentPage("index");
+        matched = 1;
+      } else if (
+        props.root == "bestsellers" ||
+        props.root == "bestdeals" ||
+        props.root == "mostviewed"
+      ) {
+        //Best pages
+        set_filter_maincategory("all");
+        set_filter_subcategory("all");
+        setCurrentPage(props.root);
+        matched = 1;
       }
+    } else if (routes.length && routes.length == 1) {
+      //Single route param
+      if (props.root == "special") {
+        //Special event page
+        set_filter_maincategory("all");
+        set_filter_subcategory("all");
+        setCurrentPage(props.root);
+        matched = 1;
+      } else if (
+        pageList.filter(
+          (x) => x.shortname == routes[0] && x.isMainCategory == 1
+        ).length
+      ) {
+        //Main category page
+        set_filter_maincategory(routes[0]);
+        set_filter_subcategory("all");
+        setCurrentPage(routes[0]);
+        matched = 1;
+      }
+    } else if (routes.length && routes.length == 2) {
+      //Two route params
+      //electronics/mostviewed etc..
+      //electronics/computer
+      if (
+        pageList.filter(
+          (x) => x.shortname == routes[0] && x.isMainCategory == 1
+        ).length
+      ) {
+        if (
+          productDB.filter(
+            (cat) => cat.shortname == routes[0] + "_" + routes[1]
+          ).length
+        ) {
+          //maincategory/subcategory
+          set_filter_maincategory(routes[0]);
+          set_filter_subcategory(routes[0] + "_" + routes[1]);
+          setCurrentPage(routes[0]);
+          matched = 1;
+        } else if (routes[1] == "bestdeals") {
+          set_filter_maincategory(routes[0]);
+          set_filter_subcategory("all");
+          setCurrentPage(routes[0]);
+          set_filter_sortby({ value: 5 });
+          matched = 1;
+        } else if (routes[1] == "bestsellers") {
+          set_filter_maincategory(routes[0]);
+          set_filter_subcategory("all");
+          setCurrentPage(routes[0]);
+          set_filter_sortby({ value: 3 });
+          matched = 1;
+        } else if (routes[1] == "mostviewed") {
+          set_filter_maincategory(routes[0]);
+          set_filter_subcategory("all");
+          setCurrentPage(routes[0]);
+          set_filter_sortby({ value: 4 });
+          matched = 1;
+        }
+      }
+    } else if (routes.length && routes.length == 3) {
+      //Three route params
+      //electronics/mostviewed/bestseller etc.
+      if (
+        pageList.filter(
+          (x) => x.shortname == routes[0] && x.isMainCategory == 1
+        ).length
+      ) {
+        if (
+          productDB.filter(
+            (cat) => cat.shortname == routes[0] + "_" + routes[1]
+          ).length
+        ) {
+          if (routes[2] == "bestdeals") {
+            set_filter_maincategory(routes[0]);
+            set_filter_subcategory(routes[0] + "_" + routes[1]);
+            setCurrentPage(routes[0]);
+            set_filter_sortby({ value: 5 });
+            matched = 1;
+          } else if (routes[2] == "bestsellers") {
+            set_filter_maincategory(routes[0]);
+            set_filter_subcategory(routes[0] + "_" + routes[1]);
+            setCurrentPage(routes[0]);
+            set_filter_sortby({ value: 3 });
+            matched = 1;
+          } else if (routes[2] == "mostviewed") {
+            set_filter_maincategory(routes[0]);
+            set_filter_subcategory(routes[0] + "_" + routes[1]);
+            setCurrentPage(routes[0]);
+            set_filter_sortby({ value: 4 });
+            matched = 1;
+          }
+        }
+      }
+    }
+
+    if (!matched) {
+      //Unrecognized page
+      router.push("/");
     }
   }, [router.isReady, routes]);
 

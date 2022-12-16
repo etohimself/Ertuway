@@ -65,6 +65,7 @@ export function FilterProvider(props) {
     { name: "Lowest to Highest Price", value: 2 },
     { name: "Most Sold Products", value: 3 },
     { name: "Most Viewed Products", value: 4 },
+    { name: "Most Discounted Products", value: 5 }
   ]);
 
   const updateFilters = (payload) => {
@@ -170,7 +171,11 @@ export function FilterProvider(props) {
     } else if (filter_sortby.value == 4) {
       //Sort By Most Viewed First
       return a.viewCount > b.viewCount ? -1 : 1;
+    } else if (filter_sortby.value == 5) {
+      //Sort By Most Viewed First
+      return a.salePercentage > b.salePercentage ? -1 : 1;
     }
+    
     return 1;
   }
 
@@ -281,6 +286,7 @@ export function FilterProvider(props) {
         updateFilters,
         set_filter_maincategory,
         set_filter_subcategory,
+        set_filter_sortby,
         filteredProducts,
       }}
     >
