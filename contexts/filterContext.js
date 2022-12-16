@@ -306,6 +306,7 @@ export function FilterProvider(props) {
         routes_rendered,
         set_routes_rendered,
         filteredProducts,
+        productDB,
       }}
     >
       {props.children}

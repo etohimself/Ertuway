@@ -7,6 +7,7 @@ import Footer from "../components/Footer.js";
 import CategoryPage from "../components/CategoryPage.js";
 import { useRouter } from "next/router";
 import { FilterProvider } from "../contexts/filterContext.js";
+import { PageProvider } from "../contexts/pageContext.js";
 
 export default function Home() {
   //const router = useRouter();
@@ -14,17 +15,19 @@ export default function Home() {
 
   return (
     <>
-      <ProductProvider>
-        <FilterProvider>
-          <PageContent>
-            <Navbar root="" />
-            <MobileMenu />
-            <CategoryPage />
-            <ContactUs />
-            <Footer />
-          </PageContent>
-        </FilterProvider>
-      </ProductProvider>
+      <PageProvider>
+        <ProductProvider>
+          <FilterProvider>
+            <PageContent>
+              <Navbar root="" />
+              <MobileMenu />
+              <CategoryPage />
+              <ContactUs />
+              <Footer />
+            </PageContent>
+          </FilterProvider>
+        </ProductProvider>
+      </PageProvider>
     </>
   );
 }

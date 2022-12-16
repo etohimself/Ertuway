@@ -8,19 +8,25 @@ import OrderBy from "./OrderBy";
 import useElementWidth from "./hooks/useElementWidth";
 import ProductList from "./ProductList.js";
 import { FilterContext } from "../contexts/filterContext";
+import { PageContext } from "../contexts/pageContext";
 
 function CategoryPage(props) {
   const {
     filter_maincategory,
+    filter_subcategory,
+    filter_event,
     list_sortby,
     filter_sortby,
     updateFilters,
+    productDB,
   } = useContext(FilterContext);
 
+  const { eventList, pageList } = useContext(PageContext);
   const [showFilters, setShowFilters] = useState(0);
   const [showOrders, setShowOrders] = useState(0);
   const containerRef = useRef();
   const myWidth = useElementWidth(containerRef);
+  const [titleText, setTitleText] = useState("");
 
   const handleLeftButton = () => {
     setShowFilters(1);
@@ -35,6 +41,21 @@ function CategoryPage(props) {
       setShowOrders(1);
     }
   };
+
+  useEffect(() => {
+    if (filter_event != "all") {
+      setTitleText(eventList.filter((x) => x.event == filter_event)[0].title);
+    } else if (filter_maincategory != "all" && filter_subcategory == "all") {
+      setTitleText(
+        pageList.filter((pg) => pg.shortname == filter_maincategory)[0].title
+      );
+    } else if (filter_subcategory != "all") {
+      setTitleText(
+        productDB.filter((subcat) => subcat.shortname == filter_subcategory)[0]
+          .categoryName
+      );
+    }
+  }, [filter_maincategory, filter_event, filter_subcategory]);
 
   useEffect(() => {
     //In case the user resizes window, hide filters and order
@@ -92,11 +113,7 @@ function CategoryPage(props) {
             </div>
           )}
           <div className={styles.productInner}>
-            <h1 className={styles.pageTitle}>
-              {filter_maincategory &&
-                filter_maincategory != "all" &&
-                filter_maincategory}
-            </h1>
+            <h1 className={styles.pageTitle}>{titleText}</h1>
             <ProductList />
           </div>
         </div>

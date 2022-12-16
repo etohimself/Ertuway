@@ -5,6 +5,7 @@ import CartIcon from "./Icons/CartIcon";
 import SearchBox from "./SearchBox";
 import { useContext, useState, useEffect } from "react";
 import { ProductContext } from "../contexts/productContext";
+import { PageContext } from "../contexts/pageContext";
 import { FilterContext } from "../contexts/filterContext";
 import { useRouter } from "next/router";
 
@@ -22,22 +23,7 @@ function Navbar(props) {
   const { routes } = router.query;
   const [currentPage, setCurrentPage] = useState("");
   const [showDropdown, setShowdropdown] = useState("");
-
-  const eventList = ["momsday", "saturdaysale"];
-
-  const pageList = [
-    { title: "Home", shortname: "index", isMainCategory: 0 },
-    { title: "Best Deals", shortname: "bestdeals", isMainCategory: 0 },
-    { title: "Best Sellers", shortname: "bestsellers", isMainCategory: 0 },
-    { title: "Electronics", shortname: "electronics", isMainCategory: 1 },
-    { title: "Fashion", shortname: "fashion", isMainCategory: 1 },
-    { title: "Health & Beauty", shortname: "health", isMainCategory: 1 },
-    { title: "Home & Garden", shortname: "home", isMainCategory: 1 },
-    { title: "Automotive", shortname: "car", isMainCategory: 1 },
-    { title: "Consumables", shortname: "consumable", isMainCategory: 1 },
-    { title: "Supermarket", shortname: "supermarket", isMainCategory: 1 },
-    { title: "Hobby & Art", shortname: "hobby", isMainCategory: 1 },
-  ];
+  const { eventList, pageList } = useContext(PageContext);
 
   var mainCategories = [];
   productDB.forEach((cat) => mainCategories.push(cat.maincategory));
@@ -93,7 +79,8 @@ function Navbar(props) {
         if (
           router.query.event &&
           router.query.event.length > 0 &&
-          eventList.includes(router.query.event)
+          eventList &&
+          eventList.filter((evt) => evt.event == router.query.event).length
         ) {
           //Special event page
           set_filter_maincategory("all");
