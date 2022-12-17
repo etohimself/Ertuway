@@ -4,9 +4,12 @@ import Image from "next/image";
 import Percentage from "./icons/Percentage";
 import { useContext } from "react";
 import { ProductContext } from "../contexts/productContext";
+import { useRouter } from "next/router";
 
 function ProductItem(props) {
   const { productDB } = useContext(ProductContext);
+  const router = useRouter();
+
   let marginStyle = {};
   let myData = {};
 
@@ -22,7 +25,11 @@ function ProductItem(props) {
   if (props.noRightMargin) marginStyle.marginRight = 0;
 
   return (
-    <div className={styles.itemContainer} style={marginStyle}>
+    <div
+      className={styles.itemContainer}
+      style={marginStyle}
+      onClick={() => router.push("/product/" + myData.id)}
+    >
       <div className={styles.imageContainer}>
         <Image
           className={styles.productImg}

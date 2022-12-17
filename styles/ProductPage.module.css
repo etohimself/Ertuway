@@ -1,0 +1,129 @@
+.ProductPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 50px 0;
+  width: 75%;
+  font-size: 16px;
+}
+
+.mobileTitleArea {
+  display: none;
+}
+
+.ProductWelcomer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 50px;
+}
+
+.ProductImageContainer {
+  background-color: gray;
+  border-radius: 10px;
+  border: 1px solid #c6c6c6;
+  object-fit: cover;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+}
+
+.ProductInfoContainer {
+  width: 100%;
+  min-height: 100%;
+}
+
+.ProductTitle {
+  font-size: 2em;
+  font-weight: 500;
+  margin-bottom: 3px;
+  color: black;
+}
+
+.ratingAndReviewContainer {
+  display: flex;
+  align-items: center;
+  text-decoration: underline;
+  font-size: 1.1em;
+  font-weight: 600;
+  gap: 10px;
+  margin-bottom: 8px;
+  color: #7d7d7d;
+}
+
+.sellerNameContainer {
+  font-size: 1.25em;
+}
+
+.sellerNameContainer > span {
+  color: #0072b4;
+  font-weight: 700;
+}
+
+.priceLabel {
+  font-size: 2em;
+  font-weight: 800;
+  color: #ff7440;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #989898;
+  margin-bottom: 50px;
+}
+
+@media screen and (max-width: 1500px) {
+  .ProductPageContainer {
+    width: 85%;
+  }
+  .ProductImageContainer {
+    width: 35vw;
+    height: 36.5vw;
+  }
+  .ProductWelcomer {
+    gap: 35px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .ProductPageContainer {
+    width: 80%;
+    font-size: 16px;
+    margin-top: -25px;
+  }
+  .mobileTitleArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .largeTitleArea {
+    display: none;
+  }
+  .priceLabel {
+    border-bottom: none;
+  }
+  .ProductInfoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ProductWelcomer {
+    flex-direction: column;
+  }
+
+  .ProductImageContainer {
+    width: 100%;
+    height: auto;
+  }
+  .ProductWelcomer {
+    gap: 15px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .ProductPageContainer {
+    width: 90%;
+    font-size: 14px;
+  }
+  .ProductWelcomer {
+    gap: 10px;
+  }
+}

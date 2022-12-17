@@ -10,7 +10,7 @@ import { FilterContext } from "../contexts/filterContext";
 import { useRouter } from "next/router";
 
 function Navbar(props) {
-  const { productDB } = useContext(ProductContext);
+  const { productDB, setCurrentProduct } = useContext(ProductContext);
   const {
     set_filter_subcategory,
     set_filter_maincategory,
@@ -89,6 +89,24 @@ function Navbar(props) {
           setCurrentPage(props.root);
           set_routes_rendered(1);
           matched = 1;
+        }
+      } else if (props.root == "product") {
+        if (router.query.pid && router.query.pid.length > 0) {
+          let found = 0;
+          productDB.forEach((cat) =>
+            cat.products.forEach((item) => {
+              if (item.id == router.query.pid && !found) {
+                found = 1;
+                set_filter_maincategory("all");
+                set_filter_subcategory("all");
+                set_filter_event("all");
+                setCurrentPage(props.root);
+                setCurrentProduct(item);
+                set_routes_rendered(1);
+                matched = 1;
+              }
+            })
+          );
         }
       }
     } else if (routes.length && routes.length == 1) {

@@ -1,0 +1,20 @@
+.starRatingContainer {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.starIcon {
+  height: 24px;
+  width: 24px;
+}
+
+.ratingFilter {
+  position: absolute;
+  right: 0;
+  z-index: 4;
+  height: 24px;
+  width: 0;
+  backdrop-filter: grayscale(100%);
+}
+

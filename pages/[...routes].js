@@ -5,7 +5,6 @@ import { ProductProvider } from "../contexts/productContext";
 import ContactUs from "../components/ContactUs.js";
 import Footer from "../components/Footer.js";
 import CategoryPage from "../components/CategoryPage.js";
-import { useRouter } from "next/router";
 import { FilterProvider } from "../contexts/filterContext.js";
 import { PageProvider } from "../contexts/pageContext.js";
 
