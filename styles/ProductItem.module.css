@@ -79,6 +79,7 @@ svg.percentageSvg {
   font-weight: 800;
 }
 
+
 @media screen and (max-width: 2100px) {
   .itemContainer {
     width: 160px;
@@ -102,7 +103,7 @@ svg.percentageSvg {
   }
 
   .oldPrice {
-    margin-top:8px;
+    margin-top: 8px;
   }
 }
 

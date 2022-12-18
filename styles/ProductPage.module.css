@@ -190,7 +190,7 @@
 
 @media screen and (max-width: 1000px) {
   .ProductPageContainer {
-    width: 80%;
+    width: 85%;
     font-size: 16px;
     margin-top: -25px;
   }
@@ -220,6 +220,7 @@
   .ProductImageContainer {
     width: 100%;
     height: auto;
+    max-height:500px;
   }
 
   .ProductImageContainer.lazyPlaceHolder {
@@ -234,7 +235,7 @@
 
 @media screen and (max-width: 400px) {
   .ProductPageContainer {
-    width: 90%;
+    width: 95%;
     font-size: 12px;
     text-align: center;
   }

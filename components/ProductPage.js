@@ -9,10 +9,11 @@ import Button from "./Button";
 import CartIcon from "../components/Icons/CartIcon";
 import HeartIcon from "../components/Icons/HeartIcon";
 import FastDelivery from "../components/Icons/FastDeliveryIcon";
+import PeopleAlsoViewed from "../components/PeopleAlsoViewed";
 
 function ProductPage(props) {
   const { currentProduct } = useContext(ProductContext);
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState(Array(25).fill(0));
   const [price, setPrice] = useState(0);
 
   useEffect(() => {
@@ -29,17 +30,19 @@ function ProductPage(props) {
 
   useEffect(() => {
     let basePrice = currentProduct.price ? currentProduct.price : 0;
-
-    if (selectedOptions.length && selectedOptions.length > 0) {
-      selectedOptions.forEach((eachValue, index) => {
-        if (currentProduct.options[index].affectsPrice == 1) {
-          basePrice += eachValue * (basePrice * 0.1);
-        } else if (currentProduct.options[index].affectsPrice == 2) {
-          basePrice += eachValue * (basePrice * 0.7);
+    if (
+      currentProduct.options &&
+      currentProduct.options.length &&
+      currentProduct.options.length > 0
+    ) {
+      currentProduct.options.forEach((eachOption, index) => {
+        if (eachOption.affectsPrice == 1) {
+          basePrice += selectedOptions[index] * (basePrice * 0.1);
+        } else if (eachOption.affectsPrice == 2) {
+          basePrice += selectedOptions[index] * (basePrice * 0.7);
         }
       });
     }
-
     setPrice(basePrice);
   }, [currentProduct, selectedOptions]);
 
@@ -128,6 +131,7 @@ function ProductPage(props) {
             </div>
           </div>
         </div>
+        <PeopleAlsoViewed subcategory={currentProduct.subcategory} />
       </div>
     );
   } else {

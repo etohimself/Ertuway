@@ -26,7 +26,7 @@ function ProductItem(props) {
 
   return (
     <div
-      className={styles.itemContainer}
+      className={`${styles.itemContainer} ${props.className}`}
       style={marginStyle}
       onClick={() => router.push("/product/" + myData.id)}
     >

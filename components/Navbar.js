@@ -218,7 +218,7 @@ function Navbar(props) {
       set_routes_rendered(0);
       router.push("/");
     }
-  }, [router.isReady, routes]);
+  }, [router.isReady, routes, router]);
 
   return (
     <>
