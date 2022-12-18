@@ -79,7 +79,6 @@ svg.percentageSvg {
   font-weight: 800;
 }
 
-
 @media screen and (max-width: 2100px) {
   .itemContainer {
     width: 160px;
@@ -164,6 +163,10 @@ svg.percentageSvg {
     width: 60px;
     margin: 5px;
     font-size: 11px;
+  }
+
+  .priceLabel {
+    font-weight: 700;
   }
 
   .imageContainer {

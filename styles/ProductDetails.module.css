@@ -1,0 +1,80 @@
+.detailsContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 50px 9%;
+  font-size: 16px;
+}
+
+.detailsTitle {
+  text-align: center;
+  font-size: 2.25em;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.fullRow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 25px;
+  gap: 50px;
+}
+
+.reverseRow {
+  flex-direction: row-reverse;
+}
+
+.detailsContainer > p {
+  font-size: 1.1em;
+}
+
+.column {
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.detailsImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.columnTitle {
+  font-size: 2em;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 1750px) {
+  .detailsContainer {
+    padding: 50px 3%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .fullRow {
+    flex-direction: column;
+  }
+  .column {
+    width: 100%;
+  }
+  .reverseRow {
+    flex-direction: column;
+  }
+  .detailsContainer {
+    padding: 50px 9%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .detailsContainer {
+    padding: 25px 5%;
+    font-size:14px;
+  }
+}

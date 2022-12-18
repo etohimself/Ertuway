@@ -10,6 +10,7 @@ import CartIcon from "../components/Icons/CartIcon";
 import HeartIcon from "../components/Icons/HeartIcon";
 import FastDelivery from "../components/Icons/FastDeliveryIcon";
 import PeopleAlsoViewed from "../components/PeopleAlsoViewed";
+import ProductDescription from "./ProductDescription";
 
 function ProductPage(props) {
   const { currentProduct } = useContext(ProductContext);
@@ -46,7 +47,7 @@ function ProductPage(props) {
     setPrice(basePrice);
   }, [currentProduct, selectedOptions]);
 
-  if (currentProduct.imgLarge) {
+  if (currentProduct && currentProduct.imgLarge) {
     return (
       <div className={styles.ProductPageContainer}>
         <div className={styles.ProductWelcomer}>
@@ -132,6 +133,7 @@ function ProductPage(props) {
           </div>
         </div>
         <PeopleAlsoViewed subcategory={currentProduct.subcategory} />
+        <ProductDescription product={currentProduct} />
       </div>
     );
   } else {
