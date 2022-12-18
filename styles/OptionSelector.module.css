@@ -1,0 +1,55 @@
+.OptionSelectorContainer {
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #7d7d7d;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 1em;
+}
+
+.optionList {
+  display: flex;
+  gap: 5px;
+}
+
+.optionButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #a3a3a3;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.valueText::first-letter {
+  text-transform: capitalize;
+}
+
+.optionValueArea {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+.optionButton.selected {
+  background: #fff6f2;
+  border: 1px solid #ff7440;
+  color: #ff7440;
+  font-weight: 700;
+}
+
+.colorCircle {
+  width: 20px;
+  height: 20px;
+  border: 1px solid gray;
+  border-radius: 100%;
+  cursor: pointer;
+}

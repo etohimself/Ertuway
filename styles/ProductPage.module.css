@@ -22,7 +22,7 @@
 }
 
 .ProductImageContainer {
-  background-color: gray;
+  background-color: white;
   border-radius: 10px;
   border: 1px solid #c6c6c6;
   object-fit: cover;
@@ -67,7 +67,7 @@
   color: #ff7440;
   padding-bottom: 15px;
   border-bottom: 1px solid #989898;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 1500px) {
