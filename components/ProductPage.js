@@ -73,7 +73,7 @@ function ProductPage(props) {
               </div>
             </div>
             <div className={styles.sellerNameContainer}>
-              Seller : <span>{currentProduct.brand}</span>
+              Seller : <span>{currentProduct.sellers[0]}</span>
             </div>
             <div className={styles.priceLabel}>$ {priceFormat(price)}</div>
             {currentProduct.options && currentProduct.options.length
@@ -131,7 +131,40 @@ function ProductPage(props) {
       </div>
     );
   } else {
-    <h1>Loading...</h1>;
+    return (
+      <div className={styles.ProductPageContainer}>
+        <div className={styles.ProductWelcomer}>
+          <div
+            className={`${styles.mobileTitleArea} ${styles.lazyPlaceHolder}`}
+          />
+          <div
+            className={`${styles.ProductImageContainer} ${styles.lazyPlaceHolder}`}
+          />
+          <div className={`${styles.ProductInfoContainer}`}>
+            <div
+              className={`${styles.largeTitleArea} ${styles.lazyPlaceHolder}`}
+            />
+            <div
+              className={`${styles.skeletonDetails} ${styles.middle} ${styles.lazyPlaceHolder}`}
+            />
+            <div
+              className={`${styles.skeletonDetails} ${styles.middle} ${styles.lazyPlaceHolder}`}
+            />
+            <div
+              className={`${styles.skeletonDetails} ${styles.short} ${styles.lazyPlaceHolder}`}
+            />
+            <div className={styles.skeletonButtons}>
+              <div
+                className={`${styles.skeletonDetails} ${styles.button} ${styles.lazyPlaceHolder}`}
+              />
+              <div
+                className={`${styles.skeletonDetails} ${styles.button} ${styles.lazyPlaceHolder}`}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 
