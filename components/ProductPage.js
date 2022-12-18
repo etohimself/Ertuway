@@ -5,6 +5,10 @@ import Image from "next/image";
 import StarRating from "../components/StarRating";
 import priceFormat from "../helpers/priceFormat";
 import OptionSelector from "./OptionSelector";
+import Button from "./Button";
+import CartIcon from "../components/Icons/CartIcon";
+import HeartIcon from "../components/Icons/HeartIcon";
+import FastDelivery from "../components/Icons/FastDeliveryIcon";
 
 function ProductPage(props) {
   const { currentProduct } = useContext(ProductContext);
@@ -86,6 +90,42 @@ function ProductPage(props) {
                   );
                 })
               : ""}
+            <div className={styles.fastDelivery}>
+              <FastDelivery className={styles.deliveryIcon} />
+              Fast Delivery Available
+            </div>
+            <div className={styles.buttonsArea}>
+              <Button>
+                <CartIcon isEmpty={1} className={styles.cartIcon} />
+                Add To Cart
+              </Button>
+              <Button secondary={1}>
+                <HeartIcon className={styles.wishlistIcon} />
+                Add To Wishlist
+              </Button>
+            </div>
+            <div className={styles.estimatedShipping}>
+              Estimated Shipping : Shipped in 3 Days
+            </div>
+            <div className={styles.demoAlert}>
+              <ul>
+                <li>
+                  Ertuway is a demo eCommerce Marketplace app built by Ertuğrul
+                  CÖRE.
+                </li>
+                <li>
+                  This website does not sell any real products by any means.
+                </li>
+                <li>
+                  Your address or credit card information is not stored on this
+                  website.
+                </li>
+                <li>
+                  The only purpose of this app is to demonstrate Ertuğrul's web
+                  developer skills.
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

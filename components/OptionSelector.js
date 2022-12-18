@@ -22,7 +22,7 @@ function OptionSelector(props) {
 
   return (
     <div className={styles.OptionSelectorContainer}>
-      <div className={styles.title}>{props.title}</div>
+      <div className={styles.title}>{props.title} : </div>
       <div className={styles.optionList}>
         {props.list &&
           props.list.length &&

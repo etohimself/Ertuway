@@ -1,0 +1,47 @@
+.ButtonContainer {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  gap: 10px;
+  background: #ff7440;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 24px;
+  white-space: nowrap;
+}
+
+.ButtonContainer > svg {
+  stroke: white;
+}
+
+.ButtonContainer.secondary {
+  background: none;
+  border: 2px solid #ff7440;
+  padding: 8px 15px;
+  color: #ff7440;
+}
+
+.ButtonContainer.secondary > svg {
+  stroke: #ff7440;
+}
+
+@media screen and (max-width: 1200px) {
+  .ButtonContainer {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .ButtonContainer {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .ButtonContainer {
+    font-size: 16px;
+  }
+}
