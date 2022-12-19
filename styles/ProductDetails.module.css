@@ -51,6 +51,133 @@
   font-weight: 700;
 }
 
+.reviewImg {
+  border-radius: 10px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+  object-fit: cover;
+}
+
+.largeScore {
+  font-weight: 800;
+  font-size: 70px;
+}
+
+.RatingContainer {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+  font-size: 20px;
+}
+
+.barRow > b {
+  font-weight: 800;
+}
+
+.ratingTitle {
+  font-weight: 500;
+}
+
+.ratingArea {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 50%;
+  gap: 5px;
+}
+
+.barRow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.starSmall {
+  flex-shrink: 0;
+  height: 20px;
+  width: 20px;
+}
+
+.barBackground {
+  background-color: #d9d9d9;
+  flex-grow: 1;
+  height: 10px;
+  position: relative;
+}
+
+.barFill {
+  background-color: #ffa888;
+  width: 90%;
+  height: 100%;
+}
+
+.starSmall {
+  display: inline;
+}
+
+.reviewCount {
+  color: #979797;
+  text-decoration: underline;
+}
+
+.customerReviewsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  padding: 30px 0;
+}
+
+.commentContainer {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: flex;
+  overflow: hidden;
+  border: 1px solid #979797;
+  padding: 20px 20px;
+}
+
+.customerInfo {
+  height: 100%;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #6f6f6f;
+  flex-shrink: 0;
+}
+
+.profileCircle {
+  background-color: #d9d9d9;
+  height: 80px;
+  width: 80px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.customerName {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.commentArea {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.purchaseDetails {
+  font-weight: 700;
+  color: #7d7d7d;
+}
+
 @media screen and (max-width: 1750px) {
   .detailsContainer {
     padding: 50px 3%;
@@ -72,9 +199,42 @@
   }
 }
 
+@media screen and (max-width: 900px) {
+  .RatingContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .reviewImg {
+    width: 100%;
+    height: auto;
+  }
+  .ratingArea {
+    min-width: 100%;
+  }
+  .largeScore {
+    font-size: 100px;
+  }
+  .starRatings > svg {
+    height: 30px;
+    width: 30px;
+  }
+  .reviewCount {
+    font-size: 1.25em;
+  }
+}
+
 @media screen and (max-width: 700px) {
   .detailsContainer {
     padding: 25px 5%;
-    font-size:14px;
+    font-size: 14px;
+  }
+  .commentContainer {
+    flex-direction: column;
+  }
+  .customerInfo {
+    align-items: flex-start;
+  }
+  .commentText {
+    text-align: start;
   }
 }

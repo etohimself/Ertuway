@@ -4,8 +4,53 @@ import img1 from "../public/images/details1.png";
 import img2 from "../public/images/details2.png";
 import img3 from "../public/images/details3.png";
 import img4 from "../public/images/details4.png";
+import StarIcon from "../components/Icons/StarIcon";
+import StarRating from "../components/StarRating";
+import { useEffect, useState } from "react";
 
 function ProductDetails(props) {
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const [barWidths, setBarWidths] = useState([0, 0, 0, 0, 0]);
+
+  useEffect(() => {
+    //We are calculating the bar fill widths in a way that it makes sense
+    let widths = [];
+    for (let i = 5; i > 0; i--) {
+      let dist = Math.abs(props.product.rating - i);
+      let y = 5.7143 * Math.pow(dist, 2) + -46.8571 * dist + 97.4286;
+      widths.push(y);
+    }
+    setBarWidths([...widths]);
+  }, [props.product]);
+
+  function minusDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() - days);
+    return result;
+  }
+
+  var currentDate = new Date();
+
+  const dateList = Array(10)
+    .fill(1)
+    .map((x, i) => {
+      return minusDays(currentDate, (i + 1) * 4);
+    });
+
   if (props.myPage == 1) {
     return (
       <div className={styles.detailsContainer}>
@@ -146,7 +191,130 @@ function ProductDetails(props) {
       </div>
     );
   } else if (props.myPage == 2) {
-    return <h1>Reviews Page</h1>;
+    return (
+      <div className={styles.detailsContainer}>
+        <div className={styles.RatingContainer}>
+          <Image
+            className={styles.reviewImg}
+            src={props.product.imgLarge}
+            width={200}
+            height={200}
+          />
+          <div className={styles.ratingArea}>
+            <div className={styles.ratingTitle}>
+              {props.product.brand} {props.product.name}
+            </div>
+            <div className={styles.barRow}>
+              <StarIcon className={styles.barStar} />
+              <b>5</b>
+              <div className={styles.barBackground}>
+                <div
+                  className={styles.barFill}
+                  style={{
+                    width: barWidths[0] + "%",
+                  }}
+                />
+              </div>
+            </div>
+            <div className={styles.barRow}>
+              <StarIcon className={styles.barStar} />
+              <b>4</b>
+              <div className={styles.barBackground}>
+                <div
+                  className={styles.barFill}
+                  style={{
+                    width: barWidths[1] + "%",
+                  }}
+                />
+              </div>
+            </div>
+            <div className={styles.barRow}>
+              <StarIcon className={styles.barStar} />
+              <b>3</b>
+              <div className={styles.barBackground}>
+                <div
+                  className={styles.barFill}
+                  style={{
+                    width: barWidths[2] + "%",
+                  }}
+                />
+              </div>
+            </div>
+            <div className={styles.barRow}>
+              <StarIcon className={styles.barStar} />
+              <b>2</b>
+              <div className={styles.barBackground}>
+                <div
+                  className={styles.barFill}
+                  style={{
+                    width: barWidths[3] + "%",
+                  }}
+                />
+              </div>
+            </div>
+            <div className={styles.barRow}>
+              <StarIcon className={styles.barStar} />
+              <b>1</b>
+              <div className={styles.barBackground}>
+                <div
+                  className={styles.barFill}
+                  style={{
+                    width: barWidths[4] + "%",
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+          <div className={styles.scoreArea}>
+            <div className={styles.largeScore}>
+              {props.product.rating &&
+                parseFloat(props.product.rating).toFixed(1)}
+            </div>
+            <StarRating
+              className={styles.starRatings}
+              rating={props.product.rating}
+            />
+            <div className={styles.reviewCount}>
+              {Math.floor(props.product.soldCount * 0.25)} Reviews
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.customerReviewsContainer}>
+          {Array(10)
+            .fill(1)
+            .map((x, index) => {
+              return (
+                <div className={styles.commentContainer}>
+                  <div className={styles.customerInfo}>
+                    <div className={styles.profileCircle}>EC</div>
+                    <div className={styles.customerName}>E***** C****</div>
+                  </div>
+                  <div className={styles.commentArea}>
+                    <StarRating rating={4.8} />
+                    <div className={styles.commentText}>
+                      Lorem ipsum dolor sit amet consectetur. Magna fermentum et
+                      adipiscing id. Suscipit sit fermentum libero consequat
+                      volutpat dignissim. Cras neque egestas consequat pretium
+                      interdum in. Euismod massa diam urna enim id. Amet
+                      sagittis vestibulum elit sed. Maecenas sed malesuada eros
+                      lacus. Turpis eget amet porttitor amet urna sit molestie
+                      lobortis. Sit consequat ultrices aliquet nibh tempus.
+                    </div>
+                    <div className={styles.purchaseDetails}>
+                      {`Purchased on   ${dateList[index]
+                        .getDate()
+                        .toString()} ${monthNames[
+                        dateList[index].getMonth()
+                      ].toString()} ${dateList[index].getFullYear()} `}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </div>
+    );
   } else if (props.myPage == 3) {
     return <h1>Terms Page</h1>;
   } else if (props.myPage == 4) {
