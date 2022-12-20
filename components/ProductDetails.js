@@ -4,9 +4,13 @@ import img1 from "../public/images/details1.png";
 import img2 from "../public/images/details2.png";
 import img3 from "../public/images/details3.png";
 import img4 from "../public/images/details4.png";
+import storeicon from "../public/images/storeicon.png";
 import StarIcon from "../components/Icons/StarIcon";
 import StarRating from "../components/StarRating";
 import { useEffect, useState } from "react";
+import priceFormat from "../helpers/priceFormat";
+import Button from "./Button";
+import CartIcon from "../components/Icons/CartIcon";
 
 function ProductDetails(props) {
   const monthNames = [
@@ -24,6 +28,29 @@ function ProductDetails(props) {
     "December",
   ];
 
+  const letterList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  function randLetter() {
+    return letterList[Math.floor(Math.random() * letterList.length)];
+  }
+
+  function randFloat(min, max, decimals) {
+    return (Math.random() * (max - min) + min).toFixed(decimals);
+  }
+
+  let customerNameLetters = [];
+  let sellerRatings = [];
+  let sellerReviews = [];
+  let sellerPriceMultipliers = [];
+  let sellerShippings = [];
+
+  for (let i = 0; i < 10; i++) {
+    customerNameLetters.push({ first: randLetter(), last: randLetter() });
+    sellerRatings.push(randFloat(4, 5, 1));
+    sellerReviews.push(Math.floor(randFloat(100, 300, 0)));
+    sellerPriceMultipliers.push(randFloat(0.9, 1.1, 2));
+    sellerShippings.push(Math.floor(randFloat(1, 9, 0)));
+  }
+
   const [barWidths, setBarWidths] = useState([0, 0, 0, 0, 0]);
 
   useEffect(() => {
@@ -37,9 +64,9 @@ function ProductDetails(props) {
     setBarWidths([...widths]);
   }, [props.product]);
 
-  function minusDays(date, days) {
+  function addDays(date, days) {
     var result = new Date(date);
-    result.setDate(result.getDate() - days);
+    result.setDate(result.getDate() + days);
     return result;
   }
 
@@ -48,7 +75,7 @@ function ProductDetails(props) {
   const dateList = Array(10)
     .fill(1)
     .map((x, i) => {
-      return minusDays(currentDate, (i + 1) * 4);
+      return addDays(currentDate, (i + 1) * -4);
     });
 
   if (props.myPage == 1) {
@@ -287,8 +314,14 @@ function ProductDetails(props) {
               return (
                 <div className={styles.commentContainer}>
                   <div className={styles.customerInfo}>
-                    <div className={styles.profileCircle}>EC</div>
-                    <div className={styles.customerName}>E***** C****</div>
+                    <div className={styles.profileCircle}>
+                      {customerNameLetters[index].first}{" "}
+                      {customerNameLetters[index].last}
+                    </div>
+                    <div className={styles.customerName}>
+                      {customerNameLetters[index].first}****{" "}
+                      {customerNameLetters[index].last}****
+                    </div>
                   </div>
                   <div className={styles.commentArea}>
                     <StarRating rating={4.8} />
@@ -316,9 +349,153 @@ function ProductDetails(props) {
       </div>
     );
   } else if (props.myPage == 3) {
-    return <h1>Terms Page</h1>;
+    return (
+      <div className={styles.detailsContainer}>
+        <div className={styles.termsContainer}>
+          <h2>How can I ask for a refund?</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur. Condimentum euismod duis
+            morbi et leo elit facilisis eleifend ornare. Vel quis sed at
+            tincidunt imperdiet amet. Proin eu nisl nunc lobortis consequat
+            elementum maecenas. Mollis mi quam massa id. Ornare suspendisse eget
+            et blandit pulvinar congue duis in. Feugiat in at nunc ut enim proin
+            duis massa. Dolor nullam venenatis sagittis morbi sed justo feugiat
+            aliquet ornare. Sed sed scelerisque risus suspendisse urna feugiat
+            felis bibendum. Nibh nam tempus in non blandit. Ac fames etiam duis
+            ullamcorper.Fermentum sit sit eget velit aliquet eget mi lectus. In
+            consequat aliquam facilisis aliquam odio sit risus integer sed. A
+            sit nec viverra laoreet. Aliquam sagittis ultricies dignissim
+            sollicitudin viverra sagittis bibendum. Turpis posuere habitasse
+            purus sit eros lectus. Non nisi etiam egestas massa. Quis vitae
+            convallis id bibendum ornare lacus fermentum. Egestas lectus
+            convallis lacus mattis. In tortor porttitor a bibendum amet feugiat
+            porttitor amet in.
+          </p>
+          <h2>How can I check the status of my refund request?</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur. Condimentum euismod duis
+            morbi et leo elit facilisis eleifend ornare. Vel quis sed at
+            tincidunt imperdiet amet. Proin eu nisl nunc lobortis consequat
+            elementum maecenas. Mollis mi quam massa id. Ornare suspendisse eget
+            et blandit pulvinar congue duis in. Feugiat in at nunc ut enim proin
+            duis massa. Dolor nullam venenatis sagittis morbi sed justo feugiat
+            aliquet ornare. Sed sed scelerisque risus suspendisse urna feugiat
+            felis bibendum. Nibh nam tempus in non blandit. Ac fames etiam duis
+            ullamcorper.Fermentum sit sit eget velit aliquet eget mi lectus. In
+            consequat aliquam facilisis aliquam odio sit risus integer sed. A
+            sit nec viverra laoreet. Aliquam sagittis ultricies dignissim
+            sollicitudin viverra sagittis bibendum. Turpis posuere habitasse
+            purus sit eros lectus. Non nisi etiam egestas massa. Quis vitae
+            convallis id bibendum ornare lacus fermentum. Egestas lectus
+            convallis lacus mattis. In tortor porttitor a bibendum amet feugiat
+            porttitor amet in.
+          </p>
+        </div>
+      </div>
+    );
   } else if (props.myPage == 4) {
-    return <h1>All Sellers Page</h1>;
+    return (
+      <div className={styles.detailsContainer}>
+        <div className={styles.allSellersContainer}>
+          {props.product.sellers.map((eachSeller, index) => {
+            return (
+              <div className={styles.sellerContainer}>
+                <div className={styles.sellerContainerInner}>
+                  <div className={styles.sellerInfo}>
+                    <Image
+                      className={styles.storeIcon}
+                      src={storeicon}
+                      width={80}
+                      height={80}
+                      alt="Store icon"
+                    />
+                    <div className={styles.sellerDetails}>
+                      <div className={styles.sellerName}>{eachSeller}</div>
+                      <div className={styles.sellerRating}>
+                        <StarRating
+                          className={styles.sellerStars}
+                          rating={sellerRatings[index]}
+                        />
+                        {sellerRatings[index]}
+                      </div>
+                      <div className={styles.sellerReviews}>
+                        ({sellerReviews[index]} Store Reviews)
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className={styles.sellerPriceArea}>
+                    <span>Sells this product for : </span>
+                    <div className={styles.sellerPriceLabel}>
+                      $
+                      {priceFormat(
+                        props.product.price * sellerPriceMultipliers[index]
+                      )}
+                    </div>
+                    <div
+                      className={`${styles.sellerSaving} ${
+                        sellerPriceMultipliers[index] > 1
+                          ? styles.worseOption
+                          : styles.betterOption
+                      }`}
+                    >
+                      {sellerPriceMultipliers[index] > 1
+                        ? `%${(
+                            (sellerPriceMultipliers[index] - 1) *
+                            100
+                          ).toFixed(0)} Higher Price`
+                        : sellerPriceMultipliers[index] < 1 &&
+                          `Save %${(
+                            (1 - sellerPriceMultipliers[index]) *
+                            100
+                          ).toFixed(0)}`}
+                    </div>
+                  </div>
+
+                  <div className={styles.sellerShippingArea}>
+                    <span>Estimated Shipping :</span>
+                    <div className={styles.sellerShippingDate}>
+                      {` ${addDays(currentDate, sellerShippings[index])
+                        .getDate()
+                        .toString()} ${monthNames[
+                        addDays(currentDate, sellerShippings[index]).getMonth()
+                      ].toString()} ${addDays(
+                        currentDate,
+                        sellerShippings[index]
+                      ).getFullYear()} `}
+                    </div>
+                    <div
+                      className={`${styles.sellerSaving} ${
+                        sellerShippings[index] > 3
+                          ? styles.worseOption
+                          : styles.betterOption
+                      }`}
+                    >
+                      {sellerShippings[index] > 3
+                        ? `Arrives ${sellerShippings[index] - 3} Days Later`
+                        : sellerShippings[index] < 3 &&
+                          `Arrives ${3 - sellerShippings[index]} Days Earlier`}
+                    </div>
+                  </div>
+                  <div className={styles.sellerAddToCartArea}>
+                    <Button className={styles.sellerAddtoCart}>
+                      <CartIcon isEmpty={1} className={styles.cartIcon} />
+                      Add To Cart
+                    </Button>
+                  </div>
+                </div>
+                <div className={styles.sellerAddToCartAreaMobile}>
+                  <Button className={styles.sellerAddtoCart}>
+                    <CartIcon isEmpty={1} className={styles.cartIcon} />
+                    Add To Cart
+                  </Button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
   }
 }
 

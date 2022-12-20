@@ -3,7 +3,7 @@ import styles from "../styles/Button.module.css";
 function Button(props) {
   return (
     <div
-      className={`${styles.ButtonContainer} ${
+      className={`${props.className} ${styles.ButtonContainer} ${
         props.secondary && styles.secondary
       }`}
       onClick={props.onClick}
