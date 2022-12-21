@@ -6,6 +6,7 @@ import Footer from "../components/Footer.js";
 import { FilterProvider } from "../contexts/filterContext.js";
 import ProductShortList from "../components/ProductShortList";
 import { PageProvider } from "../contexts/pageContext.js";
+import MobileMenu from "../components/MobileMenu.js";
 
 export default function BestSellers() {
   return (
@@ -15,6 +16,7 @@ export default function BestSellers() {
           <FilterProvider>
             <PageContent>
               <Navbar root="bestsellers" />
+              <MobileMenu />
               <ProductShortList
                 title="Best Selling Electronics"
                 sortBy="soldCount"
