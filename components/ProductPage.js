@@ -11,11 +11,13 @@ import HeartIcon from "../components/Icons/HeartIcon";
 import FastDelivery from "../components/Icons/FastDeliveryIcon";
 import PeopleAlsoViewed from "../components/PeopleAlsoViewed";
 import ProductDescription from "./ProductDescription";
+import GetLocalStorageCart from "../helpers/getLocalStorageCart.js";
 
 function ProductPage(props) {
   const { currentProduct, sellerIndex } = useContext(ProductContext);
   const [selectedOptions, setSelectedOptions] = useState(Array(25).fill(0));
   const [price, setPrice] = useState(0);
+  const [addedToCart, setAddedToCart] = useState(0);
 
   useEffect(() => {
     if (currentProduct.options && currentProduct.options.length) {
@@ -27,6 +29,36 @@ function ProductPage(props) {
     setSelectedOptions(
       selectedOptions.map((x, i) => (i == slicerIndex ? selectedIndex : x))
     );
+  };
+
+  useEffect(() => {
+    let storedItems = GetLocalStorageCart();
+    if (storedItems.findIndex((x) => x.id == currentProduct.id) > -1) {
+      setAddedToCart(1);
+    } else {
+      setAddedToCart(0);
+    }
+  }, [currentProduct, sellerIndex]);
+
+  const handleAddToCart = () => {
+    let storedItems = GetLocalStorageCart();
+    if (storedItems.findIndex((x) => x.id == currentProduct.id) == -1) {
+      let myOrder = {
+        id: currentProduct.id,
+        seller: sellerIndex,
+        options: [...selectedOptions],
+        count: 1,
+      };
+      storedItems.push(myOrder);
+      localStorage.setItem("ertuway-cart", JSON.stringify(storedItems));
+      setAddedToCart(1);
+    } else {
+      storedItems = storedItems.filter(
+        (eachItem) => eachItem.id != currentProduct.id
+      );
+      localStorage.setItem("ertuway-cart", JSON.stringify(storedItems));
+      setAddedToCart(0);
+    }
   };
 
   useEffect(() => {
@@ -102,10 +134,17 @@ function ProductPage(props) {
               Fast Delivery Available
             </div>
             <div className={styles.buttonsArea}>
-              <Button>
-                <CartIcon isEmpty={1} className={styles.cartIcon} />
-                Add To Cart
-              </Button>
+              {addedToCart == 0 ? (
+                <Button onClick={handleAddToCart}>
+                  <CartIcon isEmpty={1} className={styles.cartIcon} />
+                  Add To Cart
+                </Button>
+              ) : (
+                <Button secondary={1} onClick={handleAddToCart}>
+                  <CartIcon isEmpty={1} className={styles.cartIcon} />
+                  Remove from Cart
+                </Button>
+              )}
               <Button secondary={1}>
                 <HeartIcon className={styles.wishlistIcon} />
                 Add To Wishlist

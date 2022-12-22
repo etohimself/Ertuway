@@ -522,7 +522,12 @@ function ProductDetails(props) {
                       </Button>
                     </div>
                   </div>
-                  <div className={styles.sellerAddToCartAreaMobile}>
+                  <div
+                    className={styles.sellerAddToCartAreaMobile}
+                    onClick={() =>
+                      router.push(`${props.product.id}/${eachSeller.storeName}`)
+                    }
+                  >
                     <Button className={styles.sellerAddtoCart}>
                       <CartIcon isEmpty={1} className={styles.cartIcon} />
                       Go To Product
