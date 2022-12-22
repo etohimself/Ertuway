@@ -21,7 +21,7 @@ function ProductPage(props) {
     if (currentProduct.options && currentProduct.options.length) {
       setSelectedOptions(Array(currentProduct.options.length).fill(0));
     }
-  }, [currentProduct]);
+  }, [currentProduct, sellerIndex]);
 
   const handleOptionSelection = (slicerIndex, selectedIndex) => {
     setSelectedOptions(
@@ -47,7 +47,7 @@ function ProductPage(props) {
       });
     }
     setPrice(basePrice);
-  }, [currentProduct, selectedOptions]);
+  }, [currentProduct, selectedOptions, sellerIndex]);
 
   if (currentProduct && currentProduct.imgLarge) {
     return (
@@ -79,7 +79,8 @@ function ProductPage(props) {
               </div>
             </div>
             <div className={styles.sellerNameContainer}>
-              Seller : <span>{currentProduct.sellers[sellerIndex].storeName}</span>
+              Seller :{" "}
+              <span>{currentProduct.sellers[sellerIndex].storeName}</span>
             </div>
             <div className={styles.priceLabel}>$ {priceFormat(price)}</div>
             {currentProduct.options && currentProduct.options.length
@@ -136,7 +137,7 @@ function ProductPage(props) {
           </div>
         </div>
         <PeopleAlsoViewed subcategory={currentProduct.subcategory} />
-        <ProductDescription product={currentProduct} seller={sellerIndex}/>
+        <ProductDescription product={currentProduct} seller={sellerIndex} />
       </div>
     );
   } else {

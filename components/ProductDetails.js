@@ -11,8 +11,10 @@ import { useEffect, useState } from "react";
 import priceFormat from "../helpers/priceFormat";
 import Button from "./Button";
 import CartIcon from "../components/Icons/CartIcon";
+import { useRouter } from "next/router";
 
 function ProductDetails(props) {
+  const router = useRouter();
   const [barWidths, setBarWidths] = useState([0, 0, 0, 0, 0]);
   const letterList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let customerNameLetters = [];
@@ -445,11 +447,13 @@ function ProductDetails(props) {
                             ).toFixed(0)} Higher Price`
                           : eachSeller.storePrice <
                               props.product.sellers[props.seller].storePrice &&
-                            props.product.sellers[props.seller].storePrice > 0 &&
+                            props.product.sellers[props.seller].storePrice >
+                              0 &&
                             `Save %${(
                               (1 -
                                 eachSeller.storePrice /
-                                  props.product.sellers[props.seller].storePrice) *
+                                  props.product.sellers[props.seller]
+                                    .storePrice) *
                               100
                             ).toFixed(0)}`}
                       </div>
@@ -495,25 +499,33 @@ function ProductDetails(props) {
                               props.product.sellers[props.seller].storeShipping
                             } Days Later`
                           : eachSeller.storeShipping <
-                              props.product.sellers[props.seller].storeShipping &&
+                              props.product.sellers[props.seller]
+                                .storeShipping &&
                             `Arrives ${
-                              props.product.sellers[props.seller].storeShipping -
-                              eachSeller.storeShipping
+                              props.product.sellers[props.seller]
+                                .storeShipping - eachSeller.storeShipping
                             } Days Earlier`}
                       </div>
                     </div>
 
                     <div className={styles.sellerAddToCartArea}>
-                      <Button className={styles.sellerAddtoCart}>
+                      <Button
+                        className={styles.sellerAddtoCart}
+                        onClick={() =>
+                          router.push(
+                            `${props.product.id}/${eachSeller.storeName}`
+                          )
+                        }
+                      >
                         <CartIcon isEmpty={1} className={styles.cartIcon} />
-                        Add To Cart
+                        Go To Product
                       </Button>
                     </div>
                   </div>
                   <div className={styles.sellerAddToCartAreaMobile}>
                     <Button className={styles.sellerAddtoCart}>
                       <CartIcon isEmpty={1} className={styles.cartIcon} />
-                      Add To Cart
+                      Go To Product
                     </Button>
                   </div>
                 </div>
