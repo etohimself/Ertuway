@@ -18,7 +18,7 @@ export default function Cart() {
         <ProductProvider>
           <FilterProvider>
             <PageContent>
-              <Navbar root="" />
+              <Navbar root="cart" />
               <MobileMenu />
               <CartPage />
               <ContactUs />

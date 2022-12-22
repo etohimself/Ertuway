@@ -111,6 +111,15 @@ function Navbar(props) {
           );
         }
       }
+      if (props.root == "cart") {
+        //Home Page
+        set_filter_maincategory("all");
+        set_filter_subcategory("all");
+        set_filter_event("all");
+        setCurrentPage("cart");
+        set_routes_rendered(1);
+        matched = 1;
+      }
     } else if (routes.length && routes.length == 1) {
       //Single route param
       if (
@@ -254,7 +263,10 @@ function Navbar(props) {
               <UserIcon className={styles.navbarButtonIcons} />
               Sign In
             </div>
-            <div className={styles.CartButton}>
+            <div
+              className={styles.CartButton}
+              onClick={() => router.push("/cart")}
+            >
               <CartIcon className={styles.navbarButtonIcons} />
               My Cart
             </div>
@@ -267,7 +279,10 @@ function Navbar(props) {
             <UserIcon className={styles.navbarButtonIcons} />
             Sign In
           </div>
-          <div className={styles.CartButton}>
+          <div
+            className={styles.CartButton}
+            onClick={() => router.push("/cart")}
+          >
             <CartIcon className={styles.navbarButtonIcons} />
             My Cart
           </div>

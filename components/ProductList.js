@@ -85,19 +85,6 @@ function ProductList(props) {
 
   */
 
-  //Test Logging
-  useEffect(() => {
-    console.log({
-      filter_maincategory,
-      filter_subcategory,
-      filter_price,
-      filter_color,
-      filter_rating,
-      filter_warranty,
-      filter_sortby,
-      list_sortby,
-    });
-  }, []);
 
   if (routes_rendered) {
     return (

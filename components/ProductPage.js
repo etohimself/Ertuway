@@ -12,6 +12,7 @@ import FastDelivery from "../components/Icons/FastDeliveryIcon";
 import PeopleAlsoViewed from "../components/PeopleAlsoViewed";
 import ProductDescription from "./ProductDescription";
 import GetLocalStorageCart from "../helpers/getLocalStorageCart.js";
+import calcPrice from "../helpers/calcPrice.js";
 
 function ProductPage(props) {
   const { currentProduct, sellerIndex } = useContext(ProductContext);
@@ -62,23 +63,15 @@ function ProductPage(props) {
   };
 
   useEffect(() => {
-    let basePrice = currentProduct.sellers
-      ? currentProduct.sellers[sellerIndex].storePrice
-      : 0;
-    if (
-      currentProduct.options &&
-      currentProduct.options.length &&
-      currentProduct.options.length > 0
-    ) {
-      currentProduct.options.forEach((eachOption, index) => {
-        if (eachOption.affectsPrice == 1) {
-          basePrice += selectedOptions[index] * (basePrice * 0.1);
-        } else if (eachOption.affectsPrice == 2) {
-          basePrice += selectedOptions[index] * (basePrice * 0.7);
-        }
-      });
-    }
-    setPrice(basePrice);
+    if (!currentProduct) return;
+    if (!currentProduct.sellers) return;
+    setPrice(
+      calcPrice(
+        currentProduct.sellers[sellerIndex].storePrice,
+        [...currentProduct.options],
+        [...selectedOptions]
+      )
+    );
   }, [currentProduct, selectedOptions, sellerIndex]);
 
   if (currentProduct && currentProduct.imgLarge) {

@@ -1,9 +1,9 @@
 function priceFormat(myNumber) {
-    return myNumber.toLocaleString("en-US", {
-      minimumFractionDigits: 2,
-      useGrouping: false,
-    });
-  }
-  
-  export default priceFormat;
-  
+  return myNumber.toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+    useGrouping: false,
+  });
+}
+
+export default priceFormat;
