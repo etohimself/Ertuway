@@ -34,7 +34,7 @@ function ProductDescription(props) {
         </div>
       </div>
       <div className={styles.contentArea}>
-        <ProductDetails myPage={myPage} product={props.product} />
+        <ProductDetails myPage={myPage} product={props.product} seller={props.seller} />
       </div>
     </div>
   );

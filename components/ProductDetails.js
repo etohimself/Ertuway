@@ -13,6 +13,10 @@ import Button from "./Button";
 import CartIcon from "../components/Icons/CartIcon";
 
 function ProductDetails(props) {
+  const [barWidths, setBarWidths] = useState([0, 0, 0, 0, 0]);
+  const letterList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let customerNameLetters = [];
+  var currentDate = new Date();
   const monthNames = [
     "January",
     "February",
@@ -28,7 +32,6 @@ function ProductDetails(props) {
     "December",
   ];
 
-  const letterList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   function randLetter() {
     return letterList[Math.floor(Math.random() * letterList.length)];
   }
@@ -37,21 +40,21 @@ function ProductDetails(props) {
     return (Math.random() * (max - min) + min).toFixed(decimals);
   }
 
-  let customerNameLetters = [];
-  let sellerRatings = [];
-  let sellerReviews = [];
-  let sellerPriceMultipliers = [];
-  let sellerShippings = [];
-
   for (let i = 0; i < 10; i++) {
     customerNameLetters.push({ first: randLetter(), last: randLetter() });
-    sellerRatings.push(randFloat(4, 5, 1));
-    sellerReviews.push(Math.floor(randFloat(100, 300, 0)));
-    sellerPriceMultipliers.push(randFloat(0.9, 1.1, 2));
-    sellerShippings.push(Math.floor(randFloat(1, 9, 0)));
   }
 
-  const [barWidths, setBarWidths] = useState([0, 0, 0, 0, 0]);
+  function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
+
+  const dateList = Array(10)
+    .fill(1)
+    .map((x, i) => {
+      return addDays(currentDate, (i + 1) * -4);
+    });
 
   useEffect(() => {
     //We are calculating the bar fill widths in a way that it makes sense
@@ -64,20 +67,6 @@ function ProductDetails(props) {
     setBarWidths([...widths]);
   }, [props.product]);
 
-  function addDays(date, days) {
-    var result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
-  }
-
-  var currentDate = new Date();
-
-  const dateList = Array(10)
-    .fill(1)
-    .map((x, i) => {
-      return addDays(currentDate, (i + 1) * -4);
-    });
-
   if (props.myPage == 1) {
     return (
       <div className={styles.detailsContainer}>
@@ -86,9 +75,12 @@ function ProductDetails(props) {
         </div>
         <div className={styles.fullRow}>
           {props.product.brand} {props.product.name} is brought to you by
-          Ertuway and is originally sold by {props.product.sellers[0]}. The
-          maximum quantity of the product allowed in the shopping cart is two.
-          The price of this product is determined by the seller, although
+          Ertuway and is originally sold by{" "}
+          {props.product &&
+            props.product.sellers &&
+            props.product.sellers[props.seller].storeName}
+          . The maximum quantity of the product allowed in the shopping cart is
+          two. The price of this product is determined by the seller, although
           Ertuway has the right to change the price and sale percentage at any
           time. This product is allowed to be sold by multiple sellers. The
           price and the delivery time of the same product may vary depending on
@@ -294,7 +286,8 @@ function ProductDetails(props) {
           </div>
           <div className={styles.scoreArea}>
             <div className={styles.largeScore}>
-              {props.product.rating &&
+              {props.product &&
+                props.product.rating &&
                 parseFloat(props.product.rating).toFixed(1)}
             </div>
             <StarRating
@@ -397,102 +390,135 @@ function ProductDetails(props) {
     return (
       <div className={styles.detailsContainer}>
         <div className={styles.allSellersContainer}>
-          {props.product.sellers.map((eachSeller, index) => {
-            return (
-              <div className={styles.sellerContainer}>
-                <div className={styles.sellerContainerInner}>
-                  <div className={styles.sellerInfo}>
-                    <Image
-                      className={styles.storeIcon}
-                      src={storeicon}
-                      width={80}
-                      height={80}
-                      alt="Store icon"
-                    />
-                    <div className={styles.sellerDetails}>
-                      <div className={styles.sellerName}>{eachSeller}</div>
-                      <div className={styles.sellerRating}>
-                        <StarRating
-                          className={styles.sellerStars}
-                          rating={sellerRatings[index]}
-                        />
-                        {sellerRatings[index]}
+          {props.product &&
+            props.product.sellers &&
+            props.product.sellers.map((eachSeller, index) => {
+              return (
+                <div className={styles.sellerContainer} key={index}>
+                  <div className={styles.sellerContainerInner}>
+                    <div className={styles.sellerInfo}>
+                      <Image
+                        className={styles.storeIcon}
+                        src={storeicon}
+                        width={80}
+                        height={80}
+                        alt="Store icon"
+                      />
+                      <div className={styles.sellerDetails}>
+                        <div className={styles.sellerName}>
+                          {eachSeller.storeName}
+                        </div>
+                        <div className={styles.sellerRating}>
+                          <StarRating
+                            className={styles.sellerStars}
+                            rating={eachSeller.storeRating}
+                          />
+                          {eachSeller.storeRating}
+                        </div>
+                        <div className={styles.sellerReviews}>
+                          ({eachSeller.storeReviews} Store Reviews)
+                        </div>
                       </div>
-                      <div className={styles.sellerReviews}>
-                        ({sellerReviews[index]} Store Reviews)
+                    </div>
+
+                    <div className={styles.sellerPriceArea}>
+                      <span>Sells this product for : </span>
+                      <div className={styles.sellerPriceLabel}>
+                        ${priceFormat(eachSeller.storePrice)}
+                      </div>
+                      <div
+                        className={`${styles.sellerSaving} ${
+                          eachSeller.storePrice >
+                          props.product.sellers[props.seller].storePrice
+                            ? styles.worseOption
+                            : styles.betterOption
+                        }`}
+                      >
+                        {eachSeller.storePrice >
+                          props.product.sellers[props.seller].storePrice &&
+                        props.product.sellers[props.seller].storePrice > 0
+                          ? `%${(
+                              (eachSeller.storePrice /
+                                props.product.sellers[props.seller].storePrice -
+                                1) *
+                              100
+                            ).toFixed(0)} Higher Price`
+                          : eachSeller.storePrice <
+                              props.product.sellers[props.seller].storePrice &&
+                            props.product.sellers[props.seller].storePrice > 0 &&
+                            `Save %${(
+                              (1 -
+                                eachSeller.storePrice /
+                                  props.product.sellers[props.seller].storePrice) *
+                              100
+                            ).toFixed(0)}`}
                       </div>
                     </div>
-                  </div>
 
-                  <div className={styles.sellerPriceArea}>
-                    <span>Sells this product for : </span>
-                    <div className={styles.sellerPriceLabel}>
-                      $
-                      {priceFormat(
-                        props.product.price * sellerPriceMultipliers[index]
-                      )}
+                    <div className={styles.sellerShippingArea}>
+                      <span>Estimated Shipping :</span>
+                      <div className={styles.sellerShippingDate}>
+                        {`
+                          ${addDays(
+                            currentDate,
+                            parseInt(eachSeller.storeShipping)
+                          )
+                            .getDate()
+                            .toString()}
+                            
+                            ${monthNames[
+                              addDays(
+                                currentDate,
+                                parseInt(eachSeller.storeShipping)
+                              ).getMonth()
+                            ].toString()}
+                            
+                            ${addDays(
+                              currentDate,
+                              parseInt(eachSeller.storeShipping)
+                            ).getFullYear()}
+                            
+                            `}
+                      </div>
+                      <div
+                        className={`${styles.sellerSaving} ${
+                          eachSeller.storeShipping >
+                          props.product.sellers[props.seller].storeShipping
+                            ? styles.worseOption
+                            : styles.betterOption
+                        }`}
+                      >
+                        {eachSeller.storeShipping >
+                        props.product.sellers[props.seller].storeShipping
+                          ? `Arrives ${
+                              eachSeller.storeShipping -
+                              props.product.sellers[props.seller].storeShipping
+                            } Days Later`
+                          : eachSeller.storeShipping <
+                              props.product.sellers[props.seller].storeShipping &&
+                            `Arrives ${
+                              props.product.sellers[props.seller].storeShipping -
+                              eachSeller.storeShipping
+                            } Days Earlier`}
+                      </div>
                     </div>
-                    <div
-                      className={`${styles.sellerSaving} ${
-                        sellerPriceMultipliers[index] > 1
-                          ? styles.worseOption
-                          : styles.betterOption
-                      }`}
-                    >
-                      {sellerPriceMultipliers[index] > 1
-                        ? `%${(
-                            (sellerPriceMultipliers[index] - 1) *
-                            100
-                          ).toFixed(0)} Higher Price`
-                        : sellerPriceMultipliers[index] < 1 &&
-                          `Save %${(
-                            (1 - sellerPriceMultipliers[index]) *
-                            100
-                          ).toFixed(0)}`}
-                    </div>
-                  </div>
 
-                  <div className={styles.sellerShippingArea}>
-                    <span>Estimated Shipping :</span>
-                    <div className={styles.sellerShippingDate}>
-                      {` ${addDays(currentDate, sellerShippings[index])
-                        .getDate()
-                        .toString()} ${monthNames[
-                        addDays(currentDate, sellerShippings[index]).getMonth()
-                      ].toString()} ${addDays(
-                        currentDate,
-                        sellerShippings[index]
-                      ).getFullYear()} `}
-                    </div>
-                    <div
-                      className={`${styles.sellerSaving} ${
-                        sellerShippings[index] > 3
-                          ? styles.worseOption
-                          : styles.betterOption
-                      }`}
-                    >
-                      {sellerShippings[index] > 3
-                        ? `Arrives ${sellerShippings[index] - 3} Days Later`
-                        : sellerShippings[index] < 3 &&
-                          `Arrives ${3 - sellerShippings[index]} Days Earlier`}
+                    <div className={styles.sellerAddToCartArea}>
+                      <Button className={styles.sellerAddtoCart}>
+                        <CartIcon isEmpty={1} className={styles.cartIcon} />
+                        Add To Cart
+                      </Button>
                     </div>
                   </div>
-                  <div className={styles.sellerAddToCartArea}>
+                  <div className={styles.sellerAddToCartAreaMobile}>
                     <Button className={styles.sellerAddtoCart}>
                       <CartIcon isEmpty={1} className={styles.cartIcon} />
                       Add To Cart
                     </Button>
                   </div>
                 </div>
-                <div className={styles.sellerAddToCartAreaMobile}>
-                  <Button className={styles.sellerAddtoCart}>
-                    <CartIcon isEmpty={1} className={styles.cartIcon} />
-                    Add To Cart
-                  </Button>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     );

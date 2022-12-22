@@ -10,7 +10,8 @@ import { FilterContext } from "../contexts/filterContext";
 import { useRouter } from "next/router";
 
 function Navbar(props) {
-  const { productDB, setCurrentProduct } = useContext(ProductContext);
+  const { productDB, setCurrentProduct, setSellerIndex } =
+    useContext(ProductContext);
   const {
     set_filter_subcategory,
     set_filter_maincategory,
@@ -103,6 +104,7 @@ function Navbar(props) {
                 setCurrentPage(props.root);
                 setCurrentProduct(item);
                 set_routes_rendered(1);
+                setSellerIndex(0);
                 matched = 1;
               }
             })
@@ -170,6 +172,28 @@ function Navbar(props) {
           set_routes_rendered(1);
           matched = 1;
         }
+      } else if (props.root == "product") {
+        let found = 0;
+        productDB.forEach((cat) =>
+          cat.products.forEach((item) => {
+            if (item.id == routes[0] && !found) {
+              let findSellerIndex = item.sellers.findIndex(
+                (eachSeller) => eachSeller.storeName == routes[1]
+              );
+              if (findSellerIndex > -1) {
+                found = 1;
+                set_filter_maincategory("all");
+                set_filter_subcategory("all");
+                set_filter_event("all");
+                setCurrentPage("product");
+                setCurrentProduct(item);
+                set_routes_rendered(1);
+                setSellerIndex(findSellerIndex);
+                matched = 1;
+              }
+            }
+          })
+        );
       }
     } else if (routes.length && routes.length == 3) {
       //Three route params

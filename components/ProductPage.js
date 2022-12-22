@@ -13,7 +13,7 @@ import PeopleAlsoViewed from "../components/PeopleAlsoViewed";
 import ProductDescription from "./ProductDescription";
 
 function ProductPage(props) {
-  const { currentProduct } = useContext(ProductContext);
+  const { currentProduct, sellerIndex } = useContext(ProductContext);
   const [selectedOptions, setSelectedOptions] = useState(Array(25).fill(0));
   const [price, setPrice] = useState(0);
 
@@ -30,7 +30,9 @@ function ProductPage(props) {
   };
 
   useEffect(() => {
-    let basePrice = currentProduct.price ? currentProduct.price : 0;
+    let basePrice = currentProduct.sellers
+      ? currentProduct.sellers[sellerIndex].storePrice
+      : 0;
     if (
       currentProduct.options &&
       currentProduct.options.length &&
@@ -77,7 +79,7 @@ function ProductPage(props) {
               </div>
             </div>
             <div className={styles.sellerNameContainer}>
-              Seller : <span>{currentProduct.sellers[0]}</span>
+              Seller : <span>{currentProduct.sellers[sellerIndex].storeName}</span>
             </div>
             <div className={styles.priceLabel}>$ {priceFormat(price)}</div>
             {currentProduct.options && currentProduct.options.length
@@ -109,7 +111,8 @@ function ProductPage(props) {
               </Button>
             </div>
             <div className={styles.estimatedShipping}>
-              Estimated Shipping : Shipped in 3 Days
+              Estimated Shipping : Shipped in{" "}
+              {currentProduct.sellers[sellerIndex].storeShipping} Days
             </div>
             <div className={styles.demoAlert}>
               <ul>
@@ -133,7 +136,7 @@ function ProductPage(props) {
           </div>
         </div>
         <PeopleAlsoViewed subcategory={currentProduct.subcategory} />
-        <ProductDescription product={currentProduct} />
+        <ProductDescription product={currentProduct} seller={sellerIndex}/>
       </div>
     );
   } else {
