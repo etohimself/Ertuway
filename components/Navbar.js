@@ -110,13 +110,20 @@ function Navbar(props) {
             })
           );
         }
-      }
-      if (props.root == "cart") {
-        //Home Page
+      } else if (props.root == "cart") {
+        //Cart Page
         set_filter_maincategory("all");
         set_filter_subcategory("all");
         set_filter_event("all");
         setCurrentPage("cart");
+        set_routes_rendered(1);
+        matched = 1;
+      } else if (props.root == "login") {
+        //Login Page
+        set_filter_maincategory("all");
+        set_filter_subcategory("all");
+        set_filter_event("all");
+        setCurrentPage("login");
         set_routes_rendered(1);
         matched = 1;
       }
