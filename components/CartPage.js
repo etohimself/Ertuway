@@ -7,9 +7,11 @@ import MinusIcon from "../components/Icons/MinusIcon";
 import PlusIcon from "../components/Icons/PlusIcon";
 import getLocalStorageCart from "../helpers/getLocalStorageCart.js";
 import calcPrice from "../helpers/calcPrice";
+import Button from "../components/Button";
 
 function CartPage(props) {
   const { productDB } = useContext(ProductContext);
+  const [sumPrice, setSumPrice] = useState(0);
   const [productsInCart, setProductsInCart] = useState([]);
   const monthNames = [
     "January",
@@ -52,6 +54,20 @@ function CartPage(props) {
       );
     });
     setProductsInCart(finalItems);
+
+    setSumPrice(
+      finalItems.reduce((acc, eachItem) => {
+        return (
+          acc +
+          calcPrice(
+            eachItem.sellers[eachItem.selected_seller].storePrice,
+            [...eachItem.options],
+            [...eachItem.selected_options]
+          ) *
+            parseInt(eachItem.selected_count)
+        );
+      }, 0)
+    );
   }
 
   useEffect(() => {
@@ -91,82 +107,96 @@ function CartPage(props) {
       </div>
       <div className={styles.CartArea}>
         <div className={styles.CartList}>
-          {productsInCart.length &&
-            productsInCart.map((eachItem) => {
-              return (
-                <div className={styles.productContainer} key={eachItem.id}>
-                  <Image
-                    className={styles.productImg}
-                    src={eachItem.imgLarge}
-                    width={130}
-                    height={130}
-                    alt={eachItem.name}
-                  />
-                  <div className={styles.productInfoArea}>
-                    <div className={styles.productName}>
-                      {eachItem.brand} {eachItem.name}
-                    </div>
-                    <div className={styles.deliveryDate}>
-                      {`Estimated Delivery : ${addDays(
-                        currentDate,
-                        parseInt(
-                          eachItem.sellers[eachItem.selected_seller]
-                            .storeShipping
-                        )
-                      )
-                        .getDate()
-                        .toString()} ${monthNames[
-                        addDays(
+          {productsInCart.length
+            ? productsInCart.map((eachItem) => {
+                return (
+                  <div className={styles.productContainer} key={eachItem.id}>
+                    <Image
+                      className={styles.productImg}
+                      src={eachItem.imgLarge}
+                      width={130}
+                      height={130}
+                      alt={eachItem.name}
+                    />
+                    <div className={styles.productInfoArea}>
+                      <div className={styles.productName}>
+                        {eachItem.brand} {eachItem.name}
+                      </div>
+                      <div className={styles.deliveryDate}>
+                        {`Estimated Delivery: ${addDays(
                           currentDate,
                           parseInt(
                             eachItem.sellers[eachItem.selected_seller]
                               .storeShipping
                           )
-                        ).getMonth()
-                      ].toString()} ${addDays(
-                        currentDate,
-                        parseInt(
-                          eachItem.sellers[eachItem.selected_seller]
-                            .storeShipping
                         )
-                      ).getFullYear()} `}
+                          .getDate()
+                          .toString()} ${monthNames[
+                          addDays(
+                            currentDate,
+                            parseInt(
+                              eachItem.sellers[eachItem.selected_seller]
+                                .storeShipping
+                            )
+                          ).getMonth()
+                        ].toString()} ${addDays(
+                          currentDate,
+                          parseInt(
+                            eachItem.sellers[eachItem.selected_seller]
+                              .storeShipping
+                          )
+                        ).getFullYear()} `}
+                      </div>
+                      <div className={styles.productPrice}>{`$${priceFormat(
+                        calcPrice(
+                          eachItem.sellers[eachItem.selected_seller].storePrice,
+                          [...eachItem.options],
+                          [...eachItem.selected_options]
+                        ) * parseInt(eachItem.selected_count)
+                      )}`}</div>
+                      <div className={styles.soldBy}>
+                        Sold By{" "}
+                        <b>
+                          {eachItem.sellers[eachItem.selected_seller].storeName}
+                        </b>
+                      </div>
                     </div>
-                    <div className={styles.productPrice}>{`$${priceFormat(
-                      calcPrice(
-                        eachItem.sellers[eachItem.selected_seller].storePrice,
-                        [...eachItem.options],
-                        [...eachItem.selected_options]
-                      ) * parseInt(eachItem.selected_count)
-                    )}`}</div>
+
+                    <div className={styles.countArea}>
+                      <div
+                        className={styles.plusButton}
+                        onClick={() => handleIncrement(eachItem.id)}
+                      >
+                        <PlusIcon />
+                      </div>
+                      <div className={styles.productCount}>
+                        {eachItem.selected_count}
+                      </div>
+                      <div
+                        className={styles.minusButton}
+                        onClick={() => handleDecrement(eachItem.id)}
+                      >
+                        <MinusIcon />
+                      </div>
+                    </div>
                   </div>
-                  <div className={styles.soldBy}>
-                    Sold By{" "}
-                    <b>
-                      {eachItem.sellers[eachItem.selected_seller].storeName}
-                    </b>
-                  </div>
-                  <div className={styles.countArea}>
-                    <div
-                      className={styles.plusButton}
-                      onClick={() => handleIncrement(eachItem.id)}
-                    >
-                      <PlusIcon />
-                    </div>
-                    <div className={styles.productCount}>
-                      {eachItem.selected_count}
-                    </div>
-                    <div
-                      className={styles.minusButton}
-                      onClick={() => handleDecrement(eachItem.id)}
-                    >
-                      <MinusIcon />
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })
+            : ""}
         </div>
-        <div className={styles.PaymentArea}></div>
+        <div className={styles.PaymentArea}>
+          <div className={styles.paymentTitle}>Total Price</div>
+          <div className={styles.totalPrice}>
+            {sumPrice > 0 ? `${priceFormat(sumPrice + 20)}` : `$0.00`}
+          </div>
+          <div className={styles.priceDetails}>
+            {sumPrice > 0 && `$20,00 Shipping Costs`}
+          </div>
+          <div className={styles.priceDetails}>
+            {sumPrice > 0 && `$${priceFormat(sumPrice)} Product Costs`}
+          </div>
+          <Button className={styles.paymentButton}>Payment</Button>
+        </div>
       </div>
     </div>
   );

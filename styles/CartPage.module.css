@@ -29,6 +29,10 @@
   gap: 15px;
 }
 
+.deliveryDate {
+  display: flex;
+}
+
 .productContainer {
   width: 100%;
   border: 1px solid #cfcfcf;
@@ -48,6 +52,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  width: 100%;
 }
 
 .productName {
@@ -63,7 +68,7 @@
 
 .productPrice {
   font-size: 1.3em;
-  color: #747474;
+  color: #ff7440;
   font-weight: 700;
 }
 
@@ -114,8 +119,130 @@
 .PaymentArea {
   display: flex;
   flex-direction: column;
-  width: 20%;
-  height: 300px;
-  background-color: rgb(228, 228, 228);
-  border-radius: 10px;
+  width: 279px;
+  gap: 5px;
+  border: 1px solid #cfcfcf;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+  border-radius: 3px;
+  flex-shrink: 0;
+  padding: 20px;
+}
+
+.paymentTitle {
+  font-weight: 700;
+  font-size: 1.5em;
+  line-height: 29px;
+  color: #ff7a00;
+}
+.totalPrice {
+  font-weight: 600;
+  font-size: 2.1em;
+  line-height: 42px;
+}
+
+.priceDetails {
+  font-weight: 400;
+  font-size: 1em;
+  line-height: 19px;
+  color: #7d7d7d;
+}
+
+.paymentButton {
+  margin-top: 10px;
+}
+@media screen and (max-width: 1500px) {
+  .CartPageContainer {
+    padding: 40px 50px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .CartPageContainer {
+    padding: 20px;
+  }
+  .PaymentArea {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .CartPageContainer {
+    font-size: 16px;
+  }
+  .CartArea {
+    flex-direction: column;
+  }
+  .productContainer {
+    padding: 10px;
+  }
+  .PaymentArea {
+    width: 100%;
+    align-items: center;
+  }
+  .paymentButton {
+    width: 70%;
+  }
+  .productImg {
+    width: 100px;
+    height: 100px;
+  }
+  .titleBar {
+    font-size: 1.9em;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .CartPageContainer {
+    font-size: 14px;
+  }
+  .productInfoArea {
+    justify-content: space-evenly;
+  }
+  .soldBy {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .CartPageContainer {
+    font-size: 12px;
+    padding: 5px;
+  }
+  .productContainer {
+    gap: 8px;
+  }
+  .productImg {
+    width: 80px;
+    height: 80px;
+  }
+  .paymentButton {
+    width: 100%;
+  }
+  .totalPrice {
+    font-size: 1.85em;
+  }
+  .PaymentArea {
+    padding: 10px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .CartPageContainer {
+    font-size: 14px;
+  }
+  .productContainer {
+    flex-direction: column;
+  }
+  .productImg {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+  }
+  .countArea {
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
 }
