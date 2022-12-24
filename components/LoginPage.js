@@ -41,12 +41,12 @@ function LoginPage(props) {
           Cookies.set("session-token", data.token && data.token);
           setFlashMsg({
             status: "success",
-            message: "Kemal Kılıçtaroğlu aday olmasın.",
+            message: "Login succesful, redirecting..",
           });
           setLoginStatus(2);
           setTimeout(() => {
-            router.push("/cart");
-          }, 2500);
+            router.back();
+          }, 500);
         }
       } catch (err) {
         setFlashMsg({
