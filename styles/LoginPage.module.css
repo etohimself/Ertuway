@@ -46,6 +46,66 @@
   margin-top: 20px;
 }
 
+.loginButton.running {
+  background-color: hsl(16, 100%, 83%);
+}
+
+.flashMsg {
+  display: none;
+  color: rgb(205, 165, 92);
+  border: 1px solid rgb(205, 165, 92);
+  padding: 8px 15px;
+  background-color: rgba(205, 165, 92, 0.1);
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.flashMsg.error {
+  color: indianred;
+  border: 1px solid indianred;
+  background-color: rgba(205, 92, 92, 0.1);
+}
+
+.flashMsg.success {
+  color: rgb(92, 205, 101);
+  border: 1px solid rgb(92, 205, 101);
+  background-color: rgba(92, 205, 101, 0.1);
+}
+
+.flashMsg.visible {
+  display: block;
+}
+
+@keyframes spin-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 25px;
+  height: 25px;
+  animation: spin-animation 2s linear infinite;
+}
+
+.fetchLoading {
+  margin-top: 100px;
+  display: flex;
+  color: #434343;
+  gap: 15px;
+  font-size: 24px;
+}
+
+.spinner2 {
+  width: 25px;
+  height: 25px;
+  animation: spin-animation 2s linear infinite;
+  fill: #ff7440;
+}
+
 @media screen and (max-width: 555px) {
   .LoginContainer {
     width: 90%;

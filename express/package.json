@@ -1,0 +1,14 @@
+{
+  "name": "ertuway-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Ertuway eCommerce Marketplace Application",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ertuğrul CÖRE",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
+}
