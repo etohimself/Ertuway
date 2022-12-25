@@ -8,6 +8,7 @@ function EventPage(props) {
 
   const eventList = ["momsday", "saturdaysale"];
 
+  /*
   useEffect(() => {
     if (!router.isReady) return;
 
@@ -16,7 +17,7 @@ function EventPage(props) {
     } else {
       router.push("/"); //unrecognized event
     }
-  }, [router.isReady, event]);
+  }, [router.isReady, event]); */
 
   return <h1>Welcome To Special Event : {currentEvent}</h1>;
 }

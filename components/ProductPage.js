@@ -112,6 +112,7 @@ function ProductPage(props) {
               ? currentProduct.options.map((eachOption, index) => {
                   return (
                     <OptionSelector
+                      key={index}
                       title={eachOption.name}
                       index={index}
                       list={[...eachOption.values]}
@@ -161,8 +162,8 @@ function ProductPage(props) {
                   website.
                 </li>
                 <li>
-                  The only purpose of this app is to demonstrate Ertuğrul's web
-                  developer skills.
+                  The only purpose of this app is to demonstrate Ertuğrul&#39;s
+                  web developer skills.
                 </li>
               </ul>
             </div>

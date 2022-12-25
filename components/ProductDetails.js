@@ -92,7 +92,7 @@ function ProductDetails(props) {
         </div>
         <div className={`${styles.fullRow}`}>
           <div className={styles.column}>
-            <Image className={styles.detailsImg} src={img1} />
+            <Image className={styles.detailsImg} src={img1} alt="" />
           </div>
           <div className={styles.column}>
             <div className={styles.columnTitle}>Secure Shopping</div>
@@ -116,14 +116,14 @@ function ProductDetails(props) {
               paragraph is an example text. In reality, Ertuway does not sell
               any real products, does not use or store any payment information
               at all. This is a demo eCommerce Marketplace application created
-              with the purpose of demonstrating Ertuğrul's web development
+              with the purpose of demonstrating Ertuğrul&#39;s web development
               skills.
             </p>
           </div>
         </div>
         <div className={`${styles.fullRow} ${styles.reverseRow}`}>
           <div className={styles.column}>
-            <Image className={styles.detailsImg} src={img2} />
+            <Image className={styles.detailsImg} src={img2} alt="" />
           </div>
           <div className={styles.column}>
             <div className={styles.columnTitle}>Careful Packaging</div>
@@ -145,13 +145,13 @@ function ProductDetails(props) {
               reality, Ertuway does not sell any real products, does not use or
               store any payment information at all. This is a demo eCommerce
               Marketplace application created with the purpose of demonstrating
-              Ertuğrul's web development skills.
+              Ertuğrul&#39;s web development skills.
             </p>
           </div>
         </div>
         <div className={`${styles.fullRow}`}>
           <div className={styles.column}>
-            <Image className={styles.detailsImg} src={img3} />
+            <Image className={styles.detailsImg} src={img3} alt="" />
           </div>
           <div className={styles.column}>
             <div className={styles.columnTitle}>Fast Delivery</div>
@@ -173,13 +173,13 @@ function ProductDetails(props) {
               reality, Ertuway does not sell any real products, does not use or
               store any payment information at all. This is a demo eCommerce
               Marketplace application created with the purpose of demonstrating
-              Ertuğrul's web development skills.
+              Ertuğrul&#39;s web development skills.
             </p>
           </div>
         </div>
         <div className={`${styles.fullRow} ${styles.reverseRow}`}>
           <div className={styles.column}>
-            <Image className={styles.detailsImg} src={img4} />
+            <Image className={styles.detailsImg} src={img4} alt="" />
           </div>
           <div className={styles.column}>
             <div className={styles.columnTitle}>Best Customer Support</div>
@@ -204,8 +204,8 @@ function ProductDetails(props) {
               this paragraph is an example text. In reality, Ertuway does not
               sell any real products, does not use or store any payment
               information at all. This is a demo eCommerce Marketplace
-              application created with the purpose of demonstrating Ertuğrul's
-              web development skills.
+              application created with the purpose of demonstrating
+              Ertuğrul&#39;s web development skills.
             </p>
           </div>
         </div>
@@ -220,6 +220,7 @@ function ProductDetails(props) {
             src={props.product.imgLarge}
             width={200}
             height={200}
+            alt=""
           />
           <div className={styles.ratingArea}>
             <div className={styles.ratingTitle}>
@@ -307,7 +308,7 @@ function ProductDetails(props) {
             .fill(1)
             .map((x, index) => {
               return (
-                <div className={styles.commentContainer}>
+                <div className={styles.commentContainer} key={i}>
                   <div className={styles.customerInfo}>
                     <div className={styles.profileCircle}>
                       {customerNameLetters[index].first}{" "}

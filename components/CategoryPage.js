@@ -42,6 +42,7 @@ function CategoryPage(props) {
     }
   };
 
+  /*
   useEffect(() => {
     if (filter_event != "all") {
       setTitleText(eventList.filter((x) => x.event == filter_event)[0].title);
@@ -62,7 +63,7 @@ function CategoryPage(props) {
     if (showOrders || showFilters) {
       handleRightButton();
     }
-  }, [myWidth]);
+  }, [myWidth]); */
 
   return (
     <div className={styles.CategoryPageContainer} ref={containerRef}>

@@ -29,6 +29,7 @@ function OptionSelector(props) {
           props.list.map((item, index) => {
             return (
               <div
+                key={index}
                 className={`${styles.optionButton} ${
                   index == props.value && styles.selected
                 }`}

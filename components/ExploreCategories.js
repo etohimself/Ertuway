@@ -59,8 +59,8 @@ function ExploreCategories(props) {
         <div className={styles.iconList}>
           {Array(50)
             .fill(0)
-            .map((x) => {
-              return <div className={styles.exploreSkeleton} />;
+            .map((x, i) => {
+              return <div className={styles.exploreSkeleton} key={i} />;
             })}
         </div>
       </div>

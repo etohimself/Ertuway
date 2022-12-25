@@ -7,7 +7,7 @@ function ContactUs(props) {
       <h1>Ertuway</h1>
       <p>
         Ertuway is a demo eCommerce Marketplace App designed to demonstrate
-        Ertugrul Core's web design & development skills. This website does not
+        Ertugrul Core&#39;s web design & development skills. This website does not
         sell any real products or services. Prices and products displayed are
         imaginary. No payments are allowed. We do not store any personal
         information, address or billing information.

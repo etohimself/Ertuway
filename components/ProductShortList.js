@@ -9,25 +9,27 @@ function ProductShortList(props) {
   const [itemList, setItemList] = useState([]);
   const [dataFetched, setDataFetched] = useState(0);
 
-  let redirectRoute = "/";
-  //Build the redirect route
-  if (props.maincategory)
-    redirectRoute = redirectRoute + props.maincategory + "/";
-  if (props.subcategory)
-    redirectRoute = redirectRoute + props.subcategory + "/";
-  if (props.sortBy == "viewCount") redirectRoute = redirectRoute + "mostviewed";
-  if (props.sortBy == "soldCount")
-    redirectRoute = redirectRoute + "bestsellers";
-  if (props.sortBy == "salePercentage")
-    redirectRoute = redirectRoute + "bestdeals";
-
   useEffect(() => {
+    if (!props.sortBy) return;
     let api_extension = "";
+    let redirectRoute = "/";
+
+    //Build the redirect route
+    if (props.maincategory)
+      redirectRoute = redirectRoute + props.maincategory + "/";
+    if (props.subcategory)
+      redirectRoute = redirectRoute + props.subcategory + "/";
+    if (props.sortBy == "viewCount")
+      redirectRoute = redirectRoute + "mostviewed";
+    if (props.sortBy == "soldCount")
+      redirectRoute = redirectRoute + "bestsellers";
+    if (props.sortBy == "salePercentage")
+      redirectRoute = redirectRoute + "bestdeals";
     if (props.sortBy == "viewCount") api_extension = "mostviewed";
     if (props.sortBy == "soldCount") api_extension = "bestsellers";
     if (props.sortBy == "salePercentage") api_extension = "bestdeals";
-    if (api_extension == "") return;
 
+    if (api_extension == "") return;
     let productsAPI = `${location.protocol}//${location.hostname}:27469/${api_extension}`;
     fetch(productsAPI)
       .then((res) => res.json())
@@ -44,7 +46,6 @@ function ProductShortList(props) {
     }
   }, [itemList]);
 
-  
   if (!dataFetched) {
     return (
       <div className={styles.productShortListContainer}>
@@ -56,7 +57,7 @@ function ProductShortList(props) {
           {Array(8)
             .fill(0)
             .map((x, i) => {
-              return <div className={styles.productSkeleton} />;
+              return <div className={styles.productSkeleton} key={i}/>;
             })}
         </div>
       </div>

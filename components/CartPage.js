@@ -71,7 +71,7 @@ function CartPage(props) {
   }
 
   useEffect(() => {
-    refreshCartFromLocalStorage();
+    //refreshCartFromLocalStorage();
   }, []);
 
   const handleIncrement = (productID) => {
@@ -84,7 +84,7 @@ function CartPage(props) {
       });
     }
     localStorage.setItem("ertuway-cart", JSON.stringify(storedItems));
-    refreshCartFromLocalStorage();
+    //refreshCartFromLocalStorage();
   };
 
   const handleDecrement = (productID) => {

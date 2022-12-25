@@ -39,9 +39,9 @@ function DiscountCategories(props) {
   if (dataFetched) {
     return (
       <>
-        {eventList.map((eachEvent) => {
+        {eventList.map((eachEvent, i) => {
           return (
-            <div className={styles.discountCategoryContainer}>
+            <div className={styles.discountCategoryContainer} key={i}>
               <div className={styles.titleBar}>
                 <h1 className={styles.discountCategoryTitle}>
                   {eachEvent.event.title}
@@ -73,8 +73,8 @@ function DiscountCategories(props) {
         <HorizontalContainer>
           {Array(8)
             .fill(0)
-            .map((x) => (
-              <div className={styles.categorySkeleton} />
+            .map((x, i) => (
+              <div className={styles.categorySkeleton} key={i} />
             ))}
         </HorizontalContainer>
       </div>
