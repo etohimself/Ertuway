@@ -126,6 +126,14 @@ function Navbar(props) {
         setCurrentPage("login");
         set_routes_rendered(1);
         matched = 1;
+      } else if (props.root == "checkout") {
+        //Cart Page
+        set_filter_maincategory("all");
+        set_filter_subcategory("all");
+        set_filter_event("all");
+        setCurrentPage("checkout");
+        set_routes_rendered(1);
+        matched = 1;
       }
     } else if (routes.length && routes.length == 1) {
       //Single route param
