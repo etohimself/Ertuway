@@ -31,7 +31,6 @@ export default function Home() {
                 sortBy="viewCount"
               />
               <ProductShortList title="Most Sold Products" sortBy="soldCount" />
-
               <ExploreCategories />
               <ContactUs />
               <Footer />

@@ -148,7 +148,7 @@ app.get("/eventcategories", (req, res) => {
           .salePercentage,
       };
     });
-    results.push({ event: ev, subcategories: subcats });
+    results.push({ event: ev, subcategories: shuffleArr(subcats) });
   });
   res.status(200).json(results);
 });
@@ -184,7 +184,6 @@ app.get("/bestsellers", (req, res) => {
     );
   }
 });
-
 
 app.get("/mostviewed", (req, res) => {
   if (req.query.category) {

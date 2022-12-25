@@ -9,7 +9,7 @@ function CategoryIcon(props) {
 
   return (
     <div
-      className={`${styles.CategoryIconContainer} ${
+      className={`${styles.CategoryIconContainer} ${props.className} ${
         props.small == 1 && styles.small
       } `}
       onClick={props.onClick}

@@ -1,17 +1,12 @@
 import styles from "../styles/ExploreCategories.module.css";
-import { useContext, useRef } from "react";
-import { ProductContext } from "../contexts/productContext";
+import { useState, useEffect } from "react";
 import CategoryIcon from "./CategoryIcon";
-import useElementWidth from "./hooks/useElementWidth";
-import {  useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 function ExploreCategories(props) {
-  const { productDB } = useContext(ProductContext);
-  const containerRef = useRef(0);
-  const [myWidth, childWidth] = useElementWidth(containerRef);
+  const [categoryList, setCategoryList] = useState([]);
+  const [dataFetched, setDataFetched] = useState(0);
   const router = useRouter();
-  const maxItemsPerRow = (myWidth - (myWidth % childWidth)) / childWidth;
-  const hideAfter = productDB.length - (productDB.length % maxItemsPerRow);
 
   function handleSubcategoryClick(maincategory, subcategory) {
     router.push(
@@ -19,24 +14,58 @@ function ExploreCategories(props) {
     );
   }
 
-  return (
-    <div className={styles.ExploreCategoriesContainer}>
-      <h1>Explore Categories</h1>
-      <div className={styles.iconList} ref={containerRef}>
-        {productDB.map((category, index) => (
-          <CategoryIcon
-            name={category.shortname}
-            index={index + 1}
-            hideAfter={hideAfter}
-            key={category.shortname}
-            onClick={() =>
-              handleSubcategoryClick(category.maincategory, category.shortname)
-            }
-          />
-        ))}
+  useEffect(() => {
+    let categoryAPI = `${location.protocol}//${location.hostname}:27469/subcategories`;
+    fetch(categoryAPI)
+      .then((res) => res.json())
+      .then((data) => {
+        setCategoryList(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    if (categoryList.length && categoryList[0].shortname) {
+      //data is valid
+      setDataFetched(1);
+    }
+  }, [categoryList]);
+
+  if (dataFetched) {
+    return (
+      <div className={styles.ExploreCategoriesContainer}>
+        <h1>Explore Categories</h1>
+        <div className={styles.iconList}>
+          {categoryList.map((category, index) => (
+            <CategoryIcon
+              name={category.shortname}
+              index={index + 1}
+              key={category.shortname}
+              onClick={() =>
+                handleSubcategoryClick(
+                  category.maincategory,
+                  category.shortname
+                )
+              }
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className={styles.ExploreCategoriesContainer}>
+        <h1>Explore Categories</h1>
+        <div className={styles.iconList}>
+          {Array(50)
+            .fill(0)
+            .map((x) => {
+              return <div className={styles.exploreSkeleton} />;
+            })}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default ExploreCategories;
