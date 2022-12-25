@@ -16,6 +16,17 @@ const testaccount = {
 var active_sessions = [];
 const cors = require("cors");
 
+function shuffleArr(array) {
+  let myArray = [...array];
+  for (var i = myArray.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = myArray[i];
+    myArray[i] = myArray[j];
+    myArray[j] = temp;
+  }
+  return myArray;
+}
+
 function giveToken(username) {
   if (!username) return;
   let myToken = crypto.randomBytes(64).toString("hex"); //Generate a random token
@@ -140,6 +151,55 @@ app.get("/eventcategories", (req, res) => {
     results.push({ event: ev, subcategories: subcats });
   });
   res.status(200).json(results);
+});
+
+app.get("/bestdeals", (req, res) => {
+  if (req.query.category) {
+    res.status(200).json(
+      shuffleArr(products.filter((x) => x.subcategory == req.query.category))
+        .sort((a, b) => (a.salePercentage > b.salePercentage ? -1 : 1))
+        .slice(0, 8)
+    );
+  } else {
+    res.status(200).json(
+      shuffleArr(products.filter((x) => x.saleReason))
+        .sort((a, b) => (a.salePercentage > b.salePercentage ? -1 : 1))
+        .slice(0, 8)
+    );
+  }
+});
+
+app.get("/bestsellers", (req, res) => {
+  if (req.query.category) {
+    res.status(200).json(
+      shuffleArr(products.filter((x) => x.subcategory == req.query.category))
+        .sort((a, b) => (a.soldCount > b.soldCount ? -1 : 1))
+        .slice(0, 8)
+    );
+  } else {
+    res.status(200).json(
+      shuffleArr(products.filter((x) => x.saleReason))
+        .sort((a, b) => (a.soldCount > b.soldCount ? -1 : 1))
+        .slice(0, 8)
+    );
+  }
+});
+
+
+app.get("/mostviewed", (req, res) => {
+  if (req.query.category) {
+    res.status(200).json(
+      shuffleArr(products.filter((x) => x.subcategory == req.query.category))
+        .sort((a, b) => (a.viewCount > b.viewCount ? -1 : 1))
+        .slice(0, 8)
+    );
+  } else {
+    res.status(200).json(
+      shuffleArr(products.filter((x) => x.saleReason))
+        .sort((a, b) => (a.viewCount > b.viewCount ? -1 : 1))
+        .slice(0, 8)
+    );
+  }
 });
 
 app.listen(port, () => {
