@@ -17,6 +17,28 @@
   margin: 0;
 }
 
+.categorySkeleton {
+  width: 450px;
+  height: 300px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background-color: rgb(236, 236, 236);
+  animation: loading-animation 1s linear infinite alternate;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+@keyframes loading-animation {
+  0% {
+    background-color: hsl(195, 5%, 85%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
 @media screen and (max-width: 1200px) {
   .titleBar > h1 {
     font-size: 25px;

@@ -1,92 +1,131 @@
 import Image from "next/image";
 import styles from "../styles/Welcomer.module.css";
-import event1img from "../public/images/event1.png";
-import event2img from "../public/images/event2.png";
-import { useState } from "react";
-import ScrollArrow from "./ScrollArrow";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import ScrollArrow from "./ScrollArrow";
 
 function Welcomer(props) {
   const router = useRouter();
-  const eventStyles = [
-    { image: "", buttonColor: "", bgColor: "", eventName: "" },
-    {
-      image: event1img,
-      buttonColor: "#F72F00",
-      bgColor: "#FB9B77",
-      eventName: "momsday",
-    },
-    {
-      image: event2img,
-      buttonColor: "#244292",
-      bgColor: "#A3BFEA",
-      eventName: "saturdaysale",
-    },
-  ];
-
-  const [currentEvent, setCurrentEvent] = useState(1);
+  const [eventList, setEventList] = useState([]);
+  const [dataFetched, setDataFetched] = useState(0);
+  const [currentEvent, setCurrentEvent] = useState(0);
   const [topImageVisible, setTopImageVisible] = useState(1);
   const [bottomImageVisible, setBottomImageVisible] = useState(0);
-  const [topImageSrc] = useState(eventStyles[1].image);
-  const [bottomImageSrc, setBottomImageSrc] = useState(eventStyles[1].image);
+  const [topImageSrc, setTopImageSrc] = useState();
+  const [bottomImageSrc, setBottomImageSrc] = useState();
+  const [WelcomerStyle, setWelcomerStyle] = useState({});
 
   const switchToEvent = (targetEvent) => {
-    topImageVisible && setBottomImageSrc(eventStyles[targetEvent].image);
-    setTopImageVisible(!topImageVisible);
-    setBottomImageVisible(!bottomImageVisible);
+    if (topImageVisible) {
+      setBottomImageSrc(eventList[targetEvent].image);
+      setBottomImageVisible(1);
+      setTopImageVisible(0);
+    } else {
+      setTopImageSrc(eventList[targetEvent].image);
+      setBottomImageVisible(0);
+      setTopImageVisible(1);
+    }
     setCurrentEvent(targetEvent);
   };
 
-  const nextEvent = () =>
-    currentEvent + 1 > eventStyles.length - 1
-      ? switchToEvent(1)
+  const nextEvent = () => {
+    if (!dataFetched) return;
+    currentEvent + 1 > eventList.length - 1
+      ? switchToEvent(0)
       : switchToEvent(currentEvent + 1);
-  const previousEvent = () =>
-    currentEvent == 1
-      ? switchToEvent(eventStyles.length - 1)
+  };
+
+  const previousEvent = () => {
+    if (!dataFetched) return;
+    currentEvent == 0
+      ? switchToEvent(eventList.length - 1)
       : switchToEvent(currentEvent - 1);
+  };
 
   function handleEventClick() {
-    router.push("/special/" + eventStyles[currentEvent].eventName);
+    if (!dataFetched) return;
+    router.push("/special/" + eventList[currentEvent].eventName);
   }
 
+  useEffect(() => {
+    let eventlistAPI = `${location.protocol}//${location.hostname}:27469/eventlist`;
+    fetch(eventlistAPI)
+      .then((res) => res.json())
+      .then((data) => {
+        setEventList(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    if (eventList.length && eventList[0].eventName) {
+      //data seems valid
+      setTopImageSrc(eventList[0].image);
+      setBottomImageSrc(eventList[0].image);
+      console.log(eventList[0].image);
+      console.log(eventList[1].image);
+
+      setDataFetched(1);
+    }
+  }, [eventList]);
+
+  useEffect(() => {
+    let styleObj = {};
+    styleObj.backgroundImage =
+      "url('/images/welcomerbg.png'), linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)";
+    styleObj.backgroundColor = dataFetched
+      ? eventList[currentEvent].bgColor
+      : "lightgray";
+    setWelcomerStyle(styleObj);
+  }, [eventList, currentEvent, dataFetched]);
+
   return (
-    <div
-      className={styles.welcomerContainer}
-      style={{
-        backgroundImage: `url("/images/welcomerbg.png"), linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%) `,
-        backgroundColor: eventStyles[currentEvent].bgColor,
-      }}
-    >
+    <div className={styles.welcomerContainer} style={WelcomerStyle}>
       <div className={styles.leftContainer}>
         <ScrollArrow
-          backgroundColor={eventStyles[currentEvent].buttonColor}
+          backgroundColor={
+            dataFetched ? eventList[currentEvent].buttonColor : "lightgray"
+          }
           arrowColor="white"
           onClick={previousEvent}
         />
       </div>
 
       <div className={styles.middleContainer} onClick={handleEventClick}>
-        <Image
-          src={topImageSrc}
-          alt={"Welcomer Image"}
-          className={`${styles.topImage} ${
-            topImageVisible && styles.isVisible
-          }`}
-        />
-        <Image
-          src={bottomImageSrc}
-          alt={"Welcomer Image"}
-          className={`${styles.bottomImage} ${
-            bottomImageVisible && styles.isVisible
-          }`}
-        />
+        {dataFetched ? (
+          <>
+            <Image
+              src={topImageSrc}
+              width={"1000"}
+              height={"425"}
+              alt={"Welcomer Image"}
+              className={`${styles.topImage} ${
+                topImageVisible && styles.isVisible
+              }`}
+            />
+            <Image
+              src={bottomImageSrc}
+              width={"1000"}
+              height={"425"}
+              alt={"Welcomer Image"}
+              className={`${styles.bottomImage} ${
+                bottomImageVisible && styles.isVisible
+              }`}
+            />
+          </>
+        ) : (
+          <>
+            <div className={styles.imageSkeleton} />
+          </>
+        )}
       </div>
 
       <div className={styles.rightContainer}>
         <ScrollArrow
           direction="right"
-          backgroundColor={eventStyles[currentEvent].buttonColor}
+          backgroundColor={
+            dataFetched ? eventList[currentEvent].buttonColor : "lightgray"
+          }
           arrowColor="white"
           onClick={nextEvent}
         />

@@ -18,18 +18,10 @@ export default function Home() {
         <ProductProvider>
           <FilterProvider>
             <PageContent>
-              <Navbar root="" />
+              <Navbar page="index" />
               <MobileMenu />
               <Welcomer />
-              <DiscountCategories
-                title="Save Up to %30 on Gifts for Your Mom"
-                event="momsday"
-              />
-              <DiscountCategories
-                title="Saturday Electronics Sale, Up to %25 on Limited Items"
-                event="saturdaysale"
-              />
-
+              <DiscountCategories />
               <ProductShortList
                 title="Best Deals Products"
                 sortBy="salePercentage"

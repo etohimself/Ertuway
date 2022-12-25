@@ -8,6 +8,41 @@
   margin: 0 20px;
 }
 
+.SearchBoxContainer.loading > input.SearchInput {
+  background-color: rgb(236, 236, 236);
+  border-radius: 5px;
+  animation: loading-animation 1s linear infinite alternate;
+}
+
+@keyframes loading-animation {
+  0% {
+    background-color: hsl(195, 5%, 85%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
+@keyframes spin-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 25px;
+  height: 25px;
+  animation: spin-animation 2s linear infinite;
+  fill: rgb(112, 112, 112);
+  position: absolute;
+  left: 10px;
+  width: 18px;
+  height: 18px;
+}
+
 input.SearchInput {
   border: 1px solid #bdbdbd;
   border-radius: 3px;

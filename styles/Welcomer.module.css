@@ -44,12 +44,12 @@
   width: 50%;
   height: 50%;
   fill: white;
-  margin-right:2px;
+  margin-right: 2px;
 }
 
 .arrowIcon.rightArrow {
   transform: rotate(180deg);
-  margin-left:4px;
+  margin-left: 4px;
 }
 
 .middleContainer {
@@ -60,7 +60,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  cursor:pointer;
+  cursor: pointer;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
@@ -69,6 +69,7 @@
 .bottomImage {
   width: 100%;
   height: auto;
+  object-fit: cover;
   user-select: none;
   transition: all 0.6s ease-out;
   opacity: 0;
@@ -88,6 +89,23 @@
 .topImage.isVisible,
 .bottomImage.isVisible {
   opacity: 1;
+}
+
+.imageSkeleton {
+  width: 100%;
+  height: 425px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 5px;
+  animation: loading-animation 1s linear infinite alternate;
+}
+
+@keyframes loading-animation {
+  0% {
+    background-color: hsl(195, 5%, 85%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
 }
 
 @media screen and (max-width: 1200px) {

@@ -11,6 +11,42 @@
   overflow: hidden;
 }
 
+.NavbarSkeleton {
+  width: 100%;
+  height: 185px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 5px;
+  animation: loading-animation 1s linear infinite alternate;
+}
+
+@keyframes loading-animation {
+  0% {
+    background-color: hsl(0, 0%, 100%);
+  }
+  100% {
+    background-color: hsl(200, 6%, 80%);
+  }
+}
+
+@keyframes spin-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 25px;
+  height: 25px;
+  animation: spin-animation 2s linear infinite;
+  fill: rgb(112, 112, 112);
+  width: 18px;
+  height: 18px;
+  margin: 10px;
+}
+
 .NavbarButtonsContainer {
   display: flex;
   color: #2f2f2f;

@@ -2,6 +2,13 @@ const express = require("express");
 const app = express();
 const port = 27469;
 const crypto = require("crypto");
+const {
+  products,
+  maincategories,
+  subcategories,
+  pagelist,
+  eventlist,
+} = require("./db.js");
 const testaccount = {
   username: "testaccount@gmail.com",
   password: "123456abc",
@@ -82,6 +89,57 @@ app.get("/", (req, res) => {
       message: "Invalid action.",
     });
   }
+});
+
+app.get("/products", (req, res) => {
+  res.status(200).json(products);
+});
+
+app.get("/maincategories", (req, res) => {
+  res.status(200).json(maincategories);
+});
+
+app.get("/subcategories", (req, res) => {
+  res.status(200).json(subcategories);
+});
+
+app.get("/pagelist", (req, res) => {
+  res.status(200).json(pagelist);
+});
+
+app.get("/eventlist", (req, res) => {
+  res.status(200).json(eventlist);
+});
+
+app.get("/eventcategories", (req, res) => {
+  let results = [];
+
+  //For each event
+  eventlist.forEach((ev) => {
+    //Filter products for that event
+    let evPd = products.filter((x) => x.saleReason == ev.eventName);
+    //Get distinct subcategories
+    let subcats = [
+      ...new Set(
+        evPd.map((x) =>
+          subcategories.find((cat) => cat.shortname == x.subcategory)
+        )
+      ),
+    ];
+
+    //Add maximum discounts
+    subcats = subcats.map((x) => {
+      return {
+        ...x,
+        maxSale: evPd
+          .filter((p) => p.subcategory == x.shortname)
+          .sort((a, b) => (a.salePercentage > b.salePercentage ? -1 : 1))[0]
+          .salePercentage,
+      };
+    });
+    results.push({ event: ev, subcategories: subcats });
+  });
+  res.status(200).json(results);
 });
 
 app.listen(port, () => {
