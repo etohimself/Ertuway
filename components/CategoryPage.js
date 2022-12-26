@@ -14,10 +14,15 @@ function CategoryPage(props) {
   const router = useRouter();
   const [dataFetched, setDataFetched] = useState(0);
   const [products, setProducts] = useState([]);
+  const [subCategories, setSubCategories] = useState([]);
+  const [pageList, setPageList] = useState([]);
   const [productsToDisplay, setProductsToDisplay] = useState([]);
-  const [subCategories, setSubcategories] = useState([]);
+  const [showFilters, setShowFilters] = useState(0);
+  const [showOrders, setShowOrders] = useState(0);
   const [mainCategory, setMainCategory] = useState("");
-
+  const containerRef = useRef();
+  const myWidth = useElementWidth(containerRef);
+  const [titleText, setTitleText] = useState("");
   const {
     resetFilters,
     updateFilters,
@@ -31,79 +36,111 @@ function CategoryPage(props) {
     filter_sortby,
     list_sortby,
     slicerReady,
+    set_filter_subcategory,
+    set_filter_sortby,
   } = useContext(FilterContext);
 
-  const [showFilters, setShowFilters] = useState(0);
-  const [showOrders, setShowOrders] = useState(0);
-  const containerRef = useRef();
-  const myWidth = useElementWidth(containerRef);
-  const [titleText, setTitleText] = useState("");
-
-  const handleLeftButton = () => {
-    setShowFilters(1);
-  };
-
-  //WHEN PAGE LOADS OR CHANGES
+  //WHEN PAGE LOADS OR ROUTE CHANGES
   useEffect(() => {
+    let route_maincategory = "";
+    let secondParam = "";
+    let thirdParam = "";
+    //Show lazy loading regardless
     setDataFetched(0);
-    setProductsToDisplay([]);
     setProducts([]);
-    resetFilters();
+    setProductsToDisplay([]);
+    //Wait until router object is ready
+    if (!router.isReady) return;
+    //Check for valid category
+    if (router.query && router.query.routes && router.query.routes.length) {
+      route_maincategory = router.query.routes[0];
+      if (router.query.routes.length > 1) {
+        secondParam = router.query.routes[1];
+      }
+      if (router.query.routes.length > 2) {
+        thirdParam = router.query.routes[2];
+      }
+    }
+    //Fetch products and subcategories
+    const fetchData = async () => {
+      let productAPI = `${location.protocol}//${location.hostname}:27469/products?maincategory=${route_maincategory}`;
+      let categoryAPI = `${location.protocol}//${location.hostname}:27469/subcategories?maincategory=${route_maincategory}`;
+      let pagelistAPI = `${location.protocol}//${location.hostname}:27469/pagelist`;
+      let res_products = await fetch(productAPI);
+      let data_products = await res_products.json();
+      let res_subcategories = await fetch(categoryAPI);
+      let data_subcategories = await res_subcategories.json();
+      let res_pagelist = await fetch(pagelistAPI);
+      let data_pagelist = await res_pagelist.json();
+
+      //Check if the data we received is valid
+      if (
+        data_products.length &&
+        data_products[0].viewCount &&
+        data_subcategories.length &&
+        data_subcategories[0].shortname
+      ) {
+        //send data to filter context so it prepares the slicers
+        resetFilters();
+        updateFilterContextProducts(data_products);
+        updateFilterContextSubCategories(data_subcategories);
+        //if there is a valid subcategory in routes, send that to the filter context as well so subcategory slicer displays it on load
+        if (
+          data_subcategories.filter(
+            (x) => x.shortname == route_maincategory + "_" + secondParam
+          ).length
+        ) {
+          set_filter_subcategory(route_maincategory + "_" + secondParam);
+          //If the third para mis a sort command
+          if (thirdParam == "mostviewed") {
+            set_filter_sortby({ value: 4 });
+          } else if (thirdParam == "bestsellers") {
+            set_filter_sortby({ value: 3 });
+          } else if (thirdParam == "bestdeals") {
+            set_filter_sortby({ value: 5 });
+          }
+        }
+        //if the second param is a sort command instead of a subcategory
+        else if (secondParam == "mostviewed") {
+          set_filter_sortby({ value: 4 });
+        } else if (secondParam == "bestsellers") {
+          set_filter_sortby({ value: 3 });
+        } else if (secondParam == "bestdeals") {
+          set_filter_sortby({ value: 5 });
+        }
+
+        setProducts(data_products);
+        setSubCategories(data_subcategories);
+        setMainCategory(route_maincategory);
+        setPageList(data_pagelist);
+        //Lets wait for slicer to be ready
+      }
+    };
+    fetchData();
   }, [router]);
 
-  // DETECT MAIN CATEGORY FROM ROUTER
+  //When Slicer is Ready..
   useEffect(() => {
-    if (!router.isReady) return;
-    if (router.query && router.query.routes && router.query.routes.length) {
-      setMainCategory(router.query.routes[0]);
+    if (slicerReady && products.length) {
+      //Slicer is ready, products are ready, lets calculate what to display initally
+      RefreshContents();
+      setDataFetched(1); //Display products
     }
-  }, [router.isReady, router.query]);
+  }, [slicerReady]);
 
-  const handleRightButton = () => {
-    if (showFilters || showOrders) {
-      //Something already shown, therefore this serves as Cancel button
-      setShowFilters(0);
-      setShowOrders(0);
-    } else {
-      setShowOrders(1);
-    }
-  };
-
-  // MAIN CATEGORY IS DETECTED, LETS FETCH PRODUCTS AND SUBCATEGORIES
+  //If Slicers are changed, refresh again
   useEffect(() => {
-    if (mainCategory == "") return;
-    let productAPI = `${location.protocol}//${location.hostname}:27469/products?maincategory=${mainCategory}`;
-    fetch(productAPI)
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((err) => console.log(err));
+    RefreshContents();
+  }, [
+    filter_subcategory,
+    filter_price,
+    filter_color,
+    filter_rating,
+    filter_warranty,
+    filter_sortby,
+  ]);
 
-    let categoryAPI = `${location.protocol}//${location.hostname}:27469/subcategories?maincategory=${mainCategory}`;
-    fetch(categoryAPI)
-      .then((res) => res.json())
-      .then((data) => {
-        setSubcategories(data);
-      })
-      .catch((err) => console.log(err));
-  }, [mainCategory]);
-
-  //DATA ARRIVED, LETS SEND IT TO FILTERCONTEXT SO IT UPDATES AVAILABLE SLICER OPTIONS
-  useEffect(() => {
-    if (
-      products.length &&
-      products[0].viewCount &&
-      subCategories.length &&
-      subCategories[0].shortname
-    ) {
-      //valid data arrived
-      updateFilterContextProducts(products);
-      updateFilterContextSubCategories(subCategories);
-    }
-  }, [products, subCategories]);
-
-  //UPDATE DISPLAYED PRODUCTS ACCORDING TO CURRENT SLICER VALUES
+  //FUNCTIONS USED TO REFRESH, SORT, FILTER...
   function filterProductData(product) {
     return (
       (product.subcategory == filter_subcategory ||
@@ -143,32 +180,27 @@ function CategoryPage(props) {
     return 1;
   }
 
-  useEffect(() => {
+  function RefreshContents() {
     setProductsToDisplay(
       products
         .filter((item) => filterProductData(item))
         .sort((a, b) => sortProductData(a, b))
     );
-  }, [
-    filter_subcategory,
-    filter_price,
-    filter_color,
-    filter_rating,
-    filter_warranty,
-    filter_sortby,
-  ]);
-
-  useEffect(() => {
-    if (slicerReady && products.length) {
-      setProductsToDisplay(
-        products
-          .filter((item) => filterProductData(item))
-          .sort((a, b) => sortProductData(a, b))
+    //Lets also calculatet the title
+    if (filter_subcategory != "") {
+      //If we are viewing a subcategory, display it's title
+      let findcategory = subCategories.find(
+        (cat) => cat.shortname == filter_subcategory
       );
-      setDataFetched(1); //We are ready...
+      if (findcategory && findcategory.categoryName) {
+        setTitleText(findcategory.categoryName);
+      }
+    } else {
+      //Otherwise display the main category's shortname, it will be capitalized by CSS
+      let findpage = pageList.find((x) => x.shortname == mainCategory);
+      if (findpage) setTitleText(findpage.title);
     }
-  }, [slicerReady]);
-
+  }
   /*
   useEffect(() => {
     if (filter_event != "all") {
@@ -191,6 +223,19 @@ function CategoryPage(props) {
       handleRightButton();
     }
   }, [myWidth]); */
+
+  const handleRightButton = () => {
+    if (showFilters || showOrders) {
+      //Something already shown, therefore this serves as Cancel button
+      setShowFilters(0);
+      setShowOrders(0);
+    } else {
+      setShowOrders(1);
+    }
+  };
+  const handleLeftButton = () => {
+    setShowFilters(1);
+  };
 
   return (
     <div className={styles.CategoryPageContainer} ref={containerRef}>
