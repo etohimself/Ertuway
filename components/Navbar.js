@@ -13,6 +13,7 @@ function Navbar(props) {
   const [pageList, setPageList] = useState([]);
   const [mainCategories, setMainCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
+  const [currentPage, setCurrentPage] = useState("");
 
   const router = useRouter();
   const [showDropdown, setShowdropdown] = useState("");
@@ -20,20 +21,42 @@ function Navbar(props) {
   function handleCategoryClick(shortname) {
     if (shortname == "index") {
       router.push("/");
+    } else if (shortname == "bestsellers") {
+      router.push("/");
+    } else if (shortname == "bestdeals") {
+      router.push("/");
     } else {
-      router.push("/" + shortname);
+      router.push("/category/" + shortname);
     }
   }
 
   function handleSubcategoryClick(maincategory, subcategory) {
     router.push(
-      "/" + maincategory + "/" + subcategory.split(maincategory + "_")[1]
+      "/category/" +
+        maincategory +
+        "/" +
+        subcategory.split(maincategory + "_")[1]
     );
   }
 
   function validCategory(catName) {
     return mainCategories.indexOf(catName) > -1;
   }
+
+  useEffect(() => {
+    //Detect the current page, underline current page
+    if (props.root == "") {
+      setCurrentPage("index");
+    } else if (props.root == "category") {
+      if (!router.isReady) return;
+      if (router.query && router.query.routes && router.query.routes.length) {
+        setCurrentPage(router.query.routes[0]);
+      }
+    } else if (props.root == "product") {
+    } else {
+      setCurrentPage(props.root);
+    }
+  }, [router, props.root]);
 
   useEffect(() => {
     let pagelistAPI = `${location.protocol}//${location.hostname}:27469/pagelist`;
@@ -116,7 +139,7 @@ function Navbar(props) {
                   key={i}
                   onClick={() => handleCategoryClick(x.shortname)}
                   className={`${styles.NavbarCategory} ${
-                    props.page == x.shortname && styles.isActive
+                    currentPage == x.shortname && styles.isActive
                   }`}
                   onMouseOver={() =>
                     validCategory(x.shortname) && setShowdropdown(x.shortname)

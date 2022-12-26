@@ -10,7 +10,6 @@ import RadioSlicer from "./RadioSlicer";
 function Slicers(props) {
   const {
     updateFilters,
-    filter_maincategory,
     filter_subcategory,
     filter_color,
     filter_price,
@@ -21,11 +20,9 @@ function Slicers(props) {
     list_price,
     list_rating,
     list_warranty,
-    filteredProducts,
-    routes_rendered,
   } = useContext(FilterContext);
 
-  if (routes_rendered) {
+  if (!props.skeleton) {
     return (
       <>
         <ListSlicer

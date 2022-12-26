@@ -1,11 +1,10 @@
-
 .lazyPlaceHolder {
   width: 180px;
   height: 180px;
   background-color: rgb(236, 236, 236);
   border-radius: 5px;
   animation: loading-animation 1s linear infinite alternate;
-  margin:5px;
+  margin: 5px;
 }
 
 @keyframes loading-animation {
@@ -17,7 +16,15 @@
   }
 }
 
-.titleSkeleton { width: 250px; height: 50px; margin-bottom:50px;}
+.titleSkeleton {
+  width: 250px;
+  height: 50px;
+  margin-bottom: 50px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 5px;
+  animation: loading-animation 1s linear infinite alternate;
+  margin: 5px;
+}
 
 .ProductListContainer {
   padding: 0;
@@ -49,3 +56,39 @@
   }
 }
 
+@media screen and (max-width: 2100px) {
+  .lazyPlaceHolder {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .lazyPlaceHolder {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .lazyPlaceHolder {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .lazyPlaceHolder {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .lazyPlaceHolder {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+  }
+}

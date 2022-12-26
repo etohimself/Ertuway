@@ -73,7 +73,7 @@ function ProductShortList(props) {
           {itemList.map((x, i) => {
             return (
               <ProductItem
-                id={x.id}
+                data={x}
                 key={x.id}
                 noLeftMargin={i == 0}
                 noRightMargin={i == itemList.length - 1}

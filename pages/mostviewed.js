@@ -14,7 +14,7 @@ export default function MostViewed() {
         <ProductProvider>
           <FilterProvider>
             <PageContent>
-              <Navbar root="bestsellers" />
+              <Navbar root="mostviewed" />
               <ProductShortList
                 title="Most Viewed Electronics"
                 sortBy="viewCount"

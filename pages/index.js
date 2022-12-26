@@ -18,7 +18,7 @@ export default function Home() {
         <ProductProvider>
           <FilterProvider>
             <PageContent>
-              <Navbar page="index" />
+              <Navbar root="" />
               <MobileMenu />
               <Welcomer />
               <DiscountCategories />

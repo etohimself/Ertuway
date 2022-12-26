@@ -7,19 +7,8 @@ import useElementWidth from "./hooks/useElementWidth";
 import { FilterContext } from "../contexts/filterContext";
 
 function ProductList(props) {
-  const {
-    updateFilters,
-    filter_maincategory,
-    filter_subcategory,
-    filter_price,
-    filter_color,
-    filter_rating,
-    filter_warranty,
-    filter_sortby,
-    list_sortby,
-    filteredProducts,
-    routes_rendered
-  } = useContext(FilterContext);
+  const { updateFilters, filter_sortby, list_sortby, filteredProducts } =
+    useContext(FilterContext);
   const containerRef = useRef();
   const [containerWidth, firstChildWidth] = useElementWidth(containerRef);
   const calculatedMargin =
@@ -85,8 +74,7 @@ function ProductList(props) {
 
   */
 
-
-  if (routes_rendered) {
+  if (!props.skeleton) {
     return (
       <div className={styles.ProductListWrapper}>
         <Dropdown
@@ -98,8 +86,8 @@ function ProductList(props) {
           style={{ marginRight: calculatedMargin }}
         />
         <div className={styles.ProductListContainer} ref={containerRef}>
-          {filteredProducts.map((x) => (
-            <ProductItem id={x.id} key={x.id} />
+          {props.list.map((x) => (
+            <ProductItem data={x} key={x.id} />
           ))}
         </div>
       </div>
@@ -108,9 +96,7 @@ function ProductList(props) {
     {
       return (
         <div className={styles.ProductListWrapper}>
-          <div
-            className={`${styles.lazyPlaceHolder} ${styles.titleSkeleton}`}
-          />
+          <div className={`${styles.titleSkeleton}`} />
           <div className={styles.ProductListContainer} ref={containerRef}>
             {Array(50)
               .fill(null)

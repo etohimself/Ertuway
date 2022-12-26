@@ -103,7 +103,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/products", (req, res) => {
-  res.status(200).json(products);
+  if (req.query.maincategory) {
+    res
+      .status(200)
+      .json(products.filter((x) => x.maincategory == req.query.maincategory));
+  } else {
+    res.status(200).json(products);
+  }
 });
 
 app.get("/maincategories", (req, res) => {
@@ -111,7 +117,15 @@ app.get("/maincategories", (req, res) => {
 });
 
 app.get("/subcategories", (req, res) => {
-  res.status(200).json(subcategories);
+  if (req.query.maincategory) {
+    res
+      .status(200)
+      .json(
+        subcategories.filter((x) => x.maincategory == req.query.maincategory)
+      );
+  } else {
+    res.status(200).json(subcategories);
+  }
 });
 
 app.get("/pagelist", (req, res) => {

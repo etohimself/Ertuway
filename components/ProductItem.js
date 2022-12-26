@@ -7,19 +7,9 @@ import { ProductContext } from "../contexts/productContext";
 import { useRouter } from "next/router";
 
 function ProductItem(props) {
-  const { productDB } = useContext(ProductContext);
   const router = useRouter();
 
   let marginStyle = {};
-  let myData = {};
-
-  for (let i = 0; i < productDB.length; i++) {
-    for (let j = 0; j < productDB[i].products.length; j++) {
-      if (productDB[i].products[j].id == props.id) {
-        myData = { ...productDB[i].products[j] };
-      }
-    }
-  }
 
   if (props.noLeftMargin) marginStyle.marginLeft = 0;
   if (props.noRightMargin) marginStyle.marginRight = 0;
@@ -28,21 +18,21 @@ function ProductItem(props) {
     <div
       className={`${styles.itemContainer} ${props.className}`}
       style={marginStyle}
-      onClick={() => router.push("/product/" + myData.id)}
+      onClick={() => router.push("/product/" + props.data.id)}
     >
       <div className={styles.imageContainer}>
         <Image
           className={styles.productImg}
-          src={myData.imgSmall}
+          src={props.data.imgSmall}
           width={160}
           height={160}
-          alt={myData.name}
+          alt={props.data.name}
         />
-        {myData.salePercentage > 0 && (
+        {props.data.salePercentage > 0 && (
           <div className={styles.percentageContainer}>
             <Percentage className={styles.percentageSvg} />
             <div className={styles.percentageOffText}>
-              {`%${myData.salePercentage}`}
+              {`%${props.data.salePercentage}`}
               <br />
               OFF
             </div>
@@ -50,17 +40,19 @@ function ProductItem(props) {
         )}
       </div>
       <div className={styles.priceLabel}>
-        {myData.salePercentage
+        {props.data.salePercentage
           ? `$${priceFormat(
-              myData.price * ((100 - myData.salePercentage) / 100)
+              props.data.price * ((100 - props.data.salePercentage) / 100)
             )}`
-          : `$${priceFormat(myData.price)}`}
+          : `$${priceFormat(props.data.price)}`}
       </div>
-      {myData.salePercentage > 0 && (
-        <div className={styles.oldPrice}>{`$${priceFormat(myData.price)}`}</div>
+      {props.data.salePercentage > 0 && (
+        <div className={styles.oldPrice}>{`$${priceFormat(
+          props.data.price
+        )}`}</div>
       )}
       <div className={styles.productName}>
-        {myData.brand} {myData.name}
+        {props.data.brand} {props.data.name}
       </div>
     </div>
   );
