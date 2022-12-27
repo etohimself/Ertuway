@@ -178,6 +178,14 @@ app.get("/bestdeals", (req, res) => {
         .sort((a, b) => (a.salePercentage > b.salePercentage ? -1 : 1))
         .slice(0, 8)
     );
+  } else if (req.query.maincategory) {
+    res.status(200).json(
+      shuffleArr(
+        products.filter((x) => x.maincategory == req.query.maincategory)
+      )
+        .sort((a, b) => (a.salePercentage > b.salePercentage ? -1 : 1))
+        .slice(0, 8)
+    );
   } else {
     res.status(200).json(
       shuffleArr(products.filter((x) => x.saleReason))
@@ -194,6 +202,14 @@ app.get("/bestsellers", (req, res) => {
         .sort((a, b) => (a.soldCount > b.soldCount ? -1 : 1))
         .slice(0, 8)
     );
+  } else if (req.query.maincategory) {
+    res.status(200).json(
+      shuffleArr(
+        products.filter((x) => x.maincategory == req.query.maincategory)
+      )
+        .sort((a, b) => (a.soldCount > b.soldCount ? -1 : 1))
+        .slice(0, 8)
+    );
   } else {
     res.status(200).json(
       shuffleArr(products.filter((x) => x.saleReason))
@@ -207,6 +223,14 @@ app.get("/mostviewed", (req, res) => {
   if (req.query.category) {
     res.status(200).json(
       shuffleArr(products.filter((x) => x.subcategory == req.query.category))
+        .sort((a, b) => (a.viewCount > b.viewCount ? -1 : 1))
+        .slice(0, 8)
+    );
+  } else if (req.query.maincategory) {
+    res.status(200).json(
+      shuffleArr(
+        products.filter((x) => x.maincategory == req.query.maincategory)
+      )
         .sort((a, b) => (a.viewCount > b.viewCount ? -1 : 1))
         .slice(0, 8)
     );

@@ -22,9 +22,9 @@ function Navbar(props) {
     if (shortname == "index") {
       router.push("/");
     } else if (shortname == "bestsellers") {
-      router.push("/");
+      router.push("/bestsellers");
     } else if (shortname == "bestdeals") {
-      router.push("/");
+      router.push("/bestdeals");
     } else {
       router.push("/category/" + shortname);
     }

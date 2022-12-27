@@ -10,13 +10,10 @@ function DiscountCategories(props) {
   const [dataFetched, setDataFetched] = useState(0);
   const [eventList, setEventList] = useState([]);
 
-  function handleSubcategoryClick(maincategory, subcategory) {
+  function handleSubcategoryClick(eventName, maincategory, subcategory) {
     if (!dataFetched) return;
     router.push(
-      "/category/" +
-        maincategory +
-        "/" +
-        subcategory.split(maincategory + "_")[1]
+      "/special/" + eventName + "/" + subcategory
     );
   }
 
@@ -58,7 +55,11 @@ function DiscountCategories(props) {
                       discount={x.maxSale}
                       key={i + "_" + x.shortname}
                       onClick={() =>
-                        handleSubcategoryClick(x.maincategory, x.shortname)
+                        handleSubcategoryClick(
+                          eachEvent.event.eventName,
+                          x.maincategory,
+                          x.shortname
+                        )
                       }
                     />
                   );

@@ -44,6 +44,7 @@ function EventPage(props) {
   //WHEN PAGE LOADS OR ROUTE CHANGES
   useEffect(() => {
     let route_event = "";
+    let route_subcategory = "all";
     //Show lazy loading regardless
     setDataFetched(0);
     setProducts([]);
@@ -53,6 +54,9 @@ function EventPage(props) {
     //Check for valid category
     if (router.query && router.query.routes && router.query.routes.length) {
       route_event = router.query.routes[0];
+      if (router.query.routes.length > 1 && router.query.routes[1].length) {
+        route_subcategory = router.query.routes[1];
+      }
     }
 
     //console.log("Event detected = " + route_event);
@@ -110,6 +114,7 @@ function EventPage(props) {
           setEventList(data_events);
           setCurrentEvent(route_event);
           setSubCategories(filteredSubCategories);
+          set_filter_subcategory(route_subcategory);
 
           //console.log("Waiting for slicers to update..");
         }
@@ -188,9 +193,9 @@ function EventPage(props) {
         .sort((a, b) => sortProductData(a, b))
     );
     //Lets also calculate the title
-    let foundevent = eventList.filter((ev) => ev.shortname == currentEvent);
-    if (foundevent.length) {
-      setTitleText(foundevent[0].title);
+    if (eventList.length && eventList[0].eventName) {
+      let foundevent = eventList.filter((ev) => ev.eventName == currentEvent);
+      if (foundevent.length) setTitleText(foundevent[0].title);
     }
   }
   /*

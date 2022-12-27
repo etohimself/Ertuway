@@ -7,30 +7,42 @@ import { useEffect, useState } from "react";
 function ProductShortList(props) {
   const router = useRouter();
   const [itemList, setItemList] = useState([]);
+  const [redirectRoute, setRedirectRoute] = useState("");
   const [dataFetched, setDataFetched] = useState(0);
 
   useEffect(() => {
     if (!props.sortBy) return;
     let api_extension = "";
-    let redirectRoute = "/";
+    let route_redirect = "/";
 
     //Build the redirect route
-    if (props.maincategory)
-      redirectRoute = redirectRoute + props.maincategory + "/";
-    if (props.subcategory)
-      redirectRoute = redirectRoute + props.subcategory + "/";
-    if (props.sortBy == "viewCount")
-      redirectRoute = redirectRoute + "mostviewed";
-    if (props.sortBy == "soldCount")
-      redirectRoute = redirectRoute + "bestsellers";
-    if (props.sortBy == "salePercentage")
-      redirectRoute = redirectRoute + "bestdeals";
+    if (props.maincategory) {
+      //If there is a maincategory, this shortlist is within best pages
+      route_redirect = route_redirect + "category/" + props.maincategory + "/";
+      if (props.sortBy == "viewCount")
+        route_redirect = route_redirect + "mostviewed";
+      if (props.sortBy == "soldCount")
+        route_redirect = route_redirect + "bestsellers";
+      if (props.sortBy == "salePercentage")
+        route_redirect = route_redirect + "bestdeals";
+    } else {
+      //otherwise we are inside index page
+      if (props.sortBy == "viewCount") route_redirect = "mostviewed";
+      if (props.sortBy == "soldCount") route_redirect = "bestsellers";
+      if (props.sortBy == "salePercentage") route_redirect = "bestdeals";
+    }
+    setRedirectRoute(route_redirect);
+
+    //Build the API extension
     if (props.sortBy == "viewCount") api_extension = "mostviewed";
     if (props.sortBy == "soldCount") api_extension = "bestsellers";
     if (props.sortBy == "salePercentage") api_extension = "bestdeals";
 
     if (api_extension == "") return;
     let productsAPI = `${location.protocol}//${location.hostname}:27469/${api_extension}`;
+    if (props.maincategory)
+      productsAPI = `${productsAPI}?maincategory=${props.maincategory}`;
+
     fetch(productsAPI)
       .then((res) => res.json())
       .then((data) => {

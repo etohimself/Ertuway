@@ -7,62 +7,52 @@ import { FilterProvider } from "../contexts/filterContext.js";
 import ProductShortList from "../components/ProductShortList";
 import { PageProvider } from "../contexts/pageContext.js";
 import MobileMenu from "../components/MobileMenu.js";
+import { useState, useEffect } from "react";
 
 export default function BestDeals() {
+  const [dataFetched, setDataFetched] = useState(0);
+  const [pageList, setPageList] = useState([]);
+
+  useEffect(() => {
+    let pagelistAPI = `${location.protocol}//${location.hostname}:27469/pagelist`;
+    fetch(pagelistAPI)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.length && data[0].title) {
+          setPageList(data);
+          setDataFetched(1);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
-    <>
-      <PageProvider>
-        <ProductProvider>
-          <FilterProvider>
-            <PageContent>
-              <Navbar root="bestdeals" />
-              <MobileMenu />
-              <ProductShortList
-                title="Best Deals Electronics"
-                sortBy="salePercentage"
-                maincategory="electronics"
-              />
-              <ProductShortList
-                title="Best Deals Fashion"
-                sortBy="salePercentage"
-                maincategory="fashion"
-              />
-              <ProductShortList
-                title="Best Deals Health & Beauty"
-                sortBy="salePercentage"
-                maincategory="health"
-              />
-              <ProductShortList
-                title="Best Deals Home & Garden"
-                sortBy="salePercentage"
-                maincategory="home"
-              />
-              <ProductShortList
-                title="Best Deals Automotive"
-                sortBy="salePercentage"
-                maincategory="car"
-              />
-              <ProductShortList
-                title="Best Deals Consumables"
-                sortBy="salePercentage"
-                maincategory="consumable"
-              />
-              <ProductShortList
-                title="Best Deals Supermarket"
-                sortBy="salePercentage"
-                maincategory="supermarket"
-              />
-              <ProductShortList
-                title="Best Deals Hobby & Art"
-                sortBy="salePercentage"
-                maincategory="hobby"
-              />
-              <ContactUs />
-              <Footer />
-            </PageContent>
-          </FilterProvider>
-        </ProductProvider>
-      </PageProvider>
-    </>
+    dataFetched && (
+      <>
+        <PageProvider>
+          <ProductProvider>
+            <FilterProvider>
+              <PageContent>
+                <Navbar root="bestdeals" />
+                <MobileMenu />
+                {pageList.map((eachPage) => {
+                  if (eachPage.isMainCategory)
+                    return (
+                      <ProductShortList
+                        title={`Best Deals ${eachPage.title}`}
+                        sortBy="salePercentage"
+                        maincategory={eachPage.shortname}
+                        key={eachPage.shortname}
+                      />
+                    );
+                })}
+                <ContactUs />
+                <Footer />
+              </PageContent>
+            </FilterProvider>
+          </ProductProvider>
+        </PageProvider>
+      </>
+    )
   );
 }

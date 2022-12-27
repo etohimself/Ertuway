@@ -6,61 +6,53 @@ import Footer from "../components/Footer.js";
 import { FilterProvider } from "../contexts/filterContext.js";
 import ProductShortList from "../components/ProductShortList";
 import { PageProvider } from "../contexts/pageContext.js";
+import MobileMenu from "../components/MobileMenu.js";
+import { useState, useEffect } from "react";
 
 export default function MostViewed() {
+  const [dataFetched, setDataFetched] = useState(0);
+  const [pageList, setPageList] = useState([]);
+
+  useEffect(() => {
+    let pagelistAPI = `${location.protocol}//${location.hostname}:27469/pagelist`;
+    fetch(pagelistAPI)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.length && data[0].title) {
+          setPageList(data);
+          setDataFetched(1);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
-    <>
-      <PageProvider>
-        <ProductProvider>
-          <FilterProvider>
-            <PageContent>
-              <Navbar root="mostviewed" />
-              <ProductShortList
-                title="Most Viewed Electronics"
-                sortBy="viewCount"
-                maincategory="electronics"
-              />
-              <ProductShortList
-                title="Most Viewed Fashion"
-                sortBy="viewCount"
-                maincategory="fashion"
-              />
-              <ProductShortList
-                title="Most Viewed Health & Beauty"
-                sortBy="viewCount"
-                maincategory="health"
-              />
-              <ProductShortList
-                title="Most Viewed Home & Garden"
-                sortBy="viewCount"
-                maincategory="home"
-              />
-              <ProductShortList
-                title="Most Viewed Automotive"
-                sortBy="viewCount"
-                maincategory="car"
-              />
-              <ProductShortList
-                title="Most Viewed Consumables"
-                sortBy="viewCount"
-                maincategory="consumable"
-              />
-              <ProductShortList
-                title="Most Viewed Supermarket"
-                sortBy="viewCount"
-                maincategory="supermarket"
-              />
-              <ProductShortList
-                title="Most Viewed Hobby & Art"
-                sortBy="viewCount"
-                maincategory="hobby"
-              />
-              <ContactUs />
-              <Footer />
-            </PageContent>
-          </FilterProvider>
-        </ProductProvider>
-      </PageProvider>
-    </>
+    dataFetched && (
+      <>
+        <PageProvider>
+          <ProductProvider>
+            <FilterProvider>
+              <PageContent>
+                <Navbar root="mostviewed" />
+                <MobileMenu />
+                {pageList.map((eachPage) => {
+                  if (eachPage.isMainCategory)
+                    return (
+                      <ProductShortList
+                        title={`Most Viewed ${eachPage.title}`}
+                        sortBy="viewCount"
+                        maincategory={eachPage.shortname}
+                        key={eachPage.shortname}
+                      />
+                    );
+                })}
+                <ContactUs />
+                <Footer />
+              </PageContent>
+            </FilterProvider>
+          </ProductProvider>
+        </PageProvider>
+      </>
+    )
   );
 }
