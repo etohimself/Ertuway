@@ -107,6 +107,10 @@ app.get("/products", (req, res) => {
     res
       .status(200)
       .json(products.filter((x) => x.maincategory == req.query.maincategory));
+  } else if (req.query.event) {
+    res
+      .status(200)
+      .json(products.filter((x) => x.saleReason == req.query.event));
   } else {
     res.status(200).json(products);
   }

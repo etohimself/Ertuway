@@ -57,7 +57,7 @@ function ProductShortList(props) {
           {Array(8)
             .fill(0)
             .map((x, i) => {
-              return <div className={styles.productSkeleton} key={i}/>;
+              return <div className={styles.productSkeleton} key={i} />;
             })}
         </div>
       </div>

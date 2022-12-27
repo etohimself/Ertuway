@@ -13,7 +13,10 @@ function DiscountCategories(props) {
   function handleSubcategoryClick(maincategory, subcategory) {
     if (!dataFetched) return;
     router.push(
-      "/" + maincategory + "/" + subcategory.split(maincategory + "_")[1]
+      "/category/" +
+        maincategory +
+        "/" +
+        subcategory.split(maincategory + "_")[1]
     );
   }
 
@@ -32,7 +35,6 @@ function DiscountCategories(props) {
   useEffect(() => {
     if (eventList.length && eventList[0].event && eventList[0].subcategories) {
       setDataFetched(1);
-      console.log(eventList);
     }
   }, [eventList]);
 

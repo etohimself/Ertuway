@@ -62,8 +62,6 @@ function Welcomer(props) {
       //data seems valid
       setTopImageSrc(eventList[0].image);
       setBottomImageSrc(eventList[0].image);
-      console.log(eventList[0].image);
-      console.log(eventList[1].image);
 
       setDataFetched(1);
     }

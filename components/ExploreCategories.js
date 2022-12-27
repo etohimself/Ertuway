@@ -10,7 +10,10 @@ function ExploreCategories(props) {
 
   function handleSubcategoryClick(maincategory, subcategory) {
     router.push(
-      "/" + maincategory + "/" + subcategory.split(maincategory + "_")[1]
+      "/category/" +
+        maincategory +
+        "/" +
+        subcategory.split(maincategory + "_")[1]
     );
   }
 
