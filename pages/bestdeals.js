@@ -1,11 +1,10 @@
 import PageContent from "../components/PageContent.js";
 import Navbar from "../components/Navbar.js";
-import { ProductProvider } from "../contexts/productContext";
 import ContactUs from "../components/ContactUs.js";
 import Footer from "../components/Footer.js";
 import { FilterProvider } from "../contexts/filterContext.js";
 import ProductShortList from "../components/ProductShortList";
-import { PageProvider } from "../contexts/pageContext.js";
+import { AuthProvider } from "../contexts/authContext";
 import MobileMenu from "../components/MobileMenu.js";
 import { useState, useEffect } from "react";
 
@@ -29,8 +28,7 @@ export default function BestDeals() {
   return (
     dataFetched && (
       <>
-        <PageProvider>
-          <ProductProvider>
+        <AuthProvider>
             <FilterProvider>
               <PageContent>
                 <Navbar root="bestdeals" />
@@ -50,8 +48,7 @@ export default function BestDeals() {
                 <Footer />
               </PageContent>
             </FilterProvider>
-          </ProductProvider>
-        </PageProvider>
+        </AuthProvider>
       </>
     )
   );

@@ -6,6 +6,8 @@ function useElementWidth(elementRef) {
   useEffect(() => {
     function updateWidth() {
       if (
+        elementRef &&
+        elementRef.current &&
         elementRef.current.children &&
         elementRef.current.children.length > 0
       ) {

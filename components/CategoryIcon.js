@@ -4,9 +4,6 @@ import { ProductContext } from "../contexts/productContext";
 import Image from "next/image";
 
 function CategoryIcon(props) {
-  const { productDB } = useContext(ProductContext);
-  const myCategory = productDB.filter((cat) => cat.shortname == props.name)[0];
-
   return (
     <div
       className={`${styles.CategoryIconContainer} ${props.className} ${
@@ -20,13 +17,13 @@ function CategoryIcon(props) {
       }
     >
       <Image
-        src={myCategory.categoryIcon}
-        alt={myCategory.categoryName}
+        src={props.data.categoryIcon}
+        alt={props.data.categoryName}
         width={80}
         height={80}
         className={styles.iconImg}
       />
-      <p>{myCategory.categoryName}</p>
+      <p>{props.data.categoryName}</p>
     </div>
   );
 }

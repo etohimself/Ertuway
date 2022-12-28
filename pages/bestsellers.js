@@ -1,11 +1,10 @@
 import PageContent from "../components/PageContent.js";
 import Navbar from "../components/Navbar.js";
-import { ProductProvider } from "../contexts/productContext";
+import { AuthProvider } from "../contexts/authContext";
 import ContactUs from "../components/ContactUs.js";
 import Footer from "../components/Footer.js";
 import { FilterProvider } from "../contexts/filterContext.js";
 import ProductShortList from "../components/ProductShortList";
-import { PageProvider } from "../contexts/pageContext.js";
 import MobileMenu from "../components/MobileMenu.js";
 import { useState, useEffect } from "react";
 
@@ -29,29 +28,27 @@ export default function BestSellers() {
   return (
     dataFetched && (
       <>
-        <PageProvider>
-          <ProductProvider>
-            <FilterProvider>
-              <PageContent>
-                <Navbar root="bestsellers" />
-                <MobileMenu />
-                {pageList.map((eachPage) => {
-                  if (eachPage.isMainCategory)
-                    return (
-                      <ProductShortList
-                        title={`Best Sellers ${eachPage.title}`}
-                        sortBy="soldCount"
-                        maincategory={eachPage.shortname}
-                        key={eachPage.shortname}
-                      />
-                    );
-                })}
-                <ContactUs />
-                <Footer />
-              </PageContent>
-            </FilterProvider>
-          </ProductProvider>
-        </PageProvider>
+        <AuthProvider>
+          <FilterProvider>
+            <PageContent>
+              <Navbar root="bestsellers" />
+              <MobileMenu />
+              {pageList.map((eachPage) => {
+                if (eachPage.isMainCategory)
+                  return (
+                    <ProductShortList
+                      title={`Best Sellers ${eachPage.title}`}
+                      sortBy="soldCount"
+                      maincategory={eachPage.shortname}
+                      key={eachPage.shortname}
+                    />
+                  );
+              })}
+              <ContactUs />
+              <Footer />
+            </PageContent>
+          </FilterProvider>
+        </AuthProvider>
       </>
     )
   );

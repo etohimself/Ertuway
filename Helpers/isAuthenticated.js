@@ -14,7 +14,7 @@ const isAuthenticated = async () => {
         data.username &&
         data.username.length
       ) {
-        return data.username;
+        return data;
       } else {
         return 0;
       }

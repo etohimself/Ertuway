@@ -2,18 +2,11 @@
   width: 100%;
   margin: 50px 0;
   flex-shrink: 0;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  box-sizing: border-box;
-  overflow: hidden;
-  position: relative;
-  align-self: flex-start;
+  font-size: 24px;
 }
 
 .titleBar {
-  font-size: 24px;
+  font-size: 1em;
   font-weight: 700;
 }
 
@@ -22,13 +15,10 @@
   width: 100%;
   margin: 25px 0;
   flex-shrink: 0;
-  height: auto;
-  justify-content: flex-start;
-  box-sizing: border-box;
-  align-items: flex-start;
-  overflow: hidden;
-  position: relative;
   flex-wrap: wrap;
+  height: max-content;
+  overflow: hidden;
+  flex-grow: 0;
 }
 
 .dummyProduct {
@@ -36,5 +26,5 @@
 }
 
 .noDraw {
-  display: none !important;
+  display: none;
 }

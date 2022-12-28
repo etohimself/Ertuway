@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: flex-start;
   width: 225px;
+  height: auto;
   box-sizing: border-box;
   cursor: pointer;
   margin: 15px;
@@ -15,8 +16,8 @@
   border-radius: 3px;
   background: white;
   background-color: gray;
-  height: 225px;
-  width: 225px;
+  height: 225px; /* above 2100px */
+  width: 225px; /* above 2100px */
   overflow: hidden;
   position: relative;
 }
@@ -32,10 +33,10 @@
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 900;
   font-size: 1.25em;
-  line-height: 25px;
+  line-height: 1.25em;
   letter-spacing: 0.04em;
   color: #ff7440;
-  margin-top: 13px;
+  margin-top: 0.4em;
 }
 
 .oldPrice {
@@ -48,7 +49,7 @@
 }
 
 .productName {
-  margin-top: 5px;
+  margin-top: 0.2em;
   font-size: 1.125em;
   color: #434343;
 }
@@ -82,17 +83,12 @@ svg.percentageSvg {
 @media screen and (max-width: 2100px) {
   .itemContainer {
     width: 160px;
+    font-size: 16px;
   }
-
   .imageContainer {
     height: 160px;
     width: 160px;
   }
-
-  .itemContainer {
-    font-size: 16px;
-  }
-
   svg.percentageSvg {
     width: 60px;
     height: 60px;
@@ -100,7 +96,6 @@ svg.percentageSvg {
   .percentageOffText {
     font-size: 1em;
   }
-
   .oldPrice {
     margin-top: 8px;
   }
@@ -109,68 +104,86 @@ svg.percentageSvg {
 @media screen and (max-width: 1200px) {
   .itemContainer {
     width: 120px;
+    font-size: 14px;
   }
-
   .imageContainer {
     height: 120px;
     width: 120px;
   }
-
   svg.percentageSvg {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
   }
   .percentageOffText {
-    font-size: 0.9em;
+    font-size: 0.75em;
+  }
+  .oldPrice {
+    margin-top: 6px;
   }
 }
 
 @media screen and (max-width: 700px) {
   .itemContainer {
     width: 100px;
-    font-size: 14px;
+    font-size: 12px;
+    margin: 8px;
   }
-
   .imageContainer {
-    height: 90px;
+    height: 100px;
     width: 100px;
   }
-
   svg.percentageSvg {
     width: 40px;
     height: 40px;
   }
   .percentageOffText {
-    font-size: 0.8em;
+    font-size: 0.75em;
+  }
+  .oldPrice {
+    margin-top: 6px;
   }
 }
 
 @media screen and (max-width: 400px) {
   .itemContainer {
     width: 80px;
-    margin: 10px;
     font-size: 12px;
+    margin: 5px;
   }
-
   .imageContainer {
     height: 80px;
     width: 80px;
+  }
+  svg.percentageSvg {
+    width: 40px;
+    height: 40px;
+  }
+  .percentageOffText {
+    font-size: 0.75em;
+  }
+  .oldPrice {
+    margin-top: 6px;
   }
 }
 
 @media screen and (max-width: 300px) {
   .itemContainer {
     width: 60px;
-    margin: 5px;
     font-size: 11px;
+    margin: 5px;
   }
-
-  .priceLabel {
-    font-weight: 700;
-  }
-
   .imageContainer {
     height: 60px;
     width: 60px;
+  }
+  svg.percentageSvg {
+    width: 40px;
+    height: 40px;
+  }
+  .percentageOffText {
+    font-size: 0.75em;
+  }
+  .oldPrice {
+    margin-top: 6px;
   }
 }

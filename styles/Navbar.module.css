@@ -71,12 +71,6 @@
   white-space: nowrap;
 }
 
-.navbarButtonIcons {
-  margin-right: 5px;
-  width: 24px;
-  height: auto;
-}
-
 .BrandAreaMobile {
   display: flex;
   justify-content: space-between;
@@ -110,6 +104,21 @@
 
 .NavbarCategory > span {
   cursor: pointer;
+}
+
+.navbarButtonIcons {
+  width: 22px;
+  height: 22px;
+  margin-right: 5px;
+  fill: #2f2f2f;
+}
+
+.CartButton.cartActive {
+  color: #ff7440;
+}
+
+.navbarButtonIcons.cartActive {
+  fill: #ff7440;
 }
 
 .NavbarDropdownContainer {

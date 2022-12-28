@@ -1,12 +1,11 @@
 import PageContent from "../components/PageContent.js";
 import Navbar from "../components/Navbar.js";
 import MobileMenu from "../components/MobileMenu.js";
-import { ProductProvider } from "../contexts/productContext";
 import ContactUs from "../components/ContactUs.js";
 import Footer from "../components/Footer.js";
 import CartPage from "../components/CartPage.js";
 import { FilterProvider } from "../contexts/filterContext.js";
-import { PageProvider } from "../contexts/pageContext.js";
+import { AuthProvider } from "../contexts/authContext";
 
 export default function Cart() {
   //const router = useRouter();
@@ -14,8 +13,7 @@ export default function Cart() {
 
   return (
     <>
-      <PageProvider>
-        <ProductProvider>
+      <AuthProvider>
           <FilterProvider>
             <PageContent>
               <Navbar root="cart" />
@@ -25,8 +23,7 @@ export default function Cart() {
               <Footer />
             </PageContent>
           </FilterProvider>
-        </ProductProvider>
-      </PageProvider>
+      </AuthProvider>
     </>
   );
 }

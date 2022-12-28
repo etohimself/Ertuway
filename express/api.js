@@ -111,6 +111,16 @@ app.get("/products", (req, res) => {
     res
       .status(200)
       .json(products.filter((x) => x.saleReason == req.query.event));
+  } else if (req.query.id) {
+    res.status(200).json(products.filter((x) => x.id == req.query.id));
+  } else if (req.query.similiarCategory) {
+    res
+      .status(200)
+      .json(
+        shuffleArr(
+          products.filter((x) => x.subcategory == req.query.similiarCategory)
+        ).slice(0, 12)
+      );
   } else {
     res.status(200).json(products);
   }

@@ -308,7 +308,7 @@ function ProductDetails(props) {
             .fill(1)
             .map((x, index) => {
               return (
-                <div className={styles.commentContainer} key={i}>
+                <div className={styles.commentContainer} key={index}>
                   <div className={styles.customerInfo}>
                     <div className={styles.profileCircle}>
                       {customerNameLetters[index].first}{" "}

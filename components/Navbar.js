@@ -3,10 +3,10 @@ import BrandLogo from "./BrandLogo";
 import UserIcon from "./Icons/UserIcon";
 import CartIcon from "./Icons/CartIcon";
 import SearchBox from "./SearchBox";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import SpinIcon from "./Icons/SpinIcon";
-import { subcategories } from "../express/db";
+import { AuthContext } from "../contexts/authContext";
 
 function Navbar(props) {
   const [dataFetched, setDataFetched] = useState(0);
@@ -14,9 +14,9 @@ function Navbar(props) {
   const [mainCategories, setMainCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
   const [currentPage, setCurrentPage] = useState("");
-
   const router = useRouter();
   const [showDropdown, setShowdropdown] = useState("");
+  const { authData } = useContext(AuthContext);
 
   function handleCategoryClick(shortname) {
     if (shortname == "index") {
@@ -87,7 +87,7 @@ function Navbar(props) {
 
   useEffect(() => {
     if (pageList.length && mainCategories.length && subCategories.length) {
-      if (pageList[0].shortname && subcategories[0].categoryName) {
+      if (pageList[0].shortname && subCategories[0].categoryName) {
         //data seems valid
         setDataFetched(1);
       }
@@ -100,15 +100,24 @@ function Navbar(props) {
         <div className={styles.BrandAreaMobile}>
           <BrandLogo text="Ertuway" />
           <div className={styles.NavbarButtonsContainerMobile}>
-            <div className={styles.AccountButton}>
+            <div
+              className={styles.AccountButton}
+              onClick={() => authData <= 0 && router.push("/login")}
+            >
               <UserIcon className={styles.navbarButtonIcons} />
-              Sign In
+              {authData.username ? `My Account` : `Sign In`}
             </div>
             <div
-              className={styles.CartButton}
+              className={`${styles.CartButton} ${
+                props.root == "cart" && styles.cartActive
+              }`}
               onClick={() => router.push("/cart")}
             >
-              <CartIcon className={styles.navbarButtonIcons} />
+              <CartIcon
+                className={`${styles.navbarButtonIcons} ${
+                  props.root == "cart" && styles.cartActive
+                }`}
+              />
               My Cart
             </div>
           </div>
@@ -116,15 +125,24 @@ function Navbar(props) {
 
         <SearchBox loading={!dataFetched} />
         <div className={styles.NavbarButtonsContainer}>
-          <div className={styles.AccountButton}>
+          <div
+            className={styles.AccountButton}
+            onClick={() => authData <= 0 && router.push("/login")}
+          >
             <UserIcon className={styles.navbarButtonIcons} />
-            Sign In
+            {authData.username ? `My Account` : `Sign In`}
           </div>
           <div
-            className={styles.CartButton}
+            className={`${styles.CartButton} ${
+              props.root == "cart" && styles.cartActive
+            }`}
             onClick={() => router.push("/cart")}
           >
-            <CartIcon className={styles.navbarButtonIcons} />
+            <CartIcon
+              className={`${styles.navbarButtonIcons} ${
+                props.root == "cart" && styles.cartActive
+              }`}
+            />
             My Cart
           </div>
         </div>

@@ -187,7 +187,7 @@ function CategoryPage(props) {
         .sort((a, b) => sortProductData(a, b))
     );
     //Lets also calculatet the title
-    if (filter_subcategory != "") {
+    if (filter_subcategory != "all") {
       //If we are viewing a subcategory, display it's title
       let findcategory = subCategories.find(
         (cat) => cat.shortname == filter_subcategory

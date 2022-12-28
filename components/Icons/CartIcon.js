@@ -13,21 +13,21 @@ export default function CartIcon(props) {
         <g opacity="1.0">
           <path
             d="M1 1.75977H5.33142L8.23348 15.9892C8.3325 16.4784 8.60371 16.9179 8.99964 17.2307C9.39558 17.5435 9.891 17.7097 10.3992 17.7001H20.9245C21.4327 17.7097 21.9282 17.5435 22.3241 17.2307C22.72 16.9179 22.9912 16.4784 23.0903 15.9892L24.8228 7.07322H6.41428"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M9.29379 23.9857C9.89184 23.9857 10.3766 23.5099 10.3766 22.923C10.3766 22.3361 9.89184 21.8604 9.29379 21.8604C8.69575 21.8604 8.21094 22.3361 8.21094 22.923C8.21094 23.5099 8.69575 23.9857 9.29379 23.9857Z"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M21.2059 23.9857C21.8039 23.9857 22.2888 23.5099 22.2888 22.923C22.2888 22.3361 21.8039 21.8604 21.2059 21.8604C20.6079 21.8604 20.123 22.3361 20.123 22.923C20.123 23.5099 20.6079 23.9857 21.2059 23.9857Z"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </g>
       </svg>

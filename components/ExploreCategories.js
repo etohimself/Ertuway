@@ -41,7 +41,7 @@ function ExploreCategories(props) {
         <div className={styles.iconList}>
           {categoryList.map((category, index) => (
             <CategoryIcon
-              name={category.shortname}
+              data={category}
               index={index + 1}
               key={category.shortname}
               onClick={() =>

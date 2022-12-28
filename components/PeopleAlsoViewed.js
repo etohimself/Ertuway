@@ -1,57 +1,62 @@
-import { useContext, useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import styles from "../styles/PeopleAlsoViewed.module.css";
-import { ProductContext } from "../contexts/productContext";
 import ProductItem from "../components/ProductItem";
 import useElementWidth from "../components/hooks/useElementWidth";
-import shuffleArr from "../helpers/shuffle.js";
 
 function PeopleAlsoViewed(props) {
-  const { productDB } = useContext(ProductContext);
   const [productList, setProductList] = useState([]);
-  const containerRef = useRef();
-  const [myWidth, childWidth] = useElementWidth(containerRef);
-  const [itemCount, setItemCount] = useState(0);
+  const [dataFetched, setDataFetched] = useState(0);
+  const containerRef = useRef(0);
+  const [parentWidth, childWidth] = useElementWidth(containerRef);
+  const [hideAfter, setHideAfter] = useState(12);
 
+  //WHEN COMPONENT IS RENDERED
   useEffect(() => {
-    if (myWidth > 0 && myWidth >= childWidth) {
-      //First dummy product rendered, we can use its width for reference
-      setItemCount(((myWidth - (myWidth % childWidth)) / childWidth) * 2);
-    }
-  }, [myWidth, childWidth]);
+    setDataFetched(0);
+    setProductList([]);
 
-  useEffect(() => {
-    let dummyList = [];
-    productDB.forEach((cat) => {
-      if (cat.shortname == props.subcategory) {
-        dummyList = shuffleArr([...cat.products]).slice(0, 12);
+    //Fetch products and subcategories
+    const fetchData = async () => {
+      let productAPI = `${location.protocol}//${location.hostname}:27469/products?similiarCategory=${props.subcategory}`;
+      let res_product = await fetch(productAPI);
+      let data_product = await res_product.json();
+
+      //Check if the data we received is valid
+      if (data_product.length && data_product[0].imgLarge) {
+        //If data is valid, set product list
+        setProductList(data_product);
+        setDataFetched(1);
       }
-    });
-    setProductList([...dummyList]);
-  }, [productDB, props.subcategory]);
+    };
+    fetchData();
+  }, [props.subcategory]);
 
-  return (
-    <div className={styles.peopleViewedContainer}>
-      <div className={styles.titleBar}>People Also Viewed :</div>
-      <div className={styles.productList} ref={containerRef}>
-        {productList.map((item, index) => {
-          return (
-            <ProductItem
-              id={item.id}
-              key={item.id}
-              className={`${
-                index >= (myWidth - (myWidth % childWidth)) / childWidth &&
-                styles.noDraw
-              }`}
-            />
-          );
-        })}
-        <ProductItem
-          id={productDB[0].products[0].id}
-          className={`${styles.dummyProduct} ${myWidth > 0 && styles.noDraw}`}
-        />
+  useEffect(() => {
+    //When the width changes, quickly calculate which ones to hide
+    if (!childWidth) {
+      setHideAfter(12);
+      return;
+    }
+    setHideAfter((parentWidth - (parentWidth % childWidth)) / childWidth);
+  }, [parentWidth, childWidth]);
+
+  if (dataFetched && productList.length)
+    return (
+      <div className={styles.peopleViewedContainer}>
+        <div className={styles.titleBar}>People Also Viewed :</div>
+        <div className={styles.productList} ref={containerRef}>
+          {productList.map((item, index) => {
+            return (
+              <ProductItem
+                data={item}
+                key={item.id}
+                className={`${index >= hideAfter && styles.noDraw}`}
+              />
+            );
+          })}
+        </div>
       </div>
-    </div>
-  );
+    );
 }
 
 export default PeopleAlsoViewed;

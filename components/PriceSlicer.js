@@ -15,7 +15,8 @@ function PriceSlicer(props) {
   useEffect(() => {
     setCalculatedHeight(1000);
     setTimeout(() => {
-      contentRef.current && setCalculatedHeight(contentRef.current.clientHeight);
+      contentRef.current &&
+        setCalculatedHeight(contentRef.current.clientHeight);
     }, 600);
   }, [props.list]);
 
@@ -44,6 +45,7 @@ function PriceSlicer(props) {
       data: {
         max: parseInt(maxRange) || 0,
         min: parseInt(minRange) || 0,
+        isRange: 1,
       },
     });
   };

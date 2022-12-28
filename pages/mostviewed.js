@@ -1,13 +1,12 @@
 import PageContent from "../components/PageContent.js";
 import Navbar from "../components/Navbar.js";
-import { ProductProvider } from "../contexts/productContext";
 import ContactUs from "../components/ContactUs.js";
 import Footer from "../components/Footer.js";
 import { FilterProvider } from "../contexts/filterContext.js";
 import ProductShortList from "../components/ProductShortList";
-import { PageProvider } from "../contexts/pageContext.js";
 import MobileMenu from "../components/MobileMenu.js";
 import { useState, useEffect } from "react";
+import { AuthProvider } from "../contexts/authContext.js";
 
 export default function MostViewed() {
   const [dataFetched, setDataFetched] = useState(0);
@@ -29,8 +28,7 @@ export default function MostViewed() {
   return (
     dataFetched && (
       <>
-        <PageProvider>
-          <ProductProvider>
+        <AuthProvider>
             <FilterProvider>
               <PageContent>
                 <Navbar root="mostviewed" />
@@ -50,8 +48,7 @@ export default function MostViewed() {
                 <Footer />
               </PageContent>
             </FilterProvider>
-          </ProductProvider>
-        </PageProvider>
+        </AuthProvider>
       </>
     )
   );
