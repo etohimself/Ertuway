@@ -139,7 +139,9 @@ function CartPage(props) {
     if (authData == 0) {
       router.push("/login");
     } else if (authData.username) {
-      alert("Checkout page has not been built yet!");
+      alert(
+        "You are at the end of my demo portfolio project. I will built the rest of the website by end of January. Thank you for trying out! -Ertuğrul CÖRE"
+      );
     }
   };
 

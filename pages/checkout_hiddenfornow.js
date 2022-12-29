@@ -5,21 +5,21 @@ import ContactUs from "../components/ContactUs.js";
 import Footer from "../components/Footer.js";
 import CheckoutPage from "../components/CheckoutPage.js";
 import { FilterProvider } from "../contexts/filterContext.js";
-import { AuthProvider } from "../contexts/pageContext.js";
+import { AuthProvider } from "../contexts/authContext";
 
 export default function Checkout() {
   return (
     <>
       <AuthProvider>
-          <FilterProvider>
-            <PageContent>
-              <Navbar root="checkout" />
-              <MobileMenu />
-              <CheckoutPage />
-              <ContactUs />
-              <Footer />
-            </PageContent>
-          </FilterProvider>
+        <FilterProvider>
+          <PageContent>
+            <Navbar root="checkout" />
+            <MobileMenu />
+            <CheckoutPage />
+            <ContactUs />
+            <Footer />
+          </PageContent>
+        </FilterProvider>
       </AuthProvider>
     </>
   );
