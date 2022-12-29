@@ -3,7 +3,7 @@ import styles from "../styles/ProductPage.module.css";
 import { ProductContext } from "../contexts/productContext";
 import Image from "next/image";
 import StarRating from "../components/StarRating";
-import priceFormat from "../helpers/priceFormat";
+import priceFormat from "../Helpers/priceFormat";
 import OptionSelector from "./OptionSelector";
 import Button from "./Button";
 import CartIcon from "../components/Icons/CartIcon";
@@ -11,8 +11,8 @@ import HeartIcon from "../components/Icons/HeartIcon";
 import FastDelivery from "../components/Icons/FastDeliveryIcon";
 import PeopleAlsoViewed from "../components/PeopleAlsoViewed";
 import ProductDescription from "./ProductDescription";
-import GetLocalStorageCart from "../helpers/getLocalStorageCart.js";
-import calcPrice from "../helpers/calcPrice.js";
+import GetLocalStorageCart from "../Helpers/getLocalStorageCart.js";
+import calcPrice from "../Helpers/calcPrice.js";
 import { useRouter } from "next/router";
 
 function ProductPage(props) {

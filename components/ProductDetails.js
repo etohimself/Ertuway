@@ -8,7 +8,7 @@ import storeicon from "../public/images/storeicon.png";
 import StarIcon from "../components/Icons/StarIcon";
 import StarRating from "../components/StarRating";
 import { useEffect, useState } from "react";
-import priceFormat from "../helpers/priceFormat";
+import priceFormat from "../Helpers/priceFormat";
 import Button from "./Button";
 import CartIcon from "../components/Icons/CartIcon";
 import { useRouter } from "next/router";
