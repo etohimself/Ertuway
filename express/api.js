@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const port = 27469;
 const crypto = require("crypto");
+var https = require("https");
+var fs = require("fs");
+
 const {
   products,
   maincategories,
@@ -256,3 +259,10 @@ app.get("/mostviewed", (req, res) => {
 app.listen(port, () => {
   console.log(`Ertuway Backend up and running at port ${port}`);
 });
+
+var options = {
+  cert: fs.readFileSync("/etc/letsencrypt/live/ertuway.com/fullchain.pem"),
+  key: fs.readFileSync("/etc/letsencrypt/live/ertuway.com/privkey.pem"),
+};
+
+https.createServer(options, app).listen(443);
