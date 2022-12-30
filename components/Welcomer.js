@@ -97,6 +97,7 @@ function Welcomer(props) {
               width={"1000"}
               height={"425"}
               alt={"Welcomer Image"}
+              priority
               className={`${styles.topImage} ${
                 topImageVisible && styles.isVisible
               }`}
@@ -106,6 +107,7 @@ function Welcomer(props) {
               width={"1000"}
               height={"425"}
               alt={"Welcomer Image"}
+              priority
               className={`${styles.bottomImage} ${
                 bottomImageVisible && styles.isVisible
               }`}

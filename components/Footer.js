@@ -6,10 +6,23 @@ import YoutubeIcon from "./Icons/YoutubeIcon";
 import FacebookIcon from "./Icons/FacebookIcon";
 import ContactUsButtons from "./ContactButtons";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+
 
 function Footer(props) {
   const [dataFetched, setDataFetched] = useState(0);
   const [subCategories, setSubCategories] = useState([]);
+  const router = useRouter();
+
+  function handleSubcategoryClick(maincategory, subcategory) {
+    router.push(
+      "/category/" +
+        maincategory +
+        "/" +
+        subcategory.split(maincategory + "_")[1]
+    );
+  }
+
 
   //WHEN PAGE LOADS OR ROUTE CHANGES
   useEffect(() => {
@@ -50,7 +63,7 @@ function Footer(props) {
 
             <b>Categories</b>
             {subCategories.map((x, i) => (
-              <div key={i} className={styles.footerLink}>
+              <div key={i} className={styles.footerLink} onClick={() => handleSubcategoryClick(x.maincategory, x.shortname)}>
                 {x.categoryName}
               </div>
             ))}

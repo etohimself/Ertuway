@@ -47,6 +47,7 @@
 .footerLink {
   margin-bottom: 10px;
   margin-right: 30px;
+  cursor: pointer;
 }
 
 .WrappingContent > b:nth-of-type(1) {

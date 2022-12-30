@@ -38,7 +38,7 @@ function CartPage(props) {
       }
     };
     fetchData();
-  }, []);
+  }, [router]);
 
   const monthNames = [
     "January",

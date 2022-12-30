@@ -15,7 +15,7 @@
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
   border-radius: 3px;
   background: white;
-  background-color: gray;
+  background-color: rgb(239, 239, 239);
   height: 225px; /* above 2100px */
   width: 225px; /* above 2100px */
   overflow: hidden;

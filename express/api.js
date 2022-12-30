@@ -256,13 +256,16 @@ app.get("/mostviewed", (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Ertuway Backend up and running at port ${port}`);
-});
 
-var options = {
-  cert: fs.readFileSync("/etc/letsencrypt/live/ertuway.com/fullchain.pem"),
-  key: fs.readFileSync("/etc/letsencrypt/live/ertuway.com/privkey.pem"),
-};
-
-https.createServer(options, app).listen(443);
+if(process.env.ERTUDEV) {
+  app.listen(port, () => {
+    console.log(`Ertuway Backend up and running at port ${port}`);
+  });
+}
+else {
+  var options = {
+    cert: fs.readFileSync("/etc/letsencrypt/live/ertuway.com/fullchain.pem"),
+    key: fs.readFileSync("/etc/letsencrypt/live/ertuway.com/privkey.pem"),
+  };
+  https.createServer(options, app).listen(27469);  
+}

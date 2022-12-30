@@ -11,11 +11,13 @@ function MobileMenu(props) {
   const router = useRouter();
   const { authData } = useContext(AuthContext);
 
+  const handleGoToCart = () => {
+    console.log("User is trying to go to the cart page..");
+    router.push("/cart");
+  };
+
   return (
-    <div
-      className={styles.MobileMenuContainer}
-      onClick={() => router.push("/")}
-    >
+    <div className={styles.MobileMenuContainer}>
       <div className={styles.MobileMenuButton}>
         <HomeIcon className={styles.MobileMenuIcons} />
         <p>Home</p>
@@ -31,10 +33,7 @@ function MobileMenu(props) {
         <UserIcon className={styles.MobileMenuIcons} />
         <p>{authData.username ? `My Account` : `Sign In`}</p>
       </div>
-      <div
-        className={styles.MobileMenuButton}
-        onClick={() => router.push("/cart")}
-      >
+      <div className={styles.MobileMenuButton} onClick={handleGoToCart}>
         <CartIcon className={styles.MobileMenuIcons} />
         <p>My Cart</p>
       </div>
