@@ -43,6 +43,7 @@
   border-radius: 5px;
   animation: loading-animation 1s linear infinite alternate;
   margin: 5px;
+  flex-shrink: 0;
 }
 
 @keyframes loading-animation {
@@ -78,5 +79,41 @@
   }
   .productShortListContainer {
     margin-top: 20px;
+  }
+}
+
+
+@media screen and (max-width: 2100px) {
+  .productSkeleton {
+    height: 160px;
+    width: 160px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .productSkeleton {
+    height: 120px;
+    width: 120px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .productSkeleton {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .productSkeleton {
+    height: 80px;
+    width: 80px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .productSkeleton {
+    height: 60px;
+    width: 60px;
   }
 }
