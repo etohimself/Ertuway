@@ -25,6 +25,7 @@ function ProductItem(props) {
           width={160}
           height={160}
           alt={props.data.name}
+          priority
         />
         {props.data.salePercentage > 0 && (
           <div className={styles.percentageContainer}>
