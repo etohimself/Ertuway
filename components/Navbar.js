@@ -241,6 +241,7 @@ function Navbar(props) {
         {pageList.map((x, i) => {
           return (
             <div
+              key={i}
               className={`${styles.mobileMenuButton}`}
               onClick={() => handleMobileMenuClick(x)}
             >
