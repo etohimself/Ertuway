@@ -25,31 +25,31 @@ export default function BestSellers() {
       .catch((err) => console.log(err));
   }, []);
 
-  return (
-    dataFetched && (
-      <>
-        <AuthProvider>
-          <FilterProvider>
-            <PageContent>
-              <Navbar root="bestsellers" />
-              <MobileMenu />
-              {pageList.map((eachPage) => {
-                if (eachPage.isMainCategory)
-                  return (
-                    <ProductShortList
-                      title={`Best Sellers ${eachPage.title}`}
-                      sortBy="soldCount"
-                      maincategory={eachPage.shortname}
-                      key={eachPage.shortname}
-                    />
-                  );
-              })}
-              <ContactUs />
-              <Footer />
-            </PageContent>
-          </FilterProvider>
-        </AuthProvider>
-      </>
-    )
+  return dataFetched ? (
+    <>
+      <AuthProvider>
+        <FilterProvider>
+          <PageContent>
+            <Navbar root="bestsellers" />
+            <MobileMenu />
+            {pageList.map((eachPage) => {
+              if (eachPage.isMainCategory)
+                return (
+                  <ProductShortList
+                    title={`Best Sellers ${eachPage.title}`}
+                    sortBy="soldCount"
+                    maincategory={eachPage.shortname}
+                    key={eachPage.shortname}
+                  />
+                );
+            })}
+            <ContactUs />
+            <Footer />
+          </PageContent>
+        </FilterProvider>
+      </AuthProvider>
+    </>
+  ) : (
+    ""
   );
 }

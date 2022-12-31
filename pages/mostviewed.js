@@ -25,31 +25,31 @@ export default function MostViewed() {
       .catch((err) => console.log(err));
   }, []);
 
-  return (
-    dataFetched && (
-      <>
-        <AuthProvider>
-            <FilterProvider>
-              <PageContent>
-                <Navbar root="mostviewed" />
-                <MobileMenu />
-                {pageList.map((eachPage) => {
-                  if (eachPage.isMainCategory)
-                    return (
-                      <ProductShortList
-                        title={`Most Viewed ${eachPage.title}`}
-                        sortBy="viewCount"
-                        maincategory={eachPage.shortname}
-                        key={eachPage.shortname}
-                      />
-                    );
-                })}
-                <ContactUs />
-                <Footer />
-              </PageContent>
-            </FilterProvider>
-        </AuthProvider>
-      </>
-    )
+  return dataFetched ? (
+    <>
+      <AuthProvider>
+        <FilterProvider>
+          <PageContent>
+            <Navbar root="mostviewed" />
+            <MobileMenu />
+            {pageList.map((eachPage) => {
+              if (eachPage.isMainCategory)
+                return (
+                  <ProductShortList
+                    title={`Most Viewed ${eachPage.title}`}
+                    sortBy="viewCount"
+                    maincategory={eachPage.shortname}
+                    key={eachPage.shortname}
+                  />
+                );
+            })}
+            <ContactUs />
+            <Footer />
+          </PageContent>
+        </FilterProvider>
+      </AuthProvider>
+    </>
+  ) : (
+    ""
   );
 }

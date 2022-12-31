@@ -25,31 +25,31 @@ export default function BestDeals() {
       .catch((err) => console.log(err));
   }, []);
 
-  return (
-    dataFetched && (
-      <>
-        <AuthProvider>
-            <FilterProvider>
-              <PageContent>
-                <Navbar root="bestdeals" />
-                <MobileMenu />
-                {pageList.map((eachPage) => {
-                  if (eachPage.isMainCategory)
-                    return (
-                      <ProductShortList
-                        title={`Best Deals ${eachPage.title}`}
-                        sortBy="salePercentage"
-                        maincategory={eachPage.shortname}
-                        key={eachPage.shortname}
-                      />
-                    );
-                })}
-                <ContactUs />
-                <Footer />
-              </PageContent>
-            </FilterProvider>
-        </AuthProvider>
-      </>
-    )
+  return dataFetched ? (
+    <>
+      <AuthProvider>
+        <FilterProvider>
+          <PageContent>
+            <Navbar root="bestdeals" />
+            <MobileMenu />
+            {pageList.map((eachPage) => {
+              if (eachPage.isMainCategory)
+                return (
+                  <ProductShortList
+                    title={`Best Deals ${eachPage.title}`}
+                    sortBy="salePercentage"
+                    maincategory={eachPage.shortname}
+                    key={eachPage.shortname}
+                  />
+                );
+            })}
+            <ContactUs />
+            <Footer />
+          </PageContent>
+        </FilterProvider>
+      </AuthProvider>
+    </>
+  ) : (
+    ""
   );
 }
