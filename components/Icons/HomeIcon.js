@@ -1,6 +1,6 @@
 export default function HomeIcon(props) {
   return (
-    <svg viewBox="0 0 460.298 460.297" className={props.className}>
+    <svg className={props.className} viewBox="0 0 460.298 460.297">
       <g>
         <g>
           <path

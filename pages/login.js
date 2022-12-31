@@ -14,15 +14,15 @@ export default function Login() {
   return (
     <>
       <AuthProvider>
-          <FilterProvider>
-            <PageContent>
-              <Navbar root="login" />
-              <MobileMenu />
-              <LoginPage />
-              <ContactUs />
-              <Footer />
-            </PageContent>
-          </FilterProvider>
+        <FilterProvider>
+          <PageContent>
+            <Navbar root="login" />
+            <MobileMenu root="account" />
+            <LoginPage />
+            <ContactUs />
+            <Footer />
+          </PageContent>
+        </FilterProvider>
       </AuthProvider>
     </>
   );

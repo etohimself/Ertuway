@@ -17,28 +17,41 @@ function MobileMenu(props) {
     setMobileMenuVisibility(1);
   };
 
-  const handleGoToCart = () => {
-    router.push("/cart");
-  };
-
   return (
     <div className={styles.MobileMenuContainer}>
-      <div className={styles.MobileMenuButton}>
+      <div
+        className={`${styles.MobileMenuButton} ${
+          props.root == "index" && styles.navActive
+        }`}
+        onClick={() => router.push("/")}
+      >
         <HomeIcon className={styles.MobileMenuIcons} />
         <p>Home</p>
       </div>
-      <div className={styles.MobileMenuButton} onClick={showMobileMenu}>
+      <div
+        className={`${styles.MobileMenuButton} ${
+          props.root == "menu" && styles.navActive
+        }`}
+        onClick={showMobileMenu}
+      >
         <CategoriesIcon className={styles.MobileMenuIcons} />
         <p>Categories</p>
       </div>
       <div
-        className={styles.MobileMenuButton}
+        className={`${styles.MobileMenuButton} ${
+          props.root == "account" && styles.navActive
+        }`}
         onClick={() => authData <= 0 && router.push("/login")}
       >
         <UserIcon className={styles.MobileMenuIcons} />
         <p>{authData.username ? `My Account` : `Sign In`}</p>
       </div>
-      <div className={styles.MobileMenuButton} onClick={handleGoToCart}>
+      <div
+        className={`${styles.MobileMenuButton} ${
+          props.root == "cart" && styles.navActive
+        }`}
+        onClick={() => router.push("/cart")}
+      >
         <CartIcon className={styles.MobileMenuIcons} />
         <p>My Cart</p>
       </div>

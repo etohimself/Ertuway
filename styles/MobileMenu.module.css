@@ -7,7 +7,7 @@
   background-color: #f3f3f3;
   display: none;
   position: fixed;
-  z-index:100;
+  z-index: 100;
   bottom: 0;
 }
 
@@ -17,6 +17,15 @@
   align-items: center;
   justify-content: flex-end;
   cursor: pointer;
+}
+
+.navActive {
+  color: #ff7440;
+  font-weight: 800;
+}
+.navActive .MobileMenuIcons > g,
+.navActive .MobileMenuIcons > path {
+  fill: #ff7440;
 }
 
 .MobileMenuIcons {
@@ -56,4 +65,3 @@
     font-size: 0px;
   }
 }
-
