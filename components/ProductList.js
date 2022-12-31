@@ -1,6 +1,5 @@
 import styles from "../styles/ProductList.module.css";
-import { useContext, useEffect, useRef, useState } from "react";
-import { ProductContext } from "../contexts/productContext";
+import { useContext, useRef } from "react";
 import ProductItem from "./ProductItem";
 import Dropdown from "./Dropdown";
 import useElementWidth from "./hooks/useElementWidth";

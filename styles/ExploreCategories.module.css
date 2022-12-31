@@ -30,6 +30,24 @@
   animation: loading-animation 1s linear infinite alternate;
 }
 
+.noDraw {
+  display: none !important;
+}
+
+@keyframes nodeInserted {
+  from {
+    outline-color: #fff;
+  }
+  to {
+    outline-color: #000;
+  }
+}
+
+.iconList {
+  animation-duration: 0.01s;
+  animation-name: nodeInserted;
+}
+
 @keyframes loading-animation {
   0% {
     background-color: hsl(195, 5%, 85%);

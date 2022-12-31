@@ -26,5 +26,19 @@
 }
 
 .noDraw {
-  display: none;
+  display: none !important;
+}
+
+@keyframes nodeInserted {
+  from {
+    outline-color: #fff;
+  }
+  to {
+    outline-color: #000;
+  }
+}
+
+.productList {
+  animation-duration: 0.01s;
+  animation-name: nodeInserted;
 }

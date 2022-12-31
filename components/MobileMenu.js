@@ -6,13 +6,18 @@ import CategoriesIcon from "../components/Icons/CategoriesIcon";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/authContext";
+import { FilterContext } from "../contexts/filterContext";
 
 function MobileMenu(props) {
   const router = useRouter();
   const { authData } = useContext(AuthContext);
+  const { setMobileMenuVisibility } = useContext(FilterContext);
+
+  const showMobileMenu = () => {
+    setMobileMenuVisibility(1);
+  };
 
   const handleGoToCart = () => {
-    console.log("User is trying to go to the cart page..");
     router.push("/cart");
   };
 
@@ -22,7 +27,7 @@ function MobileMenu(props) {
         <HomeIcon className={styles.MobileMenuIcons} />
         <p>Home</p>
       </div>
-      <div className={styles.MobileMenuButton}>
+      <div className={styles.MobileMenuButton} onClick={showMobileMenu}>
         <CategoriesIcon className={styles.MobileMenuIcons} />
         <p>Categories</p>
       </div>

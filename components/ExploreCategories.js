@@ -1,12 +1,16 @@
 import styles from "../styles/ExploreCategories.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import CategoryIcon from "./CategoryIcon";
 import { useRouter } from "next/router";
+import useElementWidth from "../components/hooks/useElementWidth";
 
 function ExploreCategories(props) {
   const [categoryList, setCategoryList] = useState([]);
   const [dataFetched, setDataFetched] = useState(0);
   const router = useRouter();
+  const containerRef = useRef(0);
+  const [parentWidth, childWidth] = useElementWidth(containerRef);
+  const [hideAfter, setHideAfter] = useState(100);
 
   function handleSubcategoryClick(maincategory, subcategory) {
     router.push(
@@ -34,13 +38,24 @@ function ExploreCategories(props) {
     }
   }, [categoryList]);
 
+  useEffect(() => {
+    //When the width changes, quickly calculate which ones to hide
+    if (!childWidth || !categoryList.length) {
+      setHideAfter(100);
+      return;
+    }
+    let rowCapacity = (parentWidth - (parentWidth % childWidth)) / childWidth;
+    setHideAfter(categoryList.length - (categoryList.length % rowCapacity));
+  }, [parentWidth, childWidth]);
+
   if (dataFetched) {
     return (
       <div className={styles.ExploreCategoriesContainer}>
         <h1>Explore Categories</h1>
-        <div className={styles.iconList}>
+        <div className={styles.iconList} ref={containerRef}>
           {categoryList.map((category, index) => (
             <CategoryIcon
+              className={`${index >= hideAfter && styles.noDraw}`}
               data={category}
               index={index + 1}
               key={category.shortname}

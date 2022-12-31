@@ -27,8 +27,17 @@
   justify-content: space-between;
   box-sizing: border-box;
   align-items: flex-start;
-  overflow: hidden;
+  overflow-x: scroll;
   position: relative;
+}
+
+.itemArea::-webkit-scrollbar {
+  display: none;
+}
+
+.itemArea {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .titleBar > h1 {
@@ -81,7 +90,6 @@
     margin-top: 20px;
   }
 }
-
 
 @media screen and (max-width: 2100px) {
   .productSkeleton {

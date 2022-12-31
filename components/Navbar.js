@@ -7,6 +7,8 @@ import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import SpinIcon from "./Icons/SpinIcon";
 import { AuthContext } from "../contexts/authContext";
+import { FilterContext } from "../contexts/filterContext";
+import CancelIcon from "./Icons/CancelIcon";
 
 function Navbar(props) {
   const [dataFetched, setDataFetched] = useState(0);
@@ -17,6 +19,8 @@ function Navbar(props) {
   const router = useRouter();
   const [showDropdown, setShowdropdown] = useState("");
   const { authData } = useContext(AuthContext);
+  const { mobileMenuVisibility, setMobileMenuVisibility } =
+    useContext(FilterContext);
 
   function handleCategoryClick(shortname) {
     if (shortname == "index") {
@@ -41,6 +45,11 @@ function Navbar(props) {
 
   function validCategory(catName) {
     return mainCategories.indexOf(catName) > -1;
+  }
+
+  function handleMobileMenuClick(x) {
+    handleCategoryClick(x.shortname);
+    setMobileMenuVisibility(0);
   }
 
   useEffect(() => {
@@ -216,6 +225,30 @@ function Navbar(props) {
           showDropdown.length > 0 ? { display: "block" } : { display: "none" }
         }
       />
+
+      <div
+        className={`${styles.mobileMenuContainer} ${
+          mobileMenuVisibility && styles.mobileMenuVisible
+        }`}
+      >
+        <div
+          className={`${styles.mobileMenuButton} ${styles.mobileMenuTitle}`}
+          onClick={() => setMobileMenuVisibility(0)}
+        >
+          <p>Categories</p>
+          <CancelIcon className={styles.mobileMenuCloseBtn} />
+        </div>
+        {pageList.map((x, i) => {
+          return (
+            <div
+              className={`${styles.mobileMenuButton}`}
+              onClick={() => handleMobileMenuClick(x)}
+            >
+              <p>{x.title}</p>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }

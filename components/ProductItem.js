@@ -2,8 +2,6 @@ import styles from "../styles/ProductItem.module.css";
 import priceFormat from "../Helpers/priceFormat";
 import Image from "next/image";
 import Percentage from "./icons/Percentage";
-import { useContext } from "react";
-import { ProductContext } from "../contexts/productContext";
 import { useRouter } from "next/router";
 
 function ProductItem(props) {

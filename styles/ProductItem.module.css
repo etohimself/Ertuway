@@ -177,13 +177,16 @@ svg.percentageSvg {
     width: 60px;
   }
   svg.percentageSvg {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
   .percentageOffText {
     font-size: 0.75em;
   }
   .oldPrice {
     margin-top: 6px;
+  }
+  .priceLabel {
+    font-size: 1em;
   }
 }

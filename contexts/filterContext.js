@@ -14,6 +14,7 @@ export function FilterProvider(props) {
   const [filter_warranty, set_filter_warranty] = useState({ value: 0 });
   const [filter_sortby, set_filter_sortby] = useState({ value: 0 });
   const [slicerReady, setSlicerReady] = useState(0);
+  const [mobileMenuVisibility, setMobileMenuVisibility] = useState(0);
 
   //Available slicer options
   const [list_subcategory, set_list_subcategory] = useState([
@@ -384,6 +385,9 @@ export function FilterProvider(props) {
         set_filter_sortby,
         slicerReady,
         setSlicerReady,
+
+        mobileMenuVisibility,
+        setMobileMenuVisibility,
       }}
     >
       {props.children}

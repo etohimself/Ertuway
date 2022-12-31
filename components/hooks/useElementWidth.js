@@ -32,8 +32,12 @@ function useElementWidth(elementRef) {
       }
     }
     window.addEventListener("resize", updateWidth);
+    window.addEventListener("animationstart", updateWidth);
     updateWidth();
-    return () => window.removeEventListener("resize", updateWidth);
+    return () => {
+      window.removeEventListener("resize", updateWidth);
+      window.removeEventListener("animationstart", updateWidth);
+    };
   }, []);
   return width;
 }

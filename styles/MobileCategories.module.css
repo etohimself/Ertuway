@@ -1,0 +1,27 @@
+.mobileMenuContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.mobileMenuButton {
+  padding: 20px 40px;
+  background: linear-gradient(180deg, #ffffff 51.56%, #eaeaea 100%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mobileMenuTitle {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ff7440;
+  justify-content: space-between;
+}
+
+.mobileMenuCloseBtn {
+  width: 35px;
+  height: 35px;
+}

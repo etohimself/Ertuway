@@ -1,6 +1,4 @@
 import styles from "../styles/CategoryIcon.module.css";
-import { useContext } from "react";
-import { ProductContext } from "../contexts/productContext";
 import Image from "next/image";
 
 function CategoryIcon(props) {
