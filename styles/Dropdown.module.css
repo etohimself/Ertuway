@@ -1,6 +1,6 @@
 .dropdownContainer {
   display: inline-block;
-  margin-right:50px;
+  margin-right: 50px;
 }
 
 .selectedContainer {
@@ -14,7 +14,7 @@
   padding: 8px 20px;
   font-weight: 600;
   cursor: pointer;
-  min-width:280px;
+  min-width: 280px;
 }
 
 .listWrapper {
@@ -69,8 +69,13 @@
   display: block;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 300px) {
+  .selectedContainer {
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
   .dropdownContainer {
-    display: none;
+    margin-right: 0;
   }
 }

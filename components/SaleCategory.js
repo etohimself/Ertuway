@@ -5,7 +5,7 @@ import SaleIcon from "./Icons/SaleIcon";
 function SaleCategory(props) {
   return (
     <div className={styles.SaleCategoryContainer}>
-      <Image
+      <img
         src={props.image}
         width={600}
         height={400}

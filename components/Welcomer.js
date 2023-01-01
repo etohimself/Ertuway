@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "../styles/Welcomer.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -92,22 +91,20 @@ function Welcomer(props) {
       <div className={styles.middleContainer} onClick={handleEventClick}>
         {dataFetched ? (
           <>
-            <Image
+            <img
               src={topImageSrc}
-              width={"1000"}
-              height={"425"}
+              width={1000}
+              height={425}
               alt={"Welcomer Image"}
-              priority
               className={`${styles.topImage} ${
                 topImageVisible && styles.isVisible
               }`}
             />
-            <Image
+            <img
               src={bottomImageSrc}
-              width={"1000"}
-              height={"425"}
+              width={1000}
+              height={425}
               alt={"Welcomer Image"}
-              priority
               className={`${styles.bottomImage} ${
                 bottomImageVisible && styles.isVisible
               }`}

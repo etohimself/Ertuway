@@ -68,6 +68,9 @@
     width: 120px;
     height: 120px;
   }
+  .sortSlicer {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 700px) {

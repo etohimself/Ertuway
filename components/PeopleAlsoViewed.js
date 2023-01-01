@@ -37,7 +37,7 @@ function PeopleAlsoViewed(props) {
       setHideAfter(12);
       return;
     }
-    setHideAfter((parentWidth - (parentWidth % childWidth)) / childWidth);
+    setHideAfter(((parentWidth - (parentWidth % childWidth)) / childWidth) * 2);
   }, [parentWidth, childWidth]);
 
   if (dataFetched && productList.length)

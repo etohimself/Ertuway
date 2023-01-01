@@ -62,8 +62,3 @@ function Dropdown(props) {
 }
 
 export default Dropdown;
-
-/*
-<Dropdown list=["Recommended Order", ...]>
-
-*/

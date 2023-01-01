@@ -13,7 +13,7 @@ export default function Checkout() {
       <AuthProvider>
         <FilterProvider>
           <PageContent>
-            <Navbar root="checkout" />
+            <Navbar root="cart" />
             <MobileMenu />
             <CheckoutPage />
             <ContactUs />

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "../styles/ProductDetails.module.css";
 import img1 from "../public/images/details1.png";
 import img2 from "../public/images/details2.png";
@@ -12,6 +11,7 @@ import priceFormat from "../Helpers/priceFormat";
 import Button from "./Button";
 import CartIcon from "../components/Icons/CartIcon";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 function ProductDetails(props) {
   const router = useRouter();

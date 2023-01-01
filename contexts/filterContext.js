@@ -1,6 +1,4 @@
 import { createContext, useEffect, useState, useContext } from "react";
-import { ProductContext } from "./productContext";
-
 export const FilterContext = createContext();
 
 export function FilterProvider(props) {

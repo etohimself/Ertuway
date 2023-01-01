@@ -14,7 +14,7 @@ function CategoryIcon(props) {
           : {}
       }
     >
-      <Image
+      <img
         src={props.data.categoryIcon}
         alt={props.data.categoryName}
         width={80}

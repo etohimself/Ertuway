@@ -122,7 +122,7 @@ app.get("/products", (req, res) => {
       .json(
         shuffleArr(
           products.filter((x) => x.subcategory == req.query.similiarCategory)
-        ).slice(0, 12)
+        ).slice(0, 20)
       );
   } else {
     res.status(200).json(products);

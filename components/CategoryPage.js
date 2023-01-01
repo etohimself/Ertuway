@@ -201,28 +201,7 @@ function CategoryPage(props) {
       if (findpage) setTitleText(findpage.title);
     }
   }
-  /*
-  useEffect(() => {
-    if (filter_event != "all") {
-      setTitleText(eventList.filter((x) => x.event == filter_event)[0].title);
-    } else if (filter_maincategory != "all" && filter_subcategory == "all") {
-      setTitleText(
-        pageList.filter((pg) => pg.shortname == filter_maincategory)[0].title
-      );
-    } else if (filter_subcategory != "all") {
-      setTitleText(
-        productDB.filter((subcat) => subcat.shortname == filter_subcategory)[0]
-          .categoryName
-      );
-    }
-  }, [filter_maincategory, filter_event, filter_subcategory]);
-
-  useEffect(() => {
-    //In case the user resizes window, hide filters and order
-    if (showOrders || showFilters) {
-      handleRightButton();
-    }
-  }, [myWidth]); */
+  
 
   const handleRightButton = () => {
     if (showFilters || showOrders) {

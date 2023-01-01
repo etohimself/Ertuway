@@ -11,9 +11,9 @@ export default function MinusIcon(props) {
       <path
         d="M1.30078 1.35547H14.0003"
         stroke="#F89725"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

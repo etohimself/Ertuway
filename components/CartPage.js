@@ -139,13 +139,11 @@ function CartPage(props) {
     if (authData == 0) {
       router.push("/login");
     } else if (authData.username) {
-      alert(
-        "You are at the end of my demo portfolio project. I will built the rest of the website by end of January. Thank you for trying out! -Ertuğrul CÖRE"
-      );
+      router.push("/checkout");
     }
   };
 
-  if (dataFetched)
+  if (dataFetched) {
     return (
       <div className={styles.CartPageContainer}>
         <div className={styles.titleBar}>
@@ -157,7 +155,7 @@ function CartPage(props) {
               ? productsInCart.map((eachItem) => {
                   return (
                     <div className={styles.productContainer} key={eachItem.id}>
-                      <Image
+                      <img
                         className={styles.productImg}
                         src={eachItem.imgLarge}
                         width={130}
@@ -237,24 +235,43 @@ function CartPage(props) {
           <div className={styles.PaymentArea}>
             <div className={styles.paymentTitle}>Total Price</div>
             <div className={styles.totalPrice}>
-              {sumPrice > 0 ? `${priceFormat(sumPrice + 20)}` : `$0.00`}
+              ${sumPrice > 0 ? `${priceFormat(sumPrice + 10)}` : `0.00`}
             </div>
             <div className={styles.priceDetails}>
-              {sumPrice > 0 && `$20,00 Shipping Costs`}
+              {sumPrice > 0 && `$10,00 Shipping Costs`}
             </div>
             <div className={styles.priceDetails}>
               {sumPrice > 0 && `$${priceFormat(sumPrice)} Product Costs`}
             </div>
             <Button
               className={styles.paymentButton}
-              onClick={handlePaymentButton}
+              onClick={() => productsInCart.length && handlePaymentButton()}
             >
-              Payment
+              Checkout
             </Button>
           </div>
         </div>
       </div>
     );
+  } else {
+    return (
+      <div className={styles.CartPageContainer}>
+        <div className={styles.titleBar}>
+          <div className={styles.titleSkeletonFill} />
+        </div>
+        <div className={styles.CartArea}>
+          <div className={styles.CartList}>
+            <div className={styles.CartItemSkeleton} />
+            <div className={styles.CartItemSkeleton} />
+            <div className={styles.CartItemSkeleton} />
+            <div className={styles.CartItemSkeleton} />
+            <div className={styles.CartItemSkeleton} />
+          </div>
+          <div className={`${styles.PaymentArea} ${styles.paymentSkeleton}`} />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default CartPage;
