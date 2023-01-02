@@ -90,7 +90,11 @@ function PriceSlicer(props) {
               className={styles.slicerItem}
               key={index}
               onClick={() =>
-                props.onSelect({ invoker: props.slicername, data: item })
+                props.onSelect({
+                  invoker: props.slicername,
+                  data: item,
+                  isRange: 0,
+                })
               }
             >
               <div

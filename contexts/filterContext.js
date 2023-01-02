@@ -81,7 +81,7 @@ export function FilterProvider(props) {
         filter_price.min == payload.data.min &&
         filter_price.max == payload.data.max &&
         payload.data.min + payload.data.max > 0 &&
-        payload.data.isRange < 1
+        payload.isRange < 1
       ) {
         //Remove selection
         set_filter_price({ min: 0, max: 0 });
