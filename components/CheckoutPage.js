@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import styles from "../styles/CheckoutPage.module.css";
 import Button from "../components/Button";
 import { useState, useEffect, useContext } from "react";
@@ -19,40 +20,13 @@ function CheckoutPage(props) {
   const [productsInCart, setProductsInCart] = useState([]);
   const router = useRouter();
   const { authData } = useContext(AuthContext);
+  const [addressList, setAddressList] = useState([]);
+  const [cardList, setCardList] = useState([]);
 
   const [list_shipping] = useState([
     { name: "Standart Shipping", value: 0 },
     { name: "Fast Shipping", value: 1 },
   ]);
-
-  const addressList = [
-    {
-      id: "e07fc11c-dd53-4f11-829d-dfaed0397216",
-      title: "Friend’s House",
-      address:
-        "Osmanağa Mahallesi,Bahariye Caddesi, No: 1, Daire: 1 Kadıköy, Istanbul / Turkey",
-    },
-    {
-      id: "2d2f5d11-1922-4e43-b423-8256c9b6690b",
-      title: "Home",
-      address: "Yunus Mahallesi, Istmarina, Kartal, Istanbul, Turkey",
-    },
-  ];
-
-  const cardList = [
-    {
-      id: "3e107a34-bb0f-421c-b3a3-a235e7bffb5c",
-      cardnumber: "**** **** **** 2821",
-      cardholder: "E******* C****",
-      type: "mastercard",
-    },
-    {
-      id: "8ae8a131-6e36-41b7-b23b-245d8124a836",
-      cardnumber: "**** **** **** 1533",
-      cardholder: "S*** V*****",
-      type: "visa",
-    },
-  ];
 
   function refreshCartFromLocalStorage(productsGiven) {
     let finalItems = [];
@@ -105,6 +79,7 @@ function CheckoutPage(props) {
   }
 
   useEffect(() => {
+    if (!productsInCart.length) return;
     setShippingPrice(
       productsInCart.reduce(
         (acc, x) => (x.selected_shipping > 0 ? acc + 12 : acc + 5),
@@ -145,15 +120,25 @@ function CheckoutPage(props) {
 
     //Fetch products
     const fetchData = async () => {
+      let myToken = Cookies.get("session-token");
       let productAPI = `${location.protocol}//${location.hostname}:27469/products`;
+      let accountAPI = `${location.protocol}//${location.hostname}:27469/accountinfo?token=${myToken}`;
       let res_product = await fetch(productAPI);
       let data_product = await res_product.json();
+      let res_account = await fetch(accountAPI);
+      let data_account = await res_account.json();
 
       //Check if the data we received is valid
-      if (data_product.length && data_product[0].imgLarge) {
+      if (
+        data_product.length &&
+        data_product[0].imgLarge &&
+        data_account.addresslist
+      ) {
         //If data is valid, set current product
         setProductDB(data_product);
         refreshCartFromLocalStorage(data_product); //Products given, so we dont have to wait for useState to update
+        setAddressList(data_account.addresslist);
+        setCardList(data_account.cardlist);
         setDataFetched(1);
       }
     };
@@ -170,18 +155,20 @@ function CheckoutPage(props) {
 
   const handlePaymentButton = () => {
     let orderObj = {};
+    let generatedOrderNum = randNum(42431534, 98698943);
     orderObj.products = productsInCart.map((x) => {
       return {
         id: x.id,
         selected_count: x.selected_count,
         selected_seller: x.selected_seller,
+        selected_options: x.selected_options,
         selected_shipping: x.selected_shipping,
       };
     });
     orderObj.payment = cardList[currentCard].id;
     orderObj.address = addressList[currentAddress].id;
     orderObj.user = authData.username;
-    orderObj.orderNumber = randNum(42431534, 98698943);
+    orderObj.orderNumber = generatedOrderNum;
     orderObj.orderDateTime = Date.now();
 
     localStorage.removeItem("ertuway-cart");
@@ -189,8 +176,7 @@ function CheckoutPage(props) {
     storedOrders = [...storedOrders, orderObj];
     localStorage.setItem("ertuway-orders", JSON.stringify(storedOrders));
     setProductsInCart([]);
-    //Here actually I will redirect to sucess page..
-    router.reload();
+    router.push(`/order/${generatedOrderNum}`);
   };
 
   if (authData == 0) {

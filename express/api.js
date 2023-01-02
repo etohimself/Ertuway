@@ -11,6 +11,8 @@ const {
   subcategories,
   pagelist,
   eventlist,
+  cardlist,
+  addresslist,
 } = require("./db.js");
 const testaccount = {
   username: "testaccount@gmail.com",
@@ -256,16 +258,41 @@ app.get("/mostviewed", (req, res) => {
   }
 });
 
+app.get("/accountinfo", (req, res) => {
+  if (req.query.token) {
+    let session = active_sessions.find((x) => x.token == req.query.token);
+    if (session) {
+      //Valid token
+      res.status(200).json({
+        status: "ACCOUNT_INFO",
+        message: "User authenticated, info available.",
+        username: session.user,
+        cardlist: cardlist,
+        addresslist: addresslist,
+      });
+    } else {
+      //Invalid token
+      res.status(400).json({
+        status: "BAD_AUTH",
+        message: "Invalid token.",
+      });
+    }
+  } else {
+    res.status(400).json({
+      status: "TOKEN_REQUIRED",
+      message: "Token required.",
+    });
+  }
+});
 
-if(process.env.ERTUDEV) {
+if (process.env.ERTUDEV) {
   app.listen(port, () => {
     console.log(`Ertuway Backend up and running at port ${port}`);
   });
-}
-else {
+} else {
   var options = {
     cert: fs.readFileSync("/etc/letsencrypt/live/ertuway.com/fullchain.pem"),
     key: fs.readFileSync("/etc/letsencrypt/live/ertuway.com/privkey.pem"),
   };
-  https.createServer(options, app).listen(27469);  
+  https.createServer(options, app).listen(27469);
 }
