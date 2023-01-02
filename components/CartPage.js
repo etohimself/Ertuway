@@ -9,6 +9,7 @@ import calcPrice from "../helpers/calcPrice";
 import Button from "../components/Button";
 import { useRouter } from "next/router";
 import { AuthContext } from "../contexts/authContext";
+import SpinIcon from "../components/Icons/SpinIcon";
 
 function CartPage(props) {
   const [sumPrice, setSumPrice] = useState(0);
