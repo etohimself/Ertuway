@@ -3,7 +3,6 @@
   flex-direction: column;
   width: 100%;
   padding: 50px 150px;
-  min-height: 100vh;
   font-size: 16px;
   padding: 30px 80px;
 }
@@ -17,7 +16,6 @@
     rgba(246, 255, 236, 0) 27.08%
   );
   border: 1px solid #60a113;
-  min-height: 70vh;
   padding: 20px 40px;
   color: #767676;
 }
@@ -231,9 +229,7 @@
 
 .productInner {
   display: flex;
-  justify-content: space-between;
   width: 100%;
-  gap: 20px;
 }
 
 .productImg {
@@ -246,7 +242,6 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  width: 100%;
 }
 
 .productName {
@@ -261,9 +256,9 @@
 }
 
 .productPrice {
-  font-size: 1.3em;
+  font-size: 1.5em;
   color: #ff7440;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .soldBy {
@@ -293,6 +288,43 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  justify-content: space-between;
+}
+
+.cartList {
+  width: 100%;
+  margin-bottom: 30x;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.statusArea {
+  margin-left: 25px;
+}
+
+.itemsTitle {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.productAreaRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 0 0 20px;
+}
+
+.statusTitle {
+  color: #ff7440;
+  font-weight: 700;
+}
+
+.statusRow {
+  display: flex;
+  width: 100%;
   justify-content: space-between;
 }
 
@@ -375,6 +407,39 @@
   .shippingArea {
     align-items: flex-end;
   }
+  .deliveryDetails {
+    flex-direction: column;
+  }
+  .deliveryInfoBox {
+    width: 100%;
+  }
+  .productAreaRow {
+    flex-direction: column;
+  }
+  .statusArea {
+    margin-left: 0;
+  }
+  .productInner {
+    flex-direction: column;
+  }
+  .productAreaRow {
+    margin: 15px 0 0 0;
+    gap: 10px;
+  }
+  .productImg {
+    width: 100%;
+    min-height: 200px;
+  }
+  .SuccessArea {
+    padding: 10px;
+  }
+  .productInfoArea {
+    font-size: 16px;
+  }
+  .statusTitle {
+    font-size: 1em;
+    font-weight: 600;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -384,10 +449,6 @@
   }
   .productContainer {
     gap: 8px;
-  }
-  .productImg {
-    width: 80px;
-    height: 80px;
   }
   .paymentButton {
     width: 100%;
@@ -406,17 +467,6 @@
 
   .CreditCardArea {
     margin-bottom: 25px;
-  }
-
-  .AddressBox,
-  .CreditcardBox {
-    width: 100%;
-    min-height: 150px;
-    box-sizing: border-box;
-  }
-
-  .DeliveryList {
-    flex-direction: column;
   }
 }
 

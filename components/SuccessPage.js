@@ -277,6 +277,91 @@ function SuccessPage(props) {
                 </div>
               </div>
             </div>
+            <div className={styles.cartList}>
+              <div className={styles.itemsTitle}>Ordered Items : </div>
+              {orderedProducts.map((eachItem) => {
+                return (
+                  <div className={styles.productContainer} key={eachItem.id}>
+                    <div className={styles.productInner}>
+                      <img
+                        className={styles.productImg}
+                        src={eachItem.imgLarge}
+                        width={130}
+                        height={130}
+                        alt={eachItem.name}
+                      />
+                      <div className={styles.productAreaRow}>
+                        <div className={styles.productInfoArea}>
+                          <div className={styles.productName}>
+                            {eachItem.brand} {eachItem.name}
+                          </div>
+                          <div>
+                            Purchased from{" "}
+                            <b>
+                              {
+                                eachItem.sellers[eachItem.selected_seller]
+                                  .storeName
+                              }
+                            </b>
+                          </div>
+                          <div className={styles.productPrice}>{`$${priceFormat(
+                            calcPrice(
+                              eachItem.sellers[eachItem.selected_seller]
+                                .storePrice,
+                              [...eachItem.options],
+                              [...eachItem.selected_options]
+                            ) * parseInt(eachItem.selected_count)
+                          )}`}</div>
+                          {eachItem.selected_count} Piece
+                          {eachItem.selected_count > 1 ? "s" : ""}
+                        </div>
+                        <div className={styles.statusArea}>
+                          <div className={styles.statusTitle}>Order Status</div>
+                          <div className={styles.orderStatusText}>
+                            Your items will be soon shipped by the seller.
+                          </div>
+                        </div>
+                        <div className={styles.statusArea}>
+                          <div className={styles.statusTitle}>
+                            {eachItem.selected_shipping > 0
+                              ? "Fast Delivery"
+                              : "Standart Delivery"}
+                          </div>
+                          <div className={styles.deliveryDate}>
+                            Estimated Delivery: <br />
+                            <b>
+                              {`${addDays(
+                                currentDate,
+                                parseInt(
+                                  eachItem.sellers[eachItem.selected_seller]
+                                    .storeShipping
+                                )
+                              )
+                                .getDate()
+                                .toString()} ${monthNames[
+                                addDays(
+                                  currentDate,
+                                  parseInt(
+                                    eachItem.sellers[eachItem.selected_seller]
+                                      .storeShipping
+                                  )
+                                ).getMonth()
+                              ].toString()} ${addDays(
+                                currentDate,
+                                parseInt(
+                                  eachItem.sellers[eachItem.selected_seller]
+                                    .storeShipping
+                                )
+                              ).getFullYear()} `}
+                            </b>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       );

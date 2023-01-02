@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import styles from "../styles/CheckoutPage.module.css";
 import Button from "../components/Button";
+import SpinIcon from "./Icons/SpinIcon";
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import { AuthContext } from "../contexts/authContext";
@@ -22,6 +23,7 @@ function CheckoutPage(props) {
   const { authData } = useContext(AuthContext);
   const [addressList, setAddressList] = useState([]);
   const [cardList, setCardList] = useState([]);
+  const [processing, setProcessing] = useState(0);
 
   const [list_shipping] = useState([
     { name: "Standart Shipping", value: 0 },
@@ -154,6 +156,8 @@ function CheckoutPage(props) {
   };
 
   const handlePaymentButton = () => {
+    if (processing) return;
+
     let orderObj = {};
     let generatedOrderNum = randNum(42431534, 98698943);
     orderObj.products = productsInCart.map((x) => {
@@ -175,7 +179,7 @@ function CheckoutPage(props) {
     let storedOrders = getLocalStorageOrders();
     storedOrders = [...storedOrders, orderObj];
     localStorage.setItem("ertuway-orders", JSON.stringify(storedOrders));
-    setProductsInCart([]);
+    setProcessing(1);
     router.push(`/order/${generatedOrderNum}`);
   };
 
@@ -250,7 +254,8 @@ function CheckoutPage(props) {
                 className={styles.paymentButton}
                 onClick={handlePaymentButton}
               >
-                Complete Order
+                {processing ? <SpinIcon className={styles.spinner} /> : ""}
+                {processing ? `Processing..` : "Complete Order"}
               </Button>
             </div>
           </div>
@@ -356,7 +361,7 @@ function CheckoutPage(props) {
     } else {
       return (
         <div className={styles.CheckoutPageContainer}>
-          <h1>Cart is empty...</h1>
+          <h1>Please wait...</h1>
         </div>
       );
     }

@@ -262,6 +262,12 @@
   justify-content: space-between;
 }
 
+.spinner {
+  width: 25px;
+  height: 25px;
+  animation: spin-animation 2s linear infinite;
+}
+
 @keyframes loading-animation {
   0% {
     background-color: hsl(195, 5%, 85%);

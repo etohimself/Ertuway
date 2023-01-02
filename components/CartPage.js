@@ -17,6 +17,7 @@ function CartPage(props) {
   const [productDB, setProductDB] = useState([]);
   const router = useRouter();
   const { authData } = useContext(AuthContext);
+  const [processing, setProcessing] = useState(0);
 
   //WHEN PAGE LOADS
   useEffect(() => {
@@ -135,6 +136,8 @@ function CartPage(props) {
 
   const handlePaymentButton = () => {
     if (!dataFetched) return;
+    if (processing) return;
+    if (!productsInCart.length) return;
 
     if (authData == 0) {
       router.push("/login");
@@ -245,9 +248,10 @@ function CartPage(props) {
             </div>
             <Button
               className={styles.paymentButton}
-              onClick={() => productsInCart.length && handlePaymentButton()}
+              onClick={handlePaymentButton}
             >
-              Checkout
+              {processing ? <SpinIcon className={styles.spinner} /> : ""}
+              {processing ? `Processing..` : "Checkout"}
             </Button>
           </div>
         </div>
