@@ -92,7 +92,7 @@ function ProductDetails(props) {
         </div>
         <div className={`${styles.fullRow}`}>
           <div className={styles.column}>
-            <Image className={styles.detailsImg} src={img1} alt="" />
+            <Image className={styles.detailsImg} src={img1} width={100} height={100} alt="" />
           </div>
           <div className={styles.column}>
             <div className={styles.columnTitle}>Secure Shopping</div>
@@ -123,7 +123,7 @@ function ProductDetails(props) {
         </div>
         <div className={`${styles.fullRow} ${styles.reverseRow}`}>
           <div className={styles.column}>
-            <Image className={styles.detailsImg} src={img2} alt="" />
+            <Image className={styles.detailsImg} src={img2} width={100} height={100} alt="" />
           </div>
           <div className={styles.column}>
             <div className={styles.columnTitle}>Careful Packaging</div>
@@ -151,7 +151,7 @@ function ProductDetails(props) {
         </div>
         <div className={`${styles.fullRow}`}>
           <div className={styles.column}>
-            <Image className={styles.detailsImg} src={img3} alt="" />
+            <Image className={styles.detailsImg} src={img3} width={100} height={100} alt="" />
           </div>
           <div className={styles.column}>
             <div className={styles.columnTitle}>Fast Delivery</div>
@@ -179,7 +179,7 @@ function ProductDetails(props) {
         </div>
         <div className={`${styles.fullRow} ${styles.reverseRow}`}>
           <div className={styles.column}>
-            <Image className={styles.detailsImg} src={img4} alt="" />
+            <Image className={styles.detailsImg} src={img4} width={100} height={100} alt="" />
           </div>
           <div className={styles.column}>
             <div className={styles.columnTitle}>Best Customer Support</div>

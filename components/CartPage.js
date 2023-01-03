@@ -159,7 +159,7 @@ function CartPage(props) {
               ? productsInCart.map((eachItem) => {
                   return (
                     <div className={styles.productContainer} key={eachItem.id}>
-                      <img
+                      <Image
                         className={styles.productImg}
                         src={eachItem.imgLarge}
                         width={130}

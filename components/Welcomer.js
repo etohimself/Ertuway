@@ -2,6 +2,7 @@ import styles from "../styles/Welcomer.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import ScrollArrow from "./ScrollArrow";
+import Image from "next/image";
 
 function Welcomer(props) {
   const router = useRouter();
@@ -91,19 +92,21 @@ function Welcomer(props) {
       <div className={styles.middleContainer} onClick={handleEventClick}>
         {dataFetched ? (
           <>
-            <img
+            <Image
               src={topImageSrc}
               width={1000}
               height={425}
+              priority
               alt={"Welcomer Image"}
               className={`${styles.topImage} ${
                 topImageVisible && styles.isVisible
               }`}
             />
-            <img
+            <Image
               src={bottomImageSrc}
               width={1000}
               height={425}
+              priority
               alt={"Welcomer Image"}
               className={`${styles.bottomImage} ${
                 bottomImageVisible && styles.isVisible

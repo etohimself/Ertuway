@@ -1,14 +1,12 @@
 import Cookies from "js-cookie";
 import styles from "../styles/SuccessPage.module.css";
-import Button from "../components/Button";
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import { AuthContext } from "../contexts/authContext";
-import getLocalStorageCart from "../helpers/getLocalStorageCart.js";
 import getLocalStorageOrders from "../Helpers/getLocalStorageOrders.js";
 import calcPrice from "../helpers/calcPrice";
 import priceFormat from "../helpers/priceFormat";
-import Dropdown from "./Dropdown";
+import Image from "next/image";
 
 function SuccessPage(props) {
   const [dataFetched, setDataFetched] = useState(0);
@@ -255,11 +253,12 @@ function SuccessPage(props) {
                       <div className={styles.cardName}>
                         {currentCard.cardholder}
                       </div>
-                      <img
+                      <Image
                         width={36}
                         height={24}
                         className={styles.cardIcon}
-                        src={`../images/cards/${currentCard.type}.svg`}
+                        src={`/images/cards/${currentCard.type}.svg`}
+                        alt="Card Type Icon"
                       />
                     </div>
                   </div>

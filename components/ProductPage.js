@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/ProductPage.module.css";
-import { ProductContext } from "../contexts/productContext";
 import Image from "next/image";
 import StarRating from "../components/StarRating";
 import priceFormat from "../Helpers/priceFormat";

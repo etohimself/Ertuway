@@ -2,6 +2,7 @@ import styles from "../styles/ProductItem.module.css";
 import priceFormat from "../Helpers/priceFormat";
 import Percentage from "./icons/Percentage";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 function ProductItem(props) {
   const router = useRouter();
@@ -18,10 +19,12 @@ function ProductItem(props) {
       onClick={() => router.push("/product/" + props.data.id)}
     >
       <div className={styles.imageContainer}>
-        <img
+        <Image
           className={styles.productImg}
           src={props.data.imgSmall}
           alt={props.data.name}
+          width={160}
+          height={160}
         />
         {props.data.salePercentage > 0 && (
           <div className={styles.percentageContainer}>

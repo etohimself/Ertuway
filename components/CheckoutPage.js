@@ -10,6 +10,8 @@ import getLocalStorageOrders from "../Helpers/getLocalStorageOrders.js";
 import calcPrice from "../helpers/calcPrice";
 import priceFormat from "../helpers/priceFormat";
 import Dropdown from "./Dropdown";
+import Image from "next/image";
+
 
 function CheckoutPage(props) {
   const [dataFetched, setDataFetched] = useState(0);
@@ -223,11 +225,12 @@ function CheckoutPage(props) {
                       <div className={styles.cardNumber}>{x.cardnumber}</div>
                       <div className={styles.cardRow}>
                         <div className={styles.cardName}>{x.cardholder}</div>
-                        <img
+                        <Image
                           width={48}
                           height={30}
                           className={styles.cardIcon}
-                          src={`images/cards/${x.type}.svg`}
+                          src={`/images/cards/${x.type}.svg`}
+                          alt="Card Type Icon"
                         />
                       </div>
                     </div>
