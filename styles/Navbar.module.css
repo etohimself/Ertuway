@@ -117,7 +117,14 @@
   color: #ff7440;
 }
 
+.AccountButton.accountActive {
+  color: #ff7440;
+}
+
 .navbarButtonIcons.cartActive {
+  fill: #ff7440;
+}
+.navbarButtonIcons.accountActive {
   fill: #ff7440;
 }
 

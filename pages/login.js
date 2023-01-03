@@ -16,7 +16,7 @@ export default function Login() {
       <AuthProvider>
         <FilterProvider>
           <PageContent>
-            <Navbar root="login" />
+            <Navbar root="account" />
             <MobileMenu root="account" />
             <LoginPage />
             <ContactUs />
