@@ -17,6 +17,7 @@
   align-items: center;
   justify-content: flex-end;
   cursor: pointer;
+  position: relative;
 }
 
 .navActive {
@@ -37,6 +38,27 @@
 
 .MobileMenuButton > p {
   margin: 0;
+}
+
+.badge {
+  color: white;
+  position: absolute;
+  top: -10%;
+  right: 10%;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  border-radius: 24px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  visibility: hidden;
+}
+
+.badgeVisible {
+  visibility: visible;
 }
 
 @media screen and (max-width: 1200px) {

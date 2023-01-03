@@ -11,7 +11,7 @@ import { FilterContext } from "../contexts/filterContext";
 function MobileMenu(props) {
   const router = useRouter();
   const { authData } = useContext(AuthContext);
-  const { setMobileMenuVisibility } = useContext(FilterContext);
+  const { setMobileMenuVisibility, itemsInCart } = useContext(FilterContext);
 
   const showMobileMenu = () => {
     setMobileMenuVisibility(1);
@@ -52,6 +52,11 @@ function MobileMenu(props) {
         }`}
         onClick={() => router.push("/cart")}
       >
+        <div
+          className={`${styles.badge} ${itemsInCart && styles.badgeVisible}`}
+        >
+          {itemsInCart ? itemsInCart : ""}
+        </div>
         <CartIcon className={styles.MobileMenuIcons} />
         <p>My Cart</p>
       </div>

@@ -67,8 +67,8 @@
   align-items: center;
   margin-right: 25px;
   cursor: pointer;
-  overflow: hidden;
   white-space: nowrap;
+  position: relative;
 }
 
 .BrandAreaMobile {
@@ -191,6 +191,27 @@
   margin: 0;
 }
 
+.badge {
+  color: white;
+  position: absolute;
+  top: -4px;
+  left: 12px;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  border-radius: 24px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  visibility: hidden;
+}
+
+.badgeVisible {
+  visibility: visible;
+}
+
 .mobileMenuTitle {
   font-size: 1em;
   font-weight: 800;
@@ -231,7 +252,7 @@
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 700px) {
   .NavbarContainer {
     padding: 15px 10px;
   }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "../styles/ProductPage.module.css";
 import Image from "next/image";
 import StarRating from "../components/StarRating";
@@ -13,6 +13,7 @@ import ProductDescription from "./ProductDescription";
 import GetLocalStorageCart from "../Helpers/getLocalStorageCart.js";
 import calcPrice from "../Helpers/calcPrice.js";
 import { useRouter } from "next/router";
+import { FilterContext } from "../contexts/filterContext";
 
 function ProductPage(props) {
   const router = useRouter();
@@ -22,6 +23,7 @@ function ProductPage(props) {
   const [selectedOptions, setSelectedOptions] = useState(Array(25).fill(0));
   const [price, setPrice] = useState(0);
   const [addedToCart, setAddedToCart] = useState(0);
+  const { refreshCartIcon } = useContext(FilterContext);
 
   //WHEN PAGE LOADS OR ROUTE CHANGES
   useEffect(() => {
@@ -112,6 +114,7 @@ function ProductPage(props) {
       localStorage.setItem("ertuway-cart", JSON.stringify(storedItems));
       setAddedToCart(0);
     }
+    refreshCartIcon();
   };
 
   useEffect(() => {

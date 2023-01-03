@@ -19,7 +19,7 @@ function Navbar(props) {
   const router = useRouter();
   const [showDropdown, setShowdropdown] = useState("");
   const { authData } = useContext(AuthContext);
-  const { mobileMenuVisibility, setMobileMenuVisibility } =
+  const { mobileMenuVisibility, setMobileMenuVisibility, itemsInCart } =
     useContext(FilterContext);
 
   function handleCategoryClick(shortname) {
@@ -127,6 +127,13 @@ function Navbar(props) {
                   props.root == "cart" && styles.cartActive
                 }`}
               />
+              <div
+                className={`${styles.badge} ${
+                  itemsInCart && styles.badgeVisible
+                }`}
+              >
+                {itemsInCart ? itemsInCart : ""}
+              </div>
               My Cart
             </div>
           </div>
@@ -152,6 +159,13 @@ function Navbar(props) {
                 props.root == "cart" && styles.cartActive
               }`}
             />
+            <div
+              className={`${styles.badge} ${
+                itemsInCart && styles.badgeVisible
+              }`}
+            >
+              {itemsInCart ? itemsInCart : ""}
+            </div>
             My Cart
           </div>
         </div>

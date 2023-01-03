@@ -11,6 +11,7 @@ import calcPrice from "../helpers/calcPrice";
 import priceFormat from "../helpers/priceFormat";
 import Dropdown from "./Dropdown";
 import Image from "next/image";
+import { FilterContext } from "../contexts/filterContext";
 
 
 function CheckoutPage(props) {
@@ -26,6 +27,7 @@ function CheckoutPage(props) {
   const [addressList, setAddressList] = useState([]);
   const [cardList, setCardList] = useState([]);
   const [processing, setProcessing] = useState(0);
+  const { refreshCartIcon } = useContext(FilterContext);
 
   const [list_shipping] = useState([
     { name: "Standart Shipping", value: 0 },
@@ -59,6 +61,7 @@ function CheckoutPage(props) {
       });
     });
     setProductsInCart(finalItems);
+    refreshCartIcon();
 
     setSumPrice(
       finalItems.reduce((acc, eachItem) => {
@@ -181,6 +184,7 @@ function CheckoutPage(props) {
     let storedOrders = getLocalStorageOrders();
     storedOrders = [...storedOrders, orderObj];
     localStorage.setItem("ertuway-orders", JSON.stringify(storedOrders));
+    refreshCartIcon();
     setProcessing(1);
     router.push(`/order/${generatedOrderNum}`);
   };
