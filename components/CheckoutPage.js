@@ -269,7 +269,7 @@ function CheckoutPage(props) {
                   return (
                     <div className={styles.productContainer} key={eachItem.id}>
                       <div className={styles.productInner}>
-                        <img
+                        <Image
                           className={styles.productImg}
                           src={eachItem.imgLarge}
                           width={130}
