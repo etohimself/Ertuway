@@ -6,11 +6,9 @@ import Footer from "../components/Footer.js";
 import LoginPage from "../components/LoginPage.js";
 import { FilterProvider } from "../contexts/filterContext.js";
 import { AuthProvider } from "../contexts/authContext";
+import OrdersPage from "../components/OrdersPage.js";
 
-export default function Login() {
-  //const router = useRouter();
-  //const { routes } = router.query;
-
+export default function Orders() {
   return (
     <>
       <AuthProvider>
@@ -18,7 +16,7 @@ export default function Login() {
           <PageContent>
             <Navbar root="account" />
             <MobileMenu root="account" />
-            <LoginPage />
+            <OrdersPage />
             <ContactUs />
             <Footer />
           </PageContent>

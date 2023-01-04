@@ -62,7 +62,6 @@ function Welcomer(props) {
       //data seems valid
       setTopImageSrc(eventList[0].image);
       setBottomImageSrc(eventList[0].image);
-
       setDataFetched(1);
     }
   }, [eventList]);

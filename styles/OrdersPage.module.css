@@ -1,0 +1,87 @@
+.OrdersContainer {
+  min-height: 50vh;
+  width: 100%;
+  padding: 30px 5%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0;
+  align-items: stretch;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.AccountNavbar {
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.NavLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.orderContainer {
+  width: 100%;
+  border: 1px solid #cfcfcf;
+  border-radius: 5px;
+  display: flex;
+  padding: 20px;
+  overflow: hidden;
+  gap: 20px;
+}
+
+.NavLink.active {
+  color: #ff7440;
+  font-weight: 600;
+}
+
+.NavLink.active > .ShippingIcon {
+  fill: #ff7440;
+}
+
+.NavLink.active > .HeartIcon {
+  stroke: #ff7440;
+}
+
+.ContentArea {
+  width: 100%;
+}
+
+.ContentArea > h2 {
+  margin: 0 0 20px 0;
+}
+
+.orderImg {
+  object-fit: cover;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2em;
+  color: #747474;
+  gap: 5px;
+}
+
+.productRow {
+  display: flex;
+  gap: 5px;
+}
+
+.orderNumber {
+  font-weight: 700;
+  color: #ff7440;
+}
+
+.productRow > b {
+  color: black;
+}

@@ -13,19 +13,9 @@ function SuccessPage(props) {
   const [currentAddress, setCurrentAddress] = useState(0);
   const [currentCard, setCurrentCard] = useState(0);
   const [currentOrderNumber, setCurrentOrderNumber] = useState(0);
-  const [sumPrice, setSumPrice] = useState(0);
-  const [shippingPrice, setShippingPrice] = useState(0);
-  const [productDB, setProductDB] = useState([]);
   const [orderedProducts, setOrderedProducts] = useState([]);
   const router = useRouter();
   const { authData } = useContext(AuthContext);
-  const [addressList, setAddressList] = useState([]);
-  const [cardList, setCardList] = useState([]);
-
-  const [list_shipping] = useState([
-    { name: "Standart Shipping", value: 0 },
-    { name: "Fast Shipping", value: 1 },
-  ]);
 
   function capFirst(txt) {
     return txt.charAt(0).toUpperCase() + txt.slice(1);
@@ -81,38 +71,7 @@ function SuccessPage(props) {
     setCurrentAddress(foundAddress.length ? foundAddress[0] : "");
     setCurrentCard(foundCard.length ? foundCard[0] : "");
     setCurrentOrderNumber(orderNumber);
-
-    setSumPrice(
-      finalItems.reduce((acc, eachItem) => {
-        return (
-          acc +
-          calcPrice(
-            eachItem.sellers[eachItem.selected_seller].storePrice,
-            [...eachItem.options],
-            [...eachItem.selected_options]
-          ) *
-            parseInt(eachItem.selected_count)
-        );
-      }, 0)
-    );
-
-    setShippingPrice(
-      finalItems.reduce(
-        (acc, x) => (x.selected_shipping > 0 ? acc + 12 : acc + 5),
-        0
-      )
-    );
   }
-
-  useEffect(() => {
-    if (!orderedProducts.length) return;
-    setShippingPrice(
-      orderedProducts.reduce(
-        (acc, x) => (x.selected_shipping > 0 ? acc + 12 : acc + 5),
-        0
-      )
-    );
-  }, [orderedProducts]);
 
   const monthNames = [
     "January",
@@ -128,6 +87,7 @@ function SuccessPage(props) {
     "November",
     "December",
   ];
+
   var currentDate = new Date();
   function addDays(date, days) {
     var result = new Date(date);
@@ -135,14 +95,9 @@ function SuccessPage(props) {
     return result;
   }
 
-  function randNum(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-
   //WHEN PAGE LOADS
   useEffect(() => {
     setDataFetched(0);
-    setProductDB([]);
 
     //Fetch products
     const fetchData = async () => {
@@ -171,53 +126,17 @@ function SuccessPage(props) {
         data_account.addresslist
       ) {
         //If data is valid, set current product
-        setProductDB(data_product);
         refreshOrderFromLocalStorage(
           data_product,
           data_account.addresslist,
           data_account.cardlist,
           secondParam
         ); //Products given, so we dont have to wait for useState to update
-        setAddressList(data_account.addresslist);
-        setCardList(data_account.cardlist);
         setDataFetched(1);
       }
     };
     fetchData();
   }, [router]);
-
-  const handleShippingSelection = (index, data) => {
-    setorderedProducts((prevData) => {
-      return prevData.map((x, i) =>
-        i == index ? { ...x, selected_shipping: parseInt(data.data.value) } : x
-      );
-    });
-  };
-
-  const handlePaymentButton = () => {
-    let orderObj = {};
-    orderObj.products = orderedProducts.map((x) => {
-      return {
-        id: x.id,
-        selected_count: x.selected_count,
-        selected_seller: x.selected_seller,
-        selected_shipping: x.selected_shipping,
-      };
-    });
-    orderObj.payment = cardList[currentCard].id;
-    orderObj.address = addressList[currentAddress].id;
-    orderObj.user = authData.username;
-    orderObj.orderNumber = randNum(42431534, 98698943);
-    orderObj.orderDateTime = Date.now();
-
-    localStorage.removeItem("ertuway-cart");
-    let storedOrders = getLocalStorageOrders();
-    storedOrders = [...storedOrders, orderObj];
-    localStorage.setItem("ertuway-orders", JSON.stringify(storedOrders));
-    setorderedProducts([]);
-    //Here actually I will redirect to sucess page..
-    router.reload();
-  };
 
   if (authData == 0) {
     router.push("/login");
@@ -371,9 +290,7 @@ function SuccessPage(props) {
   } else {
     return (
       <div className={styles.SuccessPageContainer}>
-        <div className={styles.titleBar}>
-          <div className={styles.titleSkeletonFill} />
-        </div>
+        <div className={styles.SuccessAreaSkeleton}></div>
       </div>
     );
   }

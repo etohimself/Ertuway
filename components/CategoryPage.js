@@ -5,7 +5,6 @@ import FilterIcon from "./Icons/FilterIcon";
 import SortIcon from "./Icons/SortIcon";
 import CancelIcon from "./Icons/CancelIcon";
 import OrderBy from "./OrderBy";
-import useElementWidth from "./hooks/useElementWidth";
 import ProductList from "./ProductList.js";
 import { FilterContext } from "../contexts/filterContext";
 import { useRouter } from "next/router";
@@ -21,7 +20,6 @@ function CategoryPage(props) {
   const [showOrders, setShowOrders] = useState(0);
   const [mainCategory, setMainCategory] = useState("");
   const containerRef = useRef();
-  const myWidth = useElementWidth(containerRef);
   const [titleText, setTitleText] = useState("");
   const {
     resetFilters,
@@ -201,7 +199,6 @@ function CategoryPage(props) {
       if (findpage) setTitleText(findpage.title);
     }
   }
-  
 
   const handleRightButton = () => {
     if (showFilters || showOrders) {

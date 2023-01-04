@@ -93,7 +93,7 @@
 
 .imageSkeleton {
   width: 100%;
-  height: 425px;
+  height: 20vw;
   background-color: rgb(236, 236, 236);
   border-radius: 5px;
   animation: loading-animation 1s linear infinite alternate;
@@ -118,6 +118,9 @@
   .rightContainer {
     width: 20%;
   }
+  .imageSkeleton {
+    height: 25vw;
+  }
 }
 
 @media screen and (max-width: 750px) {
@@ -130,6 +133,9 @@
   }
   .rightContainer {
     width: 15%;
+  }
+  .imageSkeleton {
+    height: 30vw;
   }
 }
 
