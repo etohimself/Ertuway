@@ -57,6 +57,7 @@
   width: 50%;
   border-radius: 20px;
   overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
   position: relative;
   display: flex;
   align-items: center;
@@ -71,7 +72,7 @@
   height: auto;
   object-fit: cover;
   user-select: none;
-  transition: all 0.6s ease-out;
+  transition: opacity 0.6s ease;
   opacity: 0;
   top: 0;
   left: 0;

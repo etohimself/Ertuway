@@ -10,6 +10,8 @@ import Button from "../components/Button";
 import { useRouter } from "next/router";
 import { AuthContext } from "../contexts/authContext";
 import SpinIcon from "../components/Icons/SpinIcon";
+import { FilterContext } from "../contexts/filterContext";
+
 
 function CartPage(props) {
   const [sumPrice, setSumPrice] = useState(0);
@@ -18,6 +20,7 @@ function CartPage(props) {
   const [productDB, setProductDB] = useState([]);
   const router = useRouter();
   const { authData } = useContext(AuthContext);
+  const { refreshCartIcon } = useContext(FilterContext);
   const [processing, setProcessing] = useState(0);
 
   //WHEN PAGE LOADS
@@ -89,6 +92,7 @@ function CartPage(props) {
       });
     });
     setProductsInCart(finalItems);
+    refreshCartIcon();
 
     setSumPrice(
       finalItems.reduce((acc, eachItem) => {
@@ -118,6 +122,7 @@ function CartPage(props) {
     }
     localStorage.setItem("ertuway-cart", JSON.stringify(storedItems));
     refreshCartFromLocalStorage();
+    refreshCartIcon();
   };
 
   const handleDecrement = (productID) => {
@@ -133,6 +138,7 @@ function CartPage(props) {
     }
     localStorage.setItem("ertuway-cart", JSON.stringify(storedItems));
     refreshCartFromLocalStorage();
+    refreshCartIcon();
   };
 
   const handlePaymentButton = () => {

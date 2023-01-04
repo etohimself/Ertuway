@@ -19,7 +19,7 @@ function Navbar(props) {
   const router = useRouter();
   const [showDropdown, setShowdropdown] = useState("");
   const { authData } = useContext(AuthContext);
-  const { mobileMenuVisibility, setMobileMenuVisibility } =
+  const { mobileMenuVisibility, setMobileMenuVisibility, itemsInCart } =
     useContext(FilterContext);
 
   function handleCategoryClick(shortname) {
@@ -110,10 +110,16 @@ function Navbar(props) {
           <BrandLogo text="Ertuway" />
           <div className={styles.NavbarButtonsContainerMobile}>
             <div
-              className={styles.AccountButton}
+              className={`${styles.AccountButton} ${
+                props.root == "account" && styles.accountActive
+              }`}
               onClick={() => authData <= 0 && router.push("/login")}
             >
-              <UserIcon className={styles.navbarButtonIcons} />
+              <UserIcon
+                className={`${styles.navbarButtonIcons} ${
+                  props.root == "account" && styles.accountActive
+                }`}
+              />
               {authData.username ? `My Account` : `Sign In`}
             </div>
             <div
@@ -127,6 +133,13 @@ function Navbar(props) {
                   props.root == "cart" && styles.cartActive
                 }`}
               />
+              <div
+                className={`${styles.badge} ${
+                  itemsInCart && styles.badgeVisible
+                }`}
+              >
+                {itemsInCart ? itemsInCart : ""}
+              </div>
               My Cart
             </div>
           </div>
@@ -135,10 +148,16 @@ function Navbar(props) {
         <SearchBox loading={!dataFetched} />
         <div className={styles.NavbarButtonsContainer}>
           <div
-            className={styles.AccountButton}
+            className={`${styles.AccountButton} ${
+              props.root == "account" && styles.accountActive
+            }`}
             onClick={() => authData <= 0 && router.push("/login")}
           >
-            <UserIcon className={styles.navbarButtonIcons} />
+            <UserIcon
+              className={`${styles.navbarButtonIcons} ${
+                props.root == "account" && styles.accountActive
+              }`}
+            />
             {authData.username ? `My Account` : `Sign In`}
           </div>
           <div
@@ -152,6 +171,13 @@ function Navbar(props) {
                 props.root == "cart" && styles.cartActive
               }`}
             />
+            <div
+              className={`${styles.badge} ${
+                itemsInCart && styles.badgeVisible
+              }`}
+            >
+              {itemsInCart ? itemsInCart : ""}
+            </div>
             My Cart
           </div>
         </div>
