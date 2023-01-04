@@ -5,9 +5,9 @@ import ContactUs from "../components/ContactUs.js";
 import Footer from "../components/Footer.js";
 import { FilterProvider } from "../contexts/filterContext.js";
 import { AuthProvider } from "../contexts/authContext";
-import OrdersPage from "../components/OrdersPage.js";
+import WishlistPage from "../components/WishlistPage.js";
 
-export default function Orders() {
+export default function Wishlist() {
   return (
     <>
       <AuthProvider>
@@ -15,7 +15,7 @@ export default function Orders() {
           <PageContent>
             <Navbar root="account" />
             <MobileMenu root="account" />
-            <OrdersPage />
+            <WishlistPage />
             <ContactUs />
             <Footer />
           </PageContent>

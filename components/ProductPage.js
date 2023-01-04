@@ -11,6 +11,7 @@ import FastDelivery from "../components/Icons/FastDeliveryIcon";
 import PeopleAlsoViewed from "../components/PeopleAlsoViewed";
 import ProductDescription from "./ProductDescription";
 import GetLocalStorageCart from "../Helpers/getLocalStorageCart.js";
+import getLocalStorageWishlist from "../Helpers/getLocalStorageWishlist";
 import calcPrice from "../Helpers/calcPrice.js";
 import { useRouter } from "next/router";
 import { FilterContext } from "../contexts/filterContext";
@@ -23,6 +24,7 @@ function ProductPage(props) {
   const [selectedOptions, setSelectedOptions] = useState(Array(25).fill(0));
   const [price, setPrice] = useState(0);
   const [addedToCart, setAddedToCart] = useState(0);
+  const [addedToWishlist, setAddedToWishlist] = useState(0);
   const { refreshCartIcon } = useContext(FilterContext);
 
   //WHEN PAGE LOADS OR ROUTE CHANGES
@@ -93,8 +95,16 @@ function ProductPage(props) {
     } else {
       setAddedToCart(0);
     }
+
+    let storedWishes = getLocalStorageWishlist();
+    if (storedWishes.findIndex((x) => x.id == currentProduct.id) > -1) {
+      setAddedToWishlist(1);
+    } else {
+      setAddedToWishlist(0);
+    }
   }, [currentProduct, currentSellerIndex]);
 
+  
   const handleAddToCart = () => {
     let storedItems = GetLocalStorageCart();
     if (storedItems.findIndex((x) => x.id == currentProduct.id) == -1) {
@@ -115,6 +125,24 @@ function ProductPage(props) {
       setAddedToCart(0);
     }
     refreshCartIcon();
+  };
+
+  const handleAddToWishlist = () => {
+    let storedItems = getLocalStorageWishlist();
+    if (storedItems.findIndex((x) => x.id == currentProduct.id) == -1) {
+      let myOrder = {
+        id: currentProduct.id,
+      };
+      storedItems.push(myOrder);
+      localStorage.setItem("ertuway-wishlist", JSON.stringify(storedItems));
+      setAddedToWishlist(1);
+    } else {
+      storedItems = storedItems.filter(
+        (eachItem) => eachItem.id != currentProduct.id
+      );
+      localStorage.setItem("ertuway-wishlist", JSON.stringify(storedItems));
+      setAddedToWishlist(0);
+    }
   };
 
   useEffect(() => {
@@ -198,9 +226,9 @@ function ProductPage(props) {
                   Remove from Cart
                 </Button>
               )}
-              <Button secondary={1}>
+              <Button secondary={1} onClick={handleAddToWishlist}>
                 <HeartIcon className={styles.wishlistIcon} />
-                Add To Wishlist
+                {addedToWishlist ? "Remove from Wishlist" : "Add To Wishlist"}
               </Button>
             </div>
             <div className={styles.estimatedShipping}>

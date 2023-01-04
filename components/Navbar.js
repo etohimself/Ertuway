@@ -113,7 +113,9 @@ function Navbar(props) {
               className={`${styles.AccountButton} ${
                 props.root == "account" && styles.accountActive
               }`}
-              onClick={() => authData <= 0 && router.push("/login")}
+              onClick={() =>
+                authData <= 0 ? router.push("/login") : router.push("/orders")
+              }
             >
               <UserIcon
                 className={`${styles.navbarButtonIcons} ${
@@ -151,7 +153,9 @@ function Navbar(props) {
             className={`${styles.AccountButton} ${
               props.root == "account" && styles.accountActive
             }`}
-            onClick={() => authData <= 0 && router.push("/login")}
+            onClick={() =>
+              authData <= 0 ? router.push("/login") : router.push("/orders")
+            }
           >
             <UserIcon
               className={`${styles.navbarButtonIcons} ${

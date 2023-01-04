@@ -41,7 +41,9 @@ function MobileMenu(props) {
         className={`${styles.MobileMenuButton} ${
           props.root == "account" && styles.navActive
         }`}
-        onClick={() => authData <= 0 && router.push("/login")}
+        onClick={() =>
+          authData <= 0 ? router.push("/login") : router.push("/orders")
+        }
       >
         <UserIcon className={styles.MobileMenuIcons} />
         <p>{authData.username ? `My Account` : `Sign In`}</p>
