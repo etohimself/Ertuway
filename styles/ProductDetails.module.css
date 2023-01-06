@@ -105,14 +105,15 @@
 
 .largeScore {
   font-weight: 800;
-  font-size: 70px;
+  font-size: 4em;
+  text-align: center;
 }
 
 .RatingContainer {
   display: flex;
   width: 100%;
   gap: 30px;
-  font-size: 20px;
+  font-size: 1.25em;
 }
 
 .barRow > b {
@@ -178,7 +179,7 @@
   flex-direction: column;
   width: 100%;
   gap: 10px;
-  font-size: 16px;
+  font-size: 1em;
 }
 
 .commentContainer {
@@ -260,12 +261,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 1.5em;
   font-weight: 700;
 }
 
 .customerName {
-  font-size: 20px;
+  font-size: 1.25em;
   font-weight: 600;
 }
 
@@ -299,7 +300,10 @@
 
 @media screen and (max-width: 1500px) {
   .allSellersContainer {
-    font-size: 14px;
+    font-size: 0.8em;
+  }
+  .detailsContainer {
+    font-size:15px;
   }
 }
 
@@ -321,7 +325,7 @@
     padding: 25px 5%;
   }
   .allSellersContainer {
-    font-size: 16px;
+    font-size: 1em;
   }
   .sellerAddToCartArea {
     display: none;
@@ -338,6 +342,9 @@
   .sellerAddToCartAreaMobile > .sellerAddtoCart {
     width: 100%;
   }
+  .detailsContainer {
+    font-size:14px;
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -346,7 +353,7 @@
     height: 60px;
   }
   .allSellersContainer {
-    font-size: 13px;
+    font-size: 0.8em;
   }
   .RatingContainer {
     flex-direction: column;
@@ -359,15 +366,15 @@
   .ratingArea {
     min-width: 100%;
   }
-  .largeScore {
-    font-size: 100px;
-  }
   .starRatings > svg {
-    height: 30px;
-    width: 30px;
+    height: 1.5em;
+    width: 1.5em;
   }
   .reviewCount {
     font-size: 1.25em;
+  }
+  .detailsContainer {
+    font-size:13px;
   }
 }
 
@@ -385,10 +392,13 @@
     text-align: start;
   }
   .allSellersContainer {
-    font-size: 13px;
+    font-size: 0.8em;
   }
   .sellerInfo {
     width: 100%;
+  }
+  .detailsContainer {
+    font-size:12px;
   }
 }
 
